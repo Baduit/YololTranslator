@@ -5,9 +5,12 @@
 #include <map>
 #include <vector>
 #include <memory>
+#include <algorithm>
+#include <cctype>
 
 using Dictionnary = std::map<std::string, std::string>;
 
+// string functions
 void replaceAll(std::string &s, const std::string &search, const std::string &replace)
 {
     for(size_t pos = 0; ; pos += replace.length())
@@ -20,6 +23,12 @@ void replaceAll(std::string &s, const std::string &search, const std::string &re
     }
 }
 
+void toLower(std::string &s)
+{
+    std::transform(s.begin(), s.end(), s.begin(), [](char c){ return std::tolower(c); });
+}
+
+// translators
 class Translator
 {
 public:
@@ -102,6 +111,7 @@ int main(int argc, char **argv)
     for (int i = 1; i < argc; ++i)
     {
         std::string word = argv[i];
+        toLower(word);
         for (auto& i: translators)
             word = (*i)(word);
         std::cout << word << " ";
