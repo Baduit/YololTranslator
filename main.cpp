@@ -7,12 +7,15 @@
 #include <memory>
 #include <algorithm>
 #include <cctype>
+#include <cstring>
 
 using Dictionnary = std::map<std::string, std::string>;
 
 // string functions
-void replaceAll(std::string &s, const std::string &search, const std::string &replace)
+bool replaceAll(std::string &s, const std::string &search, const std::string &replace)
 {
+    bool result = false;
+    
     for(size_t pos = 0; ; pos += replace.length())
     {
         pos = s.find(search, pos);
@@ -20,6 +23,29 @@ void replaceAll(std::string &s, const std::string &search, const std::string &re
             break;
         s.erase(pos, search.length());
         s.insert(pos, replace);
+        result = true;
+    }
+
+    return result;
+}
+
+void replaceEnd(std::string &s, const std::string &search, const std::string &replace)
+{
+    std::string end;
+    std::string tmp = s;
+    std::string cmp = search;
+    std::reverse(cmp.begin(), cmp.end());
+
+    for (auto i = tmp.size() - 1; i > 0; --i)
+    {
+        end += tmp[i];
+        tmp.pop_back();
+        if (end == cmp)
+        {
+            tmp += replace;
+            s = tmp;
+            break;
+        }
     }
 }
 
@@ -102,11 +128,32 @@ public:
     }
 };
 
+class TerminaisonTranslator: public Translator
+{
+public:
+    TerminaisonTranslator() = default;
+    TerminaisonTranslator(const std::string& filename)
+    { fillFromFile(filename); }
+
+    std::string operator()(const std::string& word) override
+    {
+        std::string result = word;
+
+        for (auto& i: _dico)
+            replaceEnd(result, i.first, i.second);
+
+        return result;
+    }
+};
+
+
+
 int main(int argc, char **argv)
 {
     std::vector<TranslatorPtr> translators;
     translators.push_back(std::make_unique<WordTranslator>("word_dico.txt"));
     translators.push_back(std::make_unique<SoundTranslator>("sound_dico.txt"));
+    translators.push_back(std::make_unique<TerminaisonTranslator>("terminaison_dico.txt"));
 
     for (int i = 1; i < argc; ++i)
     {

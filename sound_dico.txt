@@ -1,5 +1,7 @@
 ien 1
 qu k
 ph f
-au o
 oi wa
+
+au o
+eau o
