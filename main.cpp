@@ -150,10 +150,12 @@ public:
 
 int main(int argc, char **argv)
 {
+    std::string dirPath = "dico/";
+
     std::vector<TranslatorPtr> translators;
-    translators.push_back(std::make_unique<WordTranslator>("word_dico.txt"));
-    translators.push_back(std::make_unique<SoundTranslator>("sound_dico.txt"));
-    translators.push_back(std::make_unique<TerminaisonTranslator>("terminaison_dico.txt"));
+    translators.push_back(std::make_unique<WordTranslator>(dirPath + "word_dico.txt"));
+    translators.push_back(std::make_unique<SoundTranslator>(dirPath + "sound_dico.txt"));
+    translators.push_back(std::make_unique<TerminaisonTranslator>(dirPath + "terminaison_dico.txt"));
 
     for (int i = 1; i < argc; ++i)
     {
