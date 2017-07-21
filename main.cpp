@@ -30,6 +30,9 @@ public:
 
         while (std::getline(file, line))
         {
+            if (line.empty())
+                continue;
+
             std::stringstream ss(line);
             std::string key;
             std::string value;
