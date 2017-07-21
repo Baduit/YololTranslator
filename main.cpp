@@ -3,6 +3,8 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <vector>
+#include <memory>
 
 using Dictionnary = std::map<std::string, std::string>;
 
@@ -51,7 +53,9 @@ protected:
     Dictionnary _dico;
 };
 
-class WordTranslator: Translator
+using TranslatorPtr = std::unique_ptr<Translator>;
+
+class WordTranslator: public Translator
 {
 public:
     WordTranslator() = default;
@@ -68,7 +72,7 @@ public:
     }
 };
 
-class SoundTranslator: Translator
+class SoundTranslator: public Translator
 {
 public:
     SoundTranslator() = default;
@@ -88,13 +92,15 @@ public:
 
 int main(int argc, char **argv)
 {
-    WordTranslator wt("word_dico.txt");
-    SoundTranslator st("sound_dico.txt");
+    std::vector<TranslatorPtr> translators;
+    translators.push_back(std::make_unique<WordTranslator>("word_dico.txt"));
+    translators.push_back(std::make_unique<SoundTranslator>("sound_dico.txt"));
+
     for (int i = 1; i < argc; ++i)
     {
         std::string word = argv[i];
-        word = wt(word);
-        word = st(word);
+        for (auto& i: translators)
+            word = (*i)(word);
         std::cout << word << " ";
     }
     std::cout << std::endl;
