@@ -1,3 +1,10 @@
 *.out
 *.o
 .vscode
+
+build
+Makefile
+
+CMakeFiles
+CMakeCache.txt
+*.cmake
