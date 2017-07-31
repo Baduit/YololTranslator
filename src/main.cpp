@@ -166,16 +166,50 @@ public:
     }
 };
 
+class TranslatorManager
+{
+public:
+    TranslatorManager() = default;
+    TranslatorManager(const std::string& dirPath) : _dirPath(dirPath)
+    {}
+
+    template <typename TranslatorType>
+    void addTranslator(const std::string& name)
+    { _translators.push_back(std::make_unique<TranslatorType>(_dirPath + name + ".dico")); }
+
+    const std::string& getDirPath() const
+    { return _dirPath; }
+
+    void setDirPath(const std::string& dirPath)
+    { _dirPath = dirPath; }
+
+    // for iterating over the translators
+    auto begin()
+    { return _translators.begin(); }
+
+    auto cbegin() const
+    { return _translators.cbegin(); }
+
+    auto end()
+    { return _translators.end(); }
+
+    auto cend() const
+    { return _translators.cend(); }
+
+private:
+    std::string                 _dirPath = "dico/";
+    std::vector<TranslatorPtr>  _translators;
+};
 
 int main(int argc, char **argv)
 {
     std::string dirPath = "dico/";
 
-    std::vector<TranslatorPtr> translators;
-    translators.push_back(std::make_unique<WordTranslator>(dirPath + "word_dico.txt"));
-    translators.push_back(std::make_unique<SoundTranslator>(dirPath + "sound_dico.txt"));
-    translators.push_back(std::make_unique<TerminaisonTranslator>(dirPath + "terminaison_dico.txt"));
-    translators.push_back(std::make_unique<AccentTranslator>(dirPath + "accent_dico.txt"));
+    TranslatorManager translators;
+    translators.addTranslator<WordTranslator>("word");
+    translators.addTranslator<SoundTranslator>("sound");
+    translators.addTranslator<TerminaisonTranslator>("terminaison");
+    translators.addTranslator<AccentTranslator>("accent");
 
     for (int i = 1; i < argc; ++i)
     {
