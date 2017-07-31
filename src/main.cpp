@@ -186,6 +186,57 @@ private:
     std::vector<TranslatorPtr>  _translators;
 };
 
+class GoodToBad
+{
+public:
+    GoodToBad(): _wordTranslators("dico/"), _sentenceTranslators("dico/")
+    {
+        // several words filters
+        _sentenceTranslators.addTranslator<CharacteresTranslator>("punctuation");
+        _sentenceTranslators.addTranslator<CharacteresTranslator>("special_char");
+
+        // word by word filters
+        _wordTranslators.addTranslator<WordTranslator>("word");
+        _wordTranslators.addTranslator<CharacteresTranslator>("sound");
+        _wordTranslators.addTranslator<TerminaisonTranslator>("terminaison");
+        _wordTranslators.addTranslator<CharacteresTranslator>("accent");
+        _wordTranslators.addTranslator<CharacteresTranslator>("double_letter");
+    }
+
+    std::string translate(const std::string& str)
+    {
+        std::string sentence = sentenceTranslating(str);
+        return wordTranslating(sentence);
+    }
+private:
+    std::string sentenceTranslating(const std::string& str)
+    {
+        std::string sentence = str;
+        StringFunction::toLower(sentence);
+        for (auto& i: _sentenceTranslators)
+            sentence = (*i)(sentence);
+        return sentence;
+    }
+
+    std::string wordTranslating(const std::string& str)
+    {
+        std::stringstream result;
+        
+        std::string word;
+        std::stringstream sentenceParser(str);
+        while (sentenceParser >> word)
+        {
+            for (auto& i: _wordTranslators)
+                word = (*i)(word);
+            result << word << " ";
+        }
+        return result.str();
+    }
+private:
+    TranslatorManager _wordTranslators;
+    TranslatorManager _sentenceTranslators;
+};
+
 int main(int argc, char **argv)
 {
     if (argc < 1)
@@ -194,32 +245,6 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    std::string sentence = argv[1];
-    // several words filters
-    TranslatorManager sentenceTranslators;
-    sentenceTranslators.addTranslator<CharacteresTranslator>("punctuation");
-    sentenceTranslators.addTranslator<CharacteresTranslator>("special_char");
-
-    StringFunction::toLower(sentence);
-    for (auto& i: sentenceTranslators)
-        sentence = (*i)(sentence);
-
-    // word by word filters
-    TranslatorManager wordTranslators;
-    wordTranslators.addTranslator<WordTranslator>("word");
-    wordTranslators.addTranslator<CharacteresTranslator>("sound");
-    wordTranslators.addTranslator<TerminaisonTranslator>("terminaison");
-    wordTranslators.addTranslator<CharacteresTranslator>("accent");
-    wordTranslators.addTranslator<CharacteresTranslator>("double_letter");
-
-    std::string word;
-    std::stringstream sentenceParser(sentence);
-
-    while (sentenceParser >> word)
-    {
-        for (auto& i: wordTranslators)
-            word = (*i)(word);
-        std::cout << word << " ";
-    }
-    std::cout << std::endl;
+    GoodToBad goodToBad;
+    std::cout << goodToBad.translate(argv[1]) << std::endl;
 }
