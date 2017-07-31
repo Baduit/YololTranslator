@@ -112,11 +112,11 @@ public:
     }
 };
 
-class SoundTranslator: public Translator
+class CharacteresTranslator: public Translator
 {
 public:
-    SoundTranslator() = default;
-    SoundTranslator(const std::string& filename)
+    CharacteresTranslator() = default;
+    CharacteresTranslator(const std::string& filename)
     { fillFromFile(filename); }
 
     std::string operator()(const std::string& word) override
@@ -148,23 +148,6 @@ public:
     }
 };
 
-class AccentTranslator: public Translator
-{
-public:
-    AccentTranslator() = default;
-    AccentTranslator(const std::string& filename)
-    { fillFromFile(filename); }
-
-    std::string operator()(const std::string& word) override
-    {
-        std::string result = word;
-
-        for (auto& i: _dico)
-            StringFunction::replaceAll(result, i.first, i.second);
-
-        return result;
-    }
-};
 
 class TranslatorManager
 {
@@ -209,19 +192,27 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    TranslatorManager translators;
-    translators.addTranslator<WordTranslator>("word");
-    translators.addTranslator<SoundTranslator>("sound");
-    translators.addTranslator<TerminaisonTranslator>("terminaison");
-    translators.addTranslator<AccentTranslator>("accent");
+    std::string sentence = argv[1];
+    // several words filters
+    TranslatorManager sentenceTranslators;
+    StringFunction::toLower(sentence);
+    // suppression de la ponctuation
+    // suppression des caractères à supprimer (l'apostrophe par example)
+
+
+    // word by word filters
+    TranslatorManager wordTranslators;
+    wordTranslators.addTranslator<WordTranslator>("word");
+    wordTranslators.addTranslator<CharacteresTranslator>("sound");
+    wordTranslators.addTranslator<TerminaisonTranslator>("terminaison");
+    wordTranslators.addTranslator<CharacteresTranslator>("accent");
 
     std::string word;
-    std::stringstream sentenceParser(argv[1]);
+    std::stringstream sentenceParser(sentence);
 
     while (sentenceParser >> word)
     {
-        StringFunction::toLower(word);
-        for (auto& i: translators)
+        for (auto& i: wordTranslators)
             word = (*i)(word);
         std::cout << word << " ";
     }
