@@ -203,8 +203,6 @@ private:
 
 int main(int argc, char **argv)
 {
-    std::string dirPath = "dico/";
-
     TranslatorManager translators;
     translators.addTranslator<WordTranslator>("word");
     translators.addTranslator<SoundTranslator>("sound");
