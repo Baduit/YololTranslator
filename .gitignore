@@ -4,6 +4,7 @@
 
 build
 Makefile
+*.exe
 
 CMakeFiles
 CMakeCache.txt
