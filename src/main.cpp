@@ -195,10 +195,12 @@ int main(int argc, char **argv)
     std::string sentence = argv[1];
     // several words filters
     TranslatorManager sentenceTranslators;
-    StringFunction::toLower(sentence);
-    // suppression de la ponctuation
-    // suppression des caractères à supprimer (l'apostrophe par example)
+    sentenceTranslators.addTranslator<CharacteresTranslator>("punctuation");
+    sentenceTranslators.addTranslator<CharacteresTranslator>("special_char");
 
+    StringFunction::toLower(sentence);
+    for (auto& i: sentenceTranslators)
+        sentence = (*i)(sentence);
 
     // word by word filters
     TranslatorManager wordTranslators;
