@@ -203,15 +203,23 @@ private:
 
 int main(int argc, char **argv)
 {
+    if (argc < 1)
+    {
+        std::cout << "Mettez en argument la phrase à traduire." << std::endl;
+        return 1;
+    }
+
     TranslatorManager translators;
     translators.addTranslator<WordTranslator>("word");
     translators.addTranslator<SoundTranslator>("sound");
     translators.addTranslator<TerminaisonTranslator>("terminaison");
     translators.addTranslator<AccentTranslator>("accent");
 
-    for (int i = 1; i < argc; ++i)
+    std::string word;
+    std::stringstream sentenceParser(argv[1]);
+
+    while (sentenceParser >> word)
     {
-        std::string word = argv[i];
         StringFunction::toLower(word);
         for (auto& i: translators)
             word = (*i)(word);
