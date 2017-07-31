@@ -31,7 +31,7 @@ bool replaceAll(std::string &s, const std::string &search, const std::string &re
     return result;
 }
 
-void replaceEnd(std::string &s, const std::string &search, const std::string &replace)
+bool replaceEnd(std::string &s, const std::string &search, const std::string &replace)
 {
     std::string end;
     std::string tmp = s;
@@ -46,9 +46,10 @@ void replaceEnd(std::string &s, const std::string &search, const std::string &re
         {
             tmp += replace;
             s = tmp;
-            break;
+            return true;
         }
     }
+    return false;
 }
 
 void toLower(std::string &s)
@@ -142,7 +143,8 @@ public:
         std::string result = word;
 
         for (auto& i: _dico)
-            StringFunction::replaceEnd(result, i.first, i.second);
+            if (StringFunction::replaceEnd(result, i.first, i.second))
+                break;
 
         return result;
     }
@@ -208,6 +210,7 @@ int main(int argc, char **argv)
     wordTranslators.addTranslator<CharacteresTranslator>("sound");
     wordTranslators.addTranslator<TerminaisonTranslator>("terminaison");
     wordTranslators.addTranslator<CharacteresTranslator>("accent");
+    wordTranslators.addTranslator<CharacteresTranslator>("double_letter");
 
     std::string word;
     std::stringstream sentenceParser(sentence);
