@@ -6,3 +6,5 @@ plus +
 moins -
 tout tou
 tous tou
+parfum parfin
+parfums parfin

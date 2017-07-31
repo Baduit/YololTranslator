@@ -12,6 +12,8 @@
 using Dictionnary = std::map<std::string, std::string>;
 
 // string functions
+namespace StringFunction
+{
 bool replaceAll(std::string &s, const std::string &search, const std::string &replace)
 {
     bool result = false;
@@ -53,7 +55,7 @@ void toLower(std::string &s)
 {
     std::transform(s.begin(), s.end(), s.begin(), [](char c){ return std::tolower(c); });
 }
-
+}
 // translators
 class Translator
 {
@@ -122,7 +124,7 @@ public:
         std::string result = word;
 
         for (auto& i: _dico)
-            replaceAll(result, i.first, i.second);
+            StringFunction::replaceAll(result, i.first, i.second);
 
         return result;
     }
@@ -140,12 +142,29 @@ public:
         std::string result = word;
 
         for (auto& i: _dico)
-            replaceEnd(result, i.first, i.second);
+            StringFunction::replaceEnd(result, i.first, i.second);
 
         return result;
     }
 };
 
+class AccentTranslator: public Translator
+{
+public:
+    AccentTranslator() = default;
+    AccentTranslator(const std::string& filename)
+    { fillFromFile(filename); }
+
+    std::string operator()(const std::string& word) override
+    {
+        std::string result = word;
+
+        for (auto& i: _dico)
+            StringFunction::replaceAll(result, i.first, i.second);
+
+        return result;
+    }
+};
 
 
 int main(int argc, char **argv)
@@ -156,11 +175,12 @@ int main(int argc, char **argv)
     translators.push_back(std::make_unique<WordTranslator>(dirPath + "word_dico.txt"));
     translators.push_back(std::make_unique<SoundTranslator>(dirPath + "sound_dico.txt"));
     translators.push_back(std::make_unique<TerminaisonTranslator>(dirPath + "terminaison_dico.txt"));
+    translators.push_back(std::make_unique<AccentTranslator>(dirPath + "accent_dico.txt"));
 
     for (int i = 1; i < argc; ++i)
     {
         std::string word = argv[i];
-        toLower(word);
+        StringFunction::toLower(word);
         for (auto& i: translators)
             word = (*i)(word);
         std::cout << word << " ";
