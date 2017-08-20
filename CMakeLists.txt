@@ -9,3 +9,7 @@ set(SRCS
     )
 
 add_executable(YololTranslator.exe ${SRCS})
+
+install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/YololTranslator.exe
+  DESTINATION bin
+  RENAME YololTranslator)
