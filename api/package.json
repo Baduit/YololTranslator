@@ -1,0 +1,25 @@
+{
+  "name": "yololtranslate-api",
+  "version": "1.0.0",
+  "description": "The nodejs Restfull api of YololTranslator",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodejs index.js",
+    "test": "echo 'there is not test'"
+  },
+  "keywords": [
+    "yolol",
+    "translator",
+    "fun",
+    "api",
+    "nodejs",
+    "node-js",
+    "javascript"
+  ],
+  "author": "Baduit",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}

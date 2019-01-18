@@ -9,3 +9,5 @@ Makefile
 CMakeFiles
 CMakeCache.txt
 *.cmake
+
+api/node_modules
