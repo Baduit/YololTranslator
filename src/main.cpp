@@ -19,7 +19,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    std::string dico_dir = "./dico";
+    std::string dico_dir = "./dico/";
     if (argc > 2)
         dico_dir = argv[2];
 
