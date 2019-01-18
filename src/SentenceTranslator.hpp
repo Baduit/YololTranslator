@@ -47,7 +47,7 @@ protected:
 class GoodToBad: public SentenceTranslator
 {
 public:
-    GoodToBad() : SentenceTranslator("dico/", "dico/")
+    GoodToBad(const std::string& dico_dir) : SentenceTranslator(dico_dir, dico_dir)
     {
         // several words filters
         _sentenceTranslators.addTranslator<CharacteresTranslator>("punctuation");
