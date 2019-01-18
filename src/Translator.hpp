@@ -25,7 +25,7 @@ public:
 
         while (std::getline(file, line))
         {
-            if (line.empty() || line[0] == '#')
+            if (line.empty() || line[0] == '#' || line[0] == '\r')
                 continue;
 
             std::stringstream ss(line);
