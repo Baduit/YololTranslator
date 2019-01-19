@@ -13,3 +13,8 @@ Une API Rest existe, le code est dans le dossier __api__ et une instance tourne 
 
 ## Le bot discord
 Un bot discord existe et tourne actuellement sur mon Raspberry pi. Le code est dans le dossier __discord-bot__. Pour ajouter le bot à votre serveur, voici le lien https://discordapp.com/api/oauth2/authorize?client_id=536250577051451402&permissions=2048&redirect_uri=https%3A%2F%2Fdiscordapp.com%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3D536250577051451402%26redirect_uri%3Dhttps%253A%252F%252Fdiscordapp.com%252Foauth2%252Fauthorize%253F%2526client_id%253D53625057705145140&scope=bot.
+
+Pour l'utilisez:
+!yolol ici mon texte que je veux traduire
+
+Normalement vous devriez avoir une réponse avec le texte traduit.
