@@ -1,0 +1,24 @@
+{
+  "name": "yololtranslate-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodejs index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yolol",
+    "fun",
+    "discord",
+    "bot",
+    "js",
+    "javascript",
+    "node.js"
+  ],
+  "author": "Baduit",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}

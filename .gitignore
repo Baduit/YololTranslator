@@ -10,4 +10,4 @@ CMakeFiles
 CMakeCache.txt
 *.cmake
 
-api/node_modules
+node_modules
