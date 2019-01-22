@@ -21,7 +21,7 @@ protected:
         std::string sentence = str;
         StringFunction::toLower(sentence);
         for (auto& i: _sentenceTranslators)
-            sentence = (*i)(sentence);
+            sentence = (i)(sentence);
         return sentence;
     }
 
@@ -34,7 +34,7 @@ protected:
         while (sentenceParser >> word)
         {
             for (auto& i: _wordTranslators)
-                word = (*i)(word);
+                word = (i)(word);
             result << word << " ";
         }
         return result.str();

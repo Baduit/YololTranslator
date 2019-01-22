@@ -1,11 +1,14 @@
 #pragma once
 
 #include <vector>
+#include <functional>
 
 #include "Translator.hpp"
 
 class TranslatorManager
 {
+    using AnyTranslator = std::function<std::string (std::string)>;
+
 public:
     TranslatorManager() = default;
     TranslatorManager(const std::string& dirPath) : _dirPath(dirPath)
@@ -13,7 +16,7 @@ public:
 
     template <typename TranslatorType>
     void addTranslator(const std::string& name)
-    { _translators.push_back(std::make_unique<TranslatorType>(_dirPath + name + ".dico")); }
+    { _translators.push_back(TranslatorType(_dirPath + name + ".dico")); }
 
     const std::string& getDirPath() const
     { return _dirPath; }
@@ -36,5 +39,5 @@ public:
 
 private:
     std::string                 _dirPath = "dico/";
-    std::vector<TranslatorPtr>  _translators;
+    std::vector<AnyTranslator>  _translators;
 };

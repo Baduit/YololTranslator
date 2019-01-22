@@ -12,8 +12,9 @@
 #include <cstring>
 
 #include "StringFunction.hpp"
+#include "InsertionOrderMap.hpp"
 
-using Dictionnary = std::map<std::string, std::string>;
+using Dictionnary = InsertionOrderMap<std::string, std::string>;
 
 class Translator
 {
@@ -50,8 +51,6 @@ public:
 protected:
     Dictionnary _dico;
 };
-
-using TranslatorPtr = std::unique_ptr<Translator>;
 
 class WordTranslator: public Translator
 {
