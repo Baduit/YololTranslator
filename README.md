@@ -8,7 +8,7 @@ Pour compiler utilisez cmake ou bien un simple "g++ src/main.cpp -std=c++14" suf
 Pour utiliser le programme lancer l'executable suivit de la phrase entre guillements que vous voulez traduire.
 
 ## L'API Rest
-Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utilisez envoyer une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __test__.
+Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utilisez envoyer une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
 
 
 ## Le bot discord
