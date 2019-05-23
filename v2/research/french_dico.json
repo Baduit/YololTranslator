@@ -1,0 +1,374 @@
+{
+	"author": "Baduit",
+	"version": "1.0",
+	"phonems":
+		[
+			{
+				"code": "aa",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ai",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "an",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "au",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "bb",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ch",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "dd",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ee",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ei",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "eu",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ff",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "gg",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "gn",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ii",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "in",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "jj",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "kk",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ll",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "mm",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "nn",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "oe",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "on",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "oo",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ou",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "pp",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "rr",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ss",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "tt",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "un",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "uu",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "uy",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "vv",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "ww",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "yy",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"code": "zz",
+				"equivalents":
+					[
+						{
+							"chars": "",
+							"weight": 10
+						}
+					]
+			}
+		],
+	"phonem_compositions":
+		[
+			{
+				"phonems":
+					[
+						"ou",
+						"aa"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "wa",
+							"weight": 10
+						}
+					]
+			}
+		]
+}
