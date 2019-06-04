@@ -2,10 +2,12 @@ const port = 4910;
 
 var exec = require("child_process").exec;
 
-var app = require("express")();
+var express = require("express")
+var app = express();
 
 const bodyParser = require("body-parser");
 
+app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
