@@ -1,6 +1,7 @@
 *.out
 *.o
 .vscode
+.vs
 
 build
 Makefile
