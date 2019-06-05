@@ -100,9 +100,9 @@ button:hover {
 
 @font-face {
   font-family: "Big Noodle Too";
-  src: url("big_noodle_titling_oblique.ttf");
+  src: url("assets/fonts/big_noodle_titling_oblique.ttf");
 }
 @font-face {
   font-family: "Comic Sans Ms";
-  src: url("COMIC.TTF");
+  src: url("assets/fonts/COMIC.TTF");
 }
