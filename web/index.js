@@ -19,7 +19,8 @@ app.route("/translate").post(function(req, res) {
   if (!req.body.text)
     return res.status(400).send('You need to specify the "text" parameter.');
   exec(
-    '../YololTranslator.exe "' + req.body.text + '" ../dico/',
+    "../YololTranslator.exe",
+    [req.body.text, "../dico/"],
     (error, stdout, stderr) => {
       res.status(200).send(stdout);
     }
