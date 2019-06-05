@@ -2,12 +2,12 @@ const port = 4910;
 
 var exec = require("child_process").exec;
 
-var express = require("express")
+var express = require("express");
 var app = express();
 
 const bodyParser = require("body-parser");
 
-app.use(express.static('public'))
+app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,6 +24,10 @@ app.route("/translate").post(function(req, res) {
       res.status(200).send(stdout);
     }
   );
+});
+
+app.route("/test").post(function(req, res) {
+  res.status(200).send(req.body.text);
 });
 
 app.listen(port);

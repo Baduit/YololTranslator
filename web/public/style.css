@@ -1,18 +1,25 @@
 body {
   background-color: #461313;
   color: white;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
 #app {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-right: 100px;
-  margin-left: 100px;
+  padding-right: 100px;
+  padding-left: 100px;
+  overflow: hidden;
 }
 
 #title {
@@ -27,6 +34,7 @@ body {
   display: flex;
   flex: 1;
   padding-bottom: 20px;
+  overflow: hidden;
 }
 
 #yololInput {
@@ -36,6 +44,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
   font-size: 20px;
+  border-style: none;
+  resize: none;
+  overflow: auto;
 }
 
 #yololOutput {
@@ -43,11 +54,38 @@ body {
   padding: 10px;
   font-family: Comic Sans Ms;
   font-size: 20px;
+  overflow: auto;
+  transition: background-color 1s;
 }
 
 #copyButton {
   width: 50px;
   height: 50px;
+}
+
+#footer {
+  max-height: 50px;
+  background-color: #222222;
+  height: 50px;
+  flex: 1;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: white;
+}
+
+button {
+  border-style: none;
+  background-color: #222222;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #333333;
 }
 
 .noselect {

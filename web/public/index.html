@@ -5,17 +5,29 @@
     <meta content="utf-8" http-equiv="encoding" />
     <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0" />
     <link rel="stylesheet" href="style.css" type="text/css" />
+    <script defer src="fontawesome/js/all.js"></script>
     <title>Yolol Translator</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="vue.min.js"></script>
   </head>
   <body>
-    <div id="app" class="noselect" tabindex="0">
-      <h1 id="title">YOLOL TRANSLATOR</h1>
+    <div id="app" tabindex="0">
+      <h1 id="title" class="noselect">{{ title }}</h1>
       <div id="yololText">
-        <textarea id="yololInput" v-model="yololInput" placeholder="Entrer le texte à yololiser"></textarea>
-        <div id="yololOutput">{{ yololInput }}</div>
-        <button id="copyButton">📝</button>
+        <textarea
+          id="yololInput"
+          v-model="yololInput"
+          placeholder="Entrer le texte à yololiser"
+        ></textarea>
+        <div v-bind:style="{backgroundColor: calculating}" id="yololOutput">
+          {{ translation }}
+        </div>
+        <button class="noselect" v-on:click="copy" id="copyButton">📝</button>
       </div>
+    </div>
+    <div id="footer" class="noselect">
+      <a href="https://github.com/Baduit/YololTranslator"
+        ><i class="fab fa-github"></i
+      ></a>
     </div>
     <script src="yolol.js" type="text/javascript"></script>
   </body>
