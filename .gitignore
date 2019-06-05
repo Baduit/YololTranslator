@@ -12,3 +12,5 @@ CMakeCache.txt
 *.cmake
 
 node_modules
+
+pid.txt

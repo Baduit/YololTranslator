@@ -1,4 +1,4 @@
-const exec = require('child_process').exec;
+var exec = require('child_process').execFile;
 
 const Discord = require('discord.js')
 const bot = new Discord.Client()
@@ -22,7 +22,7 @@ bot.on('message', (message) => {
 		if (message.content.search(cmd_name) == 0) {
 			let sentence = extract_usefull_content(message.content, cmd_name)
 			if (!(sentence === "")) {
-				exec('../YololTranslator.exe "' + sentence + '" ../dico/', (error, stdout, stderr) => {
+				exec('../YololTranslator.exe', [ sentence, '../dico/'], (error, stdout, stderr) => {
 					message.channel.send(stdout)
 				});
 			} else {

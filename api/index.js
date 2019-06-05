@@ -1,6 +1,6 @@
 const port = 4910;
 
-var exec = require('child_process').exec;
+var exec = require('child_process').execFile;
 
 var app = require('express')();
 
@@ -16,7 +16,7 @@ app.route('/').get(function(req, res) {
 app.route('/translate').post(function(req, res) {
 	if (!req.body.text)
 		return res.status(400).send('You need to specify the "text" parameter.');
-	exec('../YololTranslator.exe "' + req.body.text + '" ../dico/', (error, stdout, stderr) => {
+		exec('../YololTranslator.exe', [ req.body.text, '../dico/'], (error, stdout, stderr) => {
 		res.status(200).send(stdout);
 	});
 }); 
