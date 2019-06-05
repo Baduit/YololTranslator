@@ -10,10 +10,11 @@
   </head>
   <body>
     <div id="app" class="noselect" tabindex="0">
-      <h1>Yolol Translator</h1>
-      <div>
-        <textarea v-model="yololInput" placeholder="Entrer le texte à yololiser"></textarea>
-        <p>{{ yololInput }}</p><button>📝</button>
+      <h1 id="title">YOLOL TRANSLATOR</h1>
+      <div id="yololText">
+        <textarea id="yololInput" v-model="yololInput" placeholder="Entrer le texte à yololiser"></textarea>
+        <div id="yololOutput">{{ yololInput }}</div>
+        <button id="copyButton">📝</button>
       </div>
     </div>
     <script src="yolol.js" type="text/javascript"></script>

@@ -4,10 +4,7 @@ var app = new Vue({
     yololInput: ""
   },
   computed: {
-    translation: () => {
-      console.log(this);
-      return this.yololInput;
-    }
+    translation: () => this.yololInput
   },
   methods: {}
 });
