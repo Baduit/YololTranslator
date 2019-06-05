@@ -1,6 +1,6 @@
 const port = 4910;
 
-var exec = require("child_process").exec;
+var exec = require("child_process").execFile;
 
 var express = require("express");
 var app = express();
