@@ -13,19 +13,20 @@ var app = new Vue({
       return this.newText ||
         this.yololInput !== this.textToTranslate ||
         this.fetching
-        ? "#550000"
-        : "transparent";
+        ? "rgba(0, 0, 0, 0.3)"
+        : "rgba(0, 0, 0, 0.2)";
     }
   },
   methods: {
     copy: function() {
-      navigator.clipboard.writeText(this.yololInput);
+      navigator.clipboard.writeText(this.translation);
     },
     getTranslation: function(text) {
       if (
         !this.fetching &&
         this.yololInput === this.textToTranslate &&
-        this.newText
+        this.newText &&
+        this.yololInput !== ""
       ) {
         this.fetching = true;
         fetch("/translate", {
@@ -56,6 +57,6 @@ var app = new Vue({
     }
   },
   mounted() {
-    setInterval(this.getTranslation, 1000);
+    setInterval(this.getTranslation, 500);
   }
 });

@@ -21,7 +21,7 @@
         <div v-bind:style="{backgroundColor: calculating}" id="yololOutput">
           {{ translation }}
         </div>
-        <button class="noselect" v-on:click="copy" id="copyButton">📝</button>
+        <a v-on:click="copy"><i id="copyButton" class="far fa-copy"></i></a>
       </div>
     </div>
     <div id="footer" class="noselect">
