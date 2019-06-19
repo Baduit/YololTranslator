@@ -208,7 +208,8 @@
 				"code": "ss",
 				"equivalents":
 					[
-						{ "chars": "s", "weight": 10 },
+						{ "chars": "s", "weight": 10, "pos": "begin" },
+						{ "chars": "ç", "weight": 10 },
 						{ "chars": "ss", "weight": 10, "pos": ["middle", "end"] }
 					]
 			},

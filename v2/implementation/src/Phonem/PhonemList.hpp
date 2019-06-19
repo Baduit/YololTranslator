@@ -19,6 +19,8 @@ class PhonemList
 
 		const std::vector<Phonem>&	get_phonems() const;
 
+		const Phonem&	operator[] (std::string_view code) const;
+
 	private:
 		std::vector<Phonem>	_phonems;
 };

@@ -5,8 +5,9 @@ project(YololTranslatorProjectV2)
 add_definitions(-std=c++17 -Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -g)
 
 include_directories(hello PRIVATE
-      ./external_headers
+      ./external
       ./src
+      ./src/Phonem
     )
 
 set(SRCS
