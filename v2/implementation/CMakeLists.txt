@@ -11,8 +11,10 @@ include_directories(hello PRIVATE
     )
 
 set(SRCS
-    src/main.cpp
+	src/main.cpp
+	src/Translator.cpp
     src/Phonem/PhonemList.cpp
+	src/Phonem/WordsPhonemDictionnary.cpp
     )
 
 add_executable(YololTranslator.exe ${SRCS})

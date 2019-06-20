@@ -26,6 +26,14 @@ inline std::optional<PositionCondition>	position_condition_from_string(std::stri
 
 struct CharsEquivalent
 {
+	CharsEquivalent() = default;
+
+	CharsEquivalent(const CharsEquivalent&) = default;
+	CharsEquivalent& operator=(const CharsEquivalent&) = default;
+
+	CharsEquivalent(CharsEquivalent&&) = default;
+	CharsEquivalent& operator=(CharsEquivalent&&) = default;
+
 	std::string						chars;
 	int								weight;
 	std::vector<PositionCondition>	position_conditions;
@@ -44,8 +52,8 @@ class Phonem
 			_code(std::move(code)), _chars_equivalents(std::move(chars_equivalents))
 		{}
 
-		Phonem(const Phonem&) = delete;
-		Phonem& operator=(const Phonem&) = delete;
+		Phonem(const Phonem&) = default;
+		Phonem& operator=(const Phonem&) = default;
 
 		Phonem(Phonem&&) = default;
 		Phonem& operator=(Phonem&&) = default;

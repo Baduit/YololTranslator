@@ -1,14 +1,17 @@
 #include <iostream>
 
-#include "PhonemList.hpp"
+#include "Translator.hpp"
 
-int main()
+int main(int argc, char** argv)
 {
 	std::cout << "Yo man!" << std::endl;
 
-	PhonemList test("../assets/french_dico.json");
-	const auto& phonem_ss = test["ss"];
-	std::cout << phonem_ss.get_chars_equivalents()[1].chars << std::endl;
+	Translator translator("../assets/french_dico.json", "../assets/fr.dict");
+	for (int i = 1; i < argc; ++i)
+	{
+		std::cout << translator.translate(argv[i]) << " ";
+	}
+	std::cout << std::endl;
 
 	std::cout << "Bye man!" << std::endl;
 

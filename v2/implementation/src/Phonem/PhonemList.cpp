@@ -12,6 +12,8 @@ PhonemList::PhonemList(std::string_view filename)
 
 void	PhonemList::load_from_file(std::string_view filename)
 {
+		_phonems.clear();
+
 		std::ifstream dict_file(filename.data());
 		std::string file_content;
 
@@ -24,17 +26,28 @@ void	PhonemList::load_from_file(std::string_view filename)
 		}
 
 		json json_content = json::parse(file_content);
-		for (const auto& p: json_content["phonems"])
+		for (const auto& p: json_content.at("phonems"))
 		{
-			std::string code = p["code"].get<std::string>();
+			std::string code = p.at("code").get<std::string>();
 
 			std::vector<CharsEquivalent> chars_eq;
-			for (const auto& cs: p["equivalents"])
+			for (const auto& cs: p.at("equivalents"))
 			{
 				CharsEquivalent eq;
-				eq.chars = cs["chars"].get<std::string>();
-				// position see later
-				eq.weight = cs["weight"].get<int>();
+
+				eq.chars = cs.at("chars").get<std::string>();
+				eq.weight = cs.at("weight").get<int>();
+
+				auto pos_cond = cs.find("pos");
+				if (pos_cond != cs.end())
+				{
+					if (pos_cond->is_array())
+						for (const auto& pos: *pos_cond)
+							eq.position_conditions.push_back(*(position_condition_from_string(pos.get<std::string_view>())));
+					else
+						eq.position_conditions.push_back(*(position_condition_from_string(pos_cond->get<std::string_view>())));
+				}
+				
 				chars_eq.push_back(std::move(eq));
 			}
 
@@ -55,5 +68,5 @@ const Phonem&	PhonemList::operator[] (std::string_view code) const
 			return p;
 	}
 
-	throw std::runtime_error("Phonem not found!");
+	throw std::runtime_error("Phonem not found: " + std::string(code));
 }

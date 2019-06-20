@@ -5,8 +5,6 @@
 class PhonemList
 {
 	public:
-		PhonemList() = default;
-
 		PhonemList(std::string_view filename);
 
 		PhonemList(const PhonemList&) = delete;
