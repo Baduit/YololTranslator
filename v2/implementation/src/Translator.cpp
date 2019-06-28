@@ -24,25 +24,35 @@ std::string	Translator::translate(std::string_view word)
 		}
 		else
 		{
-			std::vector<const CharsEquivalent*> possible_eq;
-			for (const auto& eq: chars_equivalents)
-			{
-				if (eq.position_conditions.empty() ||
-					std::find(eq.position_conditions.cbegin(), eq.position_conditions.end(), actual_pos) != eq.position_conditions.cend())
-				{
-					possible_eq.push_back(&eq);
-				}
-			}
-			// ignore weight for now
-			result += possible_eq[random(possible_eq.size() - 1)]->chars;
+			result += get_random_char_equivalent(create_possible_equivalents(chars_equivalents, actual_pos));
 		}
 	}
 
-	return result;;
+	return result;
+}
+
+std::vector<const CharsEquivalent*>	Translator::create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq, PositionCondition actual_pos) const
+{
+	std::vector<const CharsEquivalent*> possible_eq;
+	for (const auto& eq: char_eq)
+	{
+		if (eq.position_conditions.empty() ||
+			std::find(eq.position_conditions.cbegin(), eq.position_conditions.end(), actual_pos) != eq.position_conditions.cend())
+		{
+			for (int i = 0; i < eq.weight; ++i)
+				possible_eq.push_back(&eq);
+		}
+	}
+	return possible_eq;
 }
 
 std::size_t	Translator::random(std::size_t max_value_included)
 {
 	std::uniform_int_distribution<std::size_t> dist(0, max_value_included);
 	return dist(_mt);
+}
+
+std::string	Translator::get_random_char_equivalent(std::vector<const CharsEquivalent*> possible_eq)
+{
+	return possible_eq[random(possible_eq.size() - 1)]->chars;
 }

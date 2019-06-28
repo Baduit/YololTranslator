@@ -22,7 +22,10 @@ class Translator
 		std::string	translate(std::string_view word);
 
 	private:
+		std::vector<const CharsEquivalent*>	create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq, PositionCondition actual_pos) const;
+
 		std::size_t	random(std::size_t max_value_included);
+		std::string	get_random_char_equivalent(std::vector<const CharsEquivalent*> possible_eq);
 
 	private:
 		std::random_device 					_rd;
