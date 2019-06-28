@@ -15,9 +15,9 @@ std::string	Translator::translate(std::string_view word)
 	PositionCondition actual_pos = PositionCondition::BEGIN;
 
 	const auto& phonems = _dict.get_phonems_of(word);
-	for (const auto& phonem: phonems)
+	for (auto phonem = phonems.cbegin(); phonem != phonems.cend(); ++phonem)
 	{
-		const auto& chars_equivalents = phonem.get_chars_equivalents();
+		const auto& chars_equivalents = phonem->get_chars_equivalents();
 		if (chars_equivalents.size() == 1)
 		{
 			result += chars_equivalents.front().chars;
@@ -26,6 +26,7 @@ std::string	Translator::translate(std::string_view word)
 		{
 			result += get_random_char_equivalent(create_possible_equivalents(chars_equivalents, actual_pos));
 		}
+		update_word_position(actual_pos, phonem, phonems.cend());
 	}
 
 	return result;
