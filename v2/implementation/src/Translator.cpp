@@ -54,5 +54,7 @@ std::size_t	Translator::random(std::size_t max_value_included)
 
 std::string	Translator::get_random_char_equivalent(std::vector<const CharsEquivalent*> possible_eq)
 {
+	if (possible_eq.empty())
+		throw std::runtime_error("Empty chars equivalents in the Translator!");
 	return possible_eq[random(possible_eq.size() - 1)]->chars;
 }
