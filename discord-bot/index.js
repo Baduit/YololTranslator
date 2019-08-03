@@ -18,7 +18,7 @@ function extract_usefull_content(message_content, command_name) {
 
 bot.on('message', (message) => {
 	try {
-		const cmd_name = "!yolol"
+		const cmd_name = "!yolol "
 		if (message.content.search(cmd_name) == 0) {
 			let sentence = extract_usefull_content(message.content, cmd_name)
 			if (!(sentence === "")) {
