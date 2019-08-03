@@ -29,25 +29,32 @@ int main(int argc, char** argv)
 	std::string line;
 	while (std::getline(std::cin, line, '\n'))
 	{
-		auto words = tokenize(line, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":"});
-		for (const auto w: words)
+		try
 		{
-			if (w.type == Token::Type::WORD)
+			auto words = tokenize(line, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":"});
+			for (const auto w: words)
 			{
-				std::cout << translator.translate(w.value);
-			}
-			else // if is token
-			{
-				if (w.value == "?" || w.value == "!")
+				if (w.type == Token::Type::WORD)
 				{
-					std::cout << w.value << w.value;
+					std::cout << translator.translate(w.value);
 				}
-				else
+				else // if is token
 				{
-					std::cout << " ";
+					if (w.value == "?" || w.value == "!")
+					{
+						std::cout << w.value << w.value;
+					}
+					else
+					{
+						std::cout << " ";
+					}
 				}
 			}
+			std::cout << std::endl;
 		}
-		std::cout << std::endl;
+		catch (std::exception& e)
+		{
+			std::cout << "Invalid input: " << e.what() << std::endl;
+		}
 	}
 }

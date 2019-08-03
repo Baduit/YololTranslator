@@ -16,6 +16,9 @@ app.route("/").get(function(req, res) {
 });
 
 const DICO_V1_PATH = '../core/v1/dico/'
+const V2_WORD_TO_WORD = '../core/v2/assets/word_to_word_dict_fr.json'
+const V2_WORD_TO_PHONEMS = '../core/v2/assets/fr.dict'
+const V2_PHONEMS_TO_CHARS = '../core/v2/assets/french_dico.json'
 
 app.route("/translate").post(function(req, res)
 {
