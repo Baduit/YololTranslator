@@ -8,6 +8,7 @@
 #include "WordsPhonemDictionnary.hpp"
 #include "WordToWordDict.hpp"
 #include "PhonemList.hpp"
+#include "PhonemCompositionList.hpp"
 
 class Translator
 {
@@ -43,15 +44,17 @@ class Translator
 			}
 		}
 
+		// The handling of the weight is not optimized but it is simple and it work and can be used in a generic way in this project
 		std::vector<const CharsEquivalent*>	create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq) const;
 		std::vector<const CharsEquivalent*>	create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq, PositionCondition actual_pos) const;
 		std::size_t							random(std::size_t max_value_included);
-		std::string							get_random_char_equivalent(std::vector<const CharsEquivalent*> possible_eq);
+		const CharsEquivalent&				get_random_char_equivalent(std::vector<const CharsEquivalent*> possible_eq);
 
 	private:
 		std::random_device 					_rd;
 		std::mt19937						_mt;
 
 		WordsPhonemDictionnary	_phonem_dict;
+		PhonemCompositionList	_phonem_composition_list;
 		WordToWordDict			_word_dict;
 };

@@ -43,4 +43,5 @@ struct CharsEquivalent
 	std::string						chars;
 	int								weight;
 	std::vector<PositionCondition>	position_conditions;
+	std::size_t						composition_size = 1;
 };

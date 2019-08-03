@@ -10,6 +10,18 @@
 						{
 							"chars": "bjr",
 							"weight": 10
+						},
+						{
+							"chars": "bonjoure",
+							"weight": 2
+						},
+						{
+							"chars": "bonjourre",
+							"weight": 2
+						},
+						{
+							"chars": "bongeour",
+							"weight": 1
 						}
 					]
 			},

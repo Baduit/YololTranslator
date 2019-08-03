@@ -289,7 +289,49 @@
 					[
 						{
 							"chars": "wa",
-							"weight": 10
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"oo",
+						"aa"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "wa",
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"au",
+						"aa"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "wa",
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"ww",
+						"aa"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "wa",
+							"weight": 15
 						}
 					]
 			}
