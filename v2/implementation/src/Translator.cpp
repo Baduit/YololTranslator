@@ -2,19 +2,25 @@
 
 #include "Translator.hpp"
 
-Translator::Translator(std::string_view phonems_list_filename, std::string_view words_phonem_filename):
+Translator::Translator(std::string_view phonems_list_filename, std::string_view words_phonem_filename, std::string_view word_dict_filename):
 	_mt(_rd()),
-	_dict(words_phonem_filename, PhonemList(phonems_list_filename))
+	_phonem_dict(words_phonem_filename, PhonemList(phonems_list_filename)),
+	_word_dict(word_dict_filename)
 {}
 
 std::string	Translator::translate(std::string_view word)
 {
-	// TODO check a word to word dict 1st
+	if (auto* word_translation = _word_dict[word]; word_translation)
+	{
+		return get_random_char_equivalent(create_possible_equivalents(*word_translation));
+	}
+
+	// TODO phonem composition
 
 	std::string result;
 	PositionCondition actual_pos = PositionCondition::BEGIN;
 
-	const auto& phonems = _dict.get_phonems_of(word);
+	const auto& phonems = _phonem_dict[word];
 	for (auto phonem = phonems.cbegin(); phonem != phonems.cend(); ++phonem)
 	{
 		const auto& chars_equivalents = phonem->get_chars_equivalents();
@@ -30,6 +36,17 @@ std::string	Translator::translate(std::string_view word)
 	}
 
 	return result;
+}
+
+std::vector<const CharsEquivalent*>	Translator::create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq) const
+{
+	std::vector<const CharsEquivalent*> possible_eq;
+	for (const auto& eq: char_eq)
+	{
+		for (int i = 0; i < eq.weight; ++i)
+			possible_eq.push_back(&eq);
+	}
+	return possible_eq;
 }
 
 std::vector<const CharsEquivalent*>	Translator::create_possible_equivalents(const std::vector<CharsEquivalent>& char_eq, PositionCondition actual_pos) const

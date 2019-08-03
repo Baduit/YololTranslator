@@ -24,6 +24,8 @@ class WordsPhonemDictionnary
 
 		const std::vector<Phonem>&	get_phonems_of(std::string_view word) const;
 
+		const std::vector<Phonem>&	operator[](std::string_view word) const;
+
 	private:
 		std::map<std::string, std::vector<Phonem>>	_dict;
 };

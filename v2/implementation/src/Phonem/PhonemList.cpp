@@ -18,7 +18,7 @@ void	PhonemList::load_from_file(std::string_view filename)
 		std::string file_content;
 
 
-		// this could be optimized, but i will not be called often
+		// this could be optimized, but it will not be called often
 		std::string line;
 		while (std::getline(dict_file, line))
 		{

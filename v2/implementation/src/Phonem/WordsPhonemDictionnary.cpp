@@ -44,3 +44,17 @@ const std::vector<Phonem>&	WordsPhonemDictionnary::get_phonems_of(std::string_vi
 		throw std::runtime_error("Word not found: " + std::string(word));
 	return it->second;
 }
+
+const std::vector<Phonem>&	WordsPhonemDictionnary::operator[](std::string_view word) const
+{
+	auto key_equals =
+		[word](const auto& p)
+		{
+			return (p.first == word);
+		};
+
+	auto it = std::find_if(_dict.cbegin(), _dict.cend(), key_equals);
+	if (it == _dict.cend())
+		throw std::runtime_error("Word not found: " + std::string(word));
+	return it->second;
+}

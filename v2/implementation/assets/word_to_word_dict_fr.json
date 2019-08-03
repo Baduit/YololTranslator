@@ -1,0 +1,31 @@
+{
+	"author": "Baduit",
+	"version": "1.0",
+	"words":
+		[
+			{
+				"word": "bonjour",
+				"equivalents":
+					[
+						{
+							"chars": "bjr",
+							"weight": 10
+						}
+					]
+			},
+			{
+				"word": "salut",
+				"equivalents":
+					[
+						{
+							"chars": "salu",
+							"weight": 10
+						},
+						{
+							"chars": "slt",
+							"weight": 5
+						}
+					]
+			}
+		]
+}
