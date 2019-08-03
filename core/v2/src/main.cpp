@@ -1,18 +1,53 @@
 #include <iostream>
 
 #include "Translator.hpp"
+#include "Isaarg.hpp"
+#include "Split.hpp"
+
+template <typename ...Args>
+bool	check(Args... args)
+{
+	return (args && ...);
+}
 
 int main(int argc, char** argv)
 {
-	std::cout << "Yo man!" << std::endl;
+	Isaarg::Args args(argc, argv);
 
-	Translator translator("../assets/french_dico.json", "../assets/fr.dict", "../assets/word_to_word_dict_fr.json");
-	for (int i = 1; i < argc; ++i)
+	auto word_to_phonem = args["word_to_phonem"];
+	auto word_to_word = args["word_to_word"];
+	auto phonems_to_chars = args["phonems_to_chars"];
+
+	if (!check(word_to_phonem, word_to_word, phonems_to_chars))
 	{
-		std::cout << translator.translate(argv[i]) << " ";
+		std::cout << "Needs args --word_to_phonem <path> --word_to_word <path> --phonems_to_chars <path>" << std::endl;
+		return 1;
 	}
-	std::cout << std::endl;
 
-	std::cout << "Bye man!" << std::endl;
-
+	Translator translator(*phonems_to_chars, *word_to_phonem, *word_to_word);
+	
+	std::string line;
+	while (std::getline(std::cin, line, '\n'))
+	{
+		auto words = tokenize(line, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":"});
+		for (const auto w: words)
+		{
+			if (w.type == Token::Type::WORD)
+			{
+				std::cout << translator.translate(w.value);
+			}
+			else // if is token
+			{
+				if (w.value == "?" || w.value == "!")
+				{
+					std::cout << w.value << w.value;
+				}
+				else
+				{
+					std::cout << " ";
+				}
+			}
+		}
+		std::cout << std::endl;
+	}
 }

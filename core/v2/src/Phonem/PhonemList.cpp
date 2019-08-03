@@ -12,47 +12,50 @@ PhonemList::PhonemList(std::string_view filename)
 
 void	PhonemList::load_from_file(std::string_view filename)
 {
-		_phonems.clear();
+	using namespace std::string_literals;
 
-		std::ifstream dict_file(filename.data());
-		std::string file_content;
+	_phonems.clear();
 
+	std::ifstream dict_file(filename.data());
+	if (!dict_file)
+		throw std::runtime_error("Error while opening file: "s + filename.data());
 
-		// this could be optimized, but it will not be called often
-		std::string line;
-		while (std::getline(dict_file, line))
+	// this could be optimized, but it will not be called often
+	std::string file_content;
+	std::string line;
+	while (std::getline(dict_file, line))
+	{
+		file_content += line;
+	}
+
+	json json_content = json::parse(file_content);
+	for (const auto& p: json_content.at("phonems"))
+	{
+		std::string code = p.at("code").get<std::string>();
+
+		std::vector<CharsEquivalent> chars_eq;
+		for (const auto& cs: p.at("equivalents"))
 		{
-			file_content += line;
-		}
+			CharsEquivalent eq;
 
-		json json_content = json::parse(file_content);
-		for (const auto& p: json_content.at("phonems"))
-		{
-			std::string code = p.at("code").get<std::string>();
+			eq.chars = cs.at("chars").get<std::string>();
+			eq.weight = cs.at("weight").get<int>();
 
-			std::vector<CharsEquivalent> chars_eq;
-			for (const auto& cs: p.at("equivalents"))
+			auto pos_cond = cs.find("pos");
+			if (pos_cond != cs.end())
 			{
-				CharsEquivalent eq;
-
-				eq.chars = cs.at("chars").get<std::string>();
-				eq.weight = cs.at("weight").get<int>();
-
-				auto pos_cond = cs.find("pos");
-				if (pos_cond != cs.end())
-				{
-					if (pos_cond->is_array())
-						for (const auto& pos: *pos_cond)
-							eq.position_conditions.push_back(*(position_condition_from_string(pos.get<std::string_view>())));
-					else
-						eq.position_conditions.push_back(*(position_condition_from_string(pos_cond->get<std::string_view>())));
-				}
-				
-				chars_eq.push_back(std::move(eq));
+				if (pos_cond->is_array())
+					for (const auto& pos: *pos_cond)
+						eq.position_conditions.push_back(*(position_condition_from_string(pos.get<std::string_view>())));
+				else
+					eq.position_conditions.push_back(*(position_condition_from_string(pos_cond->get<std::string_view>())));
 			}
-
-			_phonems.push_back(Phonem(std::move(code), std::move(chars_eq)));
+			
+			chars_eq.push_back(std::move(eq));
 		}
+
+		_phonems.push_back(Phonem(std::move(code), std::move(chars_eq)));
+	}
 }
 
 const std::vector<Phonem>&	PhonemList::get_phonems() const

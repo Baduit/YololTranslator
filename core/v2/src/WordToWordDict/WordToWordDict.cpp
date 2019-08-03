@@ -12,13 +12,16 @@ WordToWordDict::WordToWordDict(std::string_view filename)
 
 void	WordToWordDict::load(std::string_view filename)
 {
+	using namespace std::string_literals;
+
 	_word_dict.clear();
 
 	std::ifstream dict_file(filename.data());
-	std::string file_content;
-
+	if (!dict_file)
+		throw std::runtime_error("Error while opening file: "s + filename.data());
 
 	// this could be optimized, but it will not be called often
+	std::string file_content;
 	std::string line;
 	while (std::getline(dict_file, line))
 	{

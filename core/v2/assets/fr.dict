@@ -11044,57 +11044,53 @@ bidonvilles(4) bb ii dd on vv ii ll zz
 bidou bb ii dd ou
 bidumba bb ii dd uu mm bb aa
 bie bb ii
-bien bb yy in
-bien(2) bb yy in nn
-bien-aimé bb yy in nn ai mm ei
-bien-aimée bb yy in nn ai mm ei
-bien-fondé bb yy in ff on dd ei
-bien-être bb yy in nn ai tt rr
-bien-être(2) bb yy in nn ai tt rr ee
-bien_entendu bb yy in nn an tt an dd uu
-bien_plus bb yy in pp ll uu ss
-bien_qu' bb yy in kk
-bien_que bb yy in kk ee
-bien_sûr bb yy in ss uu rr
-bienfaisance bb yy in ff ee zz an ss
-bienfaisance(2) bb yy in ff ee zz an ss ee
-bienfait bb yy in ff ai
-bienfaiteur bb yy in ff ai tt oe rr
-bienfaiteurs bb yy in ff ai tt oe rr
-bienfaiteurs(2) bb yy in ff ai tt oe rr zz
-bienfaits bb yy in ff ai
-bienfaits(2) bb yy in ff ai zz
-bienheureux bb yy in nn ee rr eu
-bienheureux(2) bb yy in nn ee rr eu zz
-biennale bb yy ai nn aa ll
-biennale(2) bb yy ai nn aa ll ee
-biennales bb yy ai nn aa ll
-biennales(2) bb yy ai nn aa ll ee
-biennales(3) bb yy ai nn aa ll ee zz
-biennales(4) bb yy ai nn aa ll zz
-biens bb yy in
-biens(2) bb yy in zz
-bienséance bb yy in ss ai an ss
-bienséance(2) bb yy in ss ai an ss ee
-bienséances bb yy in ss ai an ss
-bienséances(2) bb yy in ss ai an ss ee
-bienséances(3) bb yy in ss ai an ss ee zz
-bientôt bb yy in tt au
-bienveillance bb yy in vv ai yy an ss
-bienveillance(2) bb yy in vv ai yy an ss ee
-bienveillant bb yy in vv ai yy an
-bienveillant(2) bb yy in vv ai yy an tt
-bienveillante bb yy in vv ai yy an tt
-bienveillante(2) bb yy in vv ai yy an tt ee
-bienveillants bb yy in vv ai yy an
-bienveillants(2) bb yy in vv ai yy an zz
-bienvenu bb yy in vv ee nn uu
-bienvenue bb yy in vv ee nn uu
-bienvenues bb yy in vv ee nn uu
-bienvenues(2) bb yy in vv ee nn uu zz
-bienvenus bb yy in vv ee nn uu
-bienvenus(2) bb yy in vv ee nn uu zz
-biette bb yy ai tt
+bien bb ii in
+bien-aimé bb ii in nn ai mm ei
+bien-aimée bb ii in nn ai mm ei
+bien-fondé bb ii in ff on dd ei
+bien-être bb ii in nn ai tt rr
+bien-être(2) bb ii in nn ai tt rr ee
+bien_entendu bb ii in nn an tt an dd uu
+bien_plus bb ii in pp ll uu ss
+bien_qu' bb ii in kk
+bien_que bb ii in kk ee
+bien_sûr bb ii in ss uu rr
+bienfaisance bb ii in ff ee zz an ss
+bienfaisance(2) bb ii in ff ee zz an ss ee
+bienfait bb ii in ff ai
+bienfaiteur bb ii in ff ai tt oe rr
+bienfaiteurs bb ii in ff ai tt oe rr
+bienfaiteurs(2) bb ii in ff ai tt oe rr zz
+bienfaits bb ii in ff ai
+bienfaits(2) bb ii in ff ai zz
+bienheureux bb ii in nn ee rr eu
+bienheureux(2) bb ii in nn ee rr eu zz
+biennale bb ii ai nn aa ll
+biennale(2) bb ii ai nn aa ll ee
+biennales bb ii ai nn aa ll
+biennales(2) bb ii ai nn aa ll ee
+biennales(3) bb ii ai nn aa ll ee zz
+biennales(4) bb ii ai nn aa ll zz
+biens bb ii in
+bienséance bb ii in ss ai an ss
+bienséance(2) bb ii in ss ai an ss ee
+bienséances bb ii in ss ai an ss
+bienséances(2) bb ii in ss ai an ss ee
+bienséances(3) bb ii in ss ai an ss ee zz
+bientôt bb ii in tt au
+bienveillance bb ii in vv ai yy an ss
+bienveillance(2) bb ii in vv ai yy an ss ee
+bienveillant bb ii in vv ai yy an
+bienveillant(2) bb ii in vv ai yy an tt
+bienveillante bb ii in vv ai yy an tt
+bienveillante(2) bb ii in vv ai yy an tt ee
+bienveillants bb ii in vv ai yy an
+bienveillants(2) bb ii in vv ai yy an zz
+bienvenu bb ii in vv ee nn uu
+bienvenue bb ii in vv ee nn uu
+bienvenues bb ii in vv ee nn uu
+bienvenus bb ii in vv ee nn uu
+biette bb ii ai tt
 bifurquer bb ii ff uu rr kk ei
 bifurquer(2) bb ii ff uu rr kk ei rr
 big bb ii gg
@@ -14099,6 +14095,7 @@ bûchers(2) bb uu ch ei zz
 c ss ai
 c(2) ss ei
 c' ss
+c'est ss ai
 c'_est_ainsi_qu' ss ai ss tt in ss ii kk
 c'_est_ici ss ai ss tt ii ss ii
 c'_est_là ss ai ss tt ll aa
