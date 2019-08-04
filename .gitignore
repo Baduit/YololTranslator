@@ -6,6 +6,7 @@
 build
 Makefile
 *.exe
+*.so
 
 CMakeFiles
 CMakeCache.txt
