@@ -4,6 +4,10 @@ const ref = require('ref');
 var ffi = require('ffi');
 
 // LibYololHandling
+const V2_WORD_TO_WORD = '../core/v2/assets/word_to_word_dict_fr.json'
+const V2_WORD_TO_PHONEMS = '../core/v2/assets/fr.dict'
+const V2_PHONEMS_TO_CHARS = '../core/v2/assets/french_dico.json'
+
 var libYolol = ffi.Library('../core/v2/libYololTranslator', {
 	'init': [ 'int', [ 'string', 'string', 'string' ] ],
 	'translate': [ 'void*', [ 'string' ] ],
