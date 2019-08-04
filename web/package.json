@@ -24,6 +24,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "npm-watch": "^0.6.0"
+    "npm-watch": "^0.6.0",
+    "ffi": "^2.3.0"
   }
 }
