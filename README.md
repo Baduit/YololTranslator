@@ -1,8 +1,7 @@
 # YololTranslator
 
-WARNING: README IS NOT UP TO DATE AT ALL SINCE THE V2 IS IN BETA
-
 ## Le programme
+Attention: cette partie n'est plus à jour depuis la V2, mais si vous allez dans le dossier core/v1 ça devrait marcher comme avant
 C'est un simple programme pour traduire du texte normal en un texte écrit par un kikoulol avec plein d'abréviations et de fautes.
 
 Pour compiler utilisez cmake ou bien un simple "g++ src/main.cpp -std=c++14" suffit.
