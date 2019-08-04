@@ -1,5 +1,25 @@
 var exec = require('child_process').execFile;
 
+const ref = require('ref');
+var ffi = require('ffi');
+
+// LibYololHandling
+var libYolol = ffi.Library('../core/v2/libYololTranslator', {
+	'init': [ 'int', [ 'string', 'string', 'string' ] ],
+	'translate': [ 'void*', [ 'string' ] ],
+	'delete_string': [ 'void', [ 'void*' ] ],
+	'destroy': [ 'void', [] ]
+});
+if (libYolol.init(V2_PHONEMS_TO_CHARS, V2_WORD_TO_PHONEMS, V2_WORD_TO_WORD) == 0)
+{
+	throw Error("Error while initializing libYolol")
+}
+
+// Proper cleanup
+process.on('exit', function () {
+	libYolol.destroy()
+});
+
 const Discord = require('discord.js')
 const bot = new Discord.Client()
 
@@ -43,7 +63,17 @@ bot.on('message', (message) => {
 			let sentence = extract_usefull_content(message.content, v1_cmd_name)
 			exec_v1(message, sentence)
 		} else if (message.content.search(v2_cmd_name) == 0) {
-			message.channel.send("not implemented yet");
+			let sentence = extract_usefull_content(message.content, v2_cmd_name)
+			var translated_sentence = libYolol.translate(sentence);
+			if (translated_sentence == null)
+			{
+				message.channel.send("Invalid input");
+			}
+			else
+			{
+				message.channel.send(ref.readCString(translated_sentence, 0));
+				libYolol.delete_string(translated_sentence); // maybe better in a then of send
+			}
 		}
 	} catch (exception) {
 		nbException++;
