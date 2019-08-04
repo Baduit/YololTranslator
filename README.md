@@ -1,5 +1,7 @@
 # YololTranslator
 
+WARNING: README IS NOT UP TO DATE AT ALL SINCE THE V2 IS IN BETA
+
 ## Le programme
 C'est un simple programme pour traduire du texte normal en un texte écrit par un kikoulol avec plein d'abréviations et de fautes.
 
