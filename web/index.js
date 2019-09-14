@@ -46,6 +46,10 @@ app.route("/").get(function(req, res) {
 	res.sendFile(__dirname + "/public/index.html");
 });
 
+app.route("/assets/vue").get(function(req, res) {
+	res.sendFile(__dirname + "/node_modules/vue/dist/vue.min.js");
+});
+
 
 app.route("/translate").post(function(req, res)
 {
