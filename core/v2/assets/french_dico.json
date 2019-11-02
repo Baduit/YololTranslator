@@ -359,7 +359,15 @@
 					[
 						{
 							"chars": "aill",
-							"weight": 15
+							"weight": 30
+						},
+						{
+							"chars": "eill",
+							"weight": 30
+						},
+						{
+							"chars": "èll",
+							"weight": 10
 						}
 					]
 			},
@@ -372,8 +380,16 @@
 				"equivalents":
 					[
 						{
+							"chars": "aill",
+							"weight": 30
+						},
+						{
 							"chars": "eill",
-							"weight": 15
+							"weight": 30
+						},
+						{
+							"chars": "èll",
+							"weight": 10
 						}
 					]
 			}
