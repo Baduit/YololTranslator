@@ -46,7 +46,7 @@ class GUI:
 		self.combo_box_version.bind("<<ComboboxSelected>>", self.on_version_changed)
 		self.combo_box_version.grid()
 
-		self.copy_button = tk.Button(self.action_frame, text = 'copy')
+		self.copy_button = tk.Button(self.action_frame, text = 'copy', command = self.add_translated_text_to_clipboard)
 		self.copy_button.grid()
 
 		self.translation_needed = False
@@ -74,7 +74,10 @@ class GUI:
 			translated_text = self.translator.translate(text_to_translate)
 			self.modify_output_text(translated_text)
 			self.translation_needed = False
-		
+
+	def add_translated_text_to_clipboard(self):
+		self.main_form.clipboard_clear()
+		self.main_form.clipboard_append(self.output_widget.get('1.0', tk.END))
 
 	def run(self):
 		self.main_form.mainloop()
