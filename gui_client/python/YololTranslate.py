@@ -23,16 +23,22 @@ class GUI:
 
 		self.main_form = tk.Tk()
 		self.main_form.winfo_toplevel().title('Yolol Translator')
+		self.main_form.grid_rowconfigure(index = 0, weight = 1)
+		self.main_form.grid_columnconfigure(index = 0, weight = 10)
+		self.main_form.grid_columnconfigure(index = 1, weight = 10)
+		self.main_form.grid_columnconfigure(index = 2, weight = 1)
 		self.main_form.geometry("1500x500")
 
-		#T = tk.Text(root, height=2, width=30)
 		self.input_widget = tk.Text(self.main_form)
+		self.input_widget.insert(tk.END, 'Écrivez votre texte à traduire dans la case de gauche et la traduction sera à droite.')
 		self.input_widget.bind('<KeyRelease>', self.on_text_entered)
 		self.input_widget.grid(row = 0, column = 0)
 
 		self.output_widget = tk.Text(self.main_form)
 		self.output_widget.grid(row = 0, column = 1)
+		self.output_widget.insert(tk.END, self.translator.translate(self.input_widget.get('1.0', tk.END)))
 		self.output_widget.config(state = 'disabled')
+		
 
 		self.action_frame = tk.Frame(self.main_form)
 		self.action_frame.grid(row = 0, column = 2)
@@ -46,7 +52,7 @@ class GUI:
 		self.combo_box_version.bind("<<ComboboxSelected>>", self.on_version_changed)
 		self.combo_box_version.grid()
 
-		self.copy_button = tk.Button(self.action_frame, text = 'copy', command = self.add_translated_text_to_clipboard)
+		self.copy_button = tk.Button(self.action_frame, text = 'Copier la traduction', command = self.add_translated_text_to_clipboard)
 		self.copy_button.grid()
 
 		self.translation_needed = False
