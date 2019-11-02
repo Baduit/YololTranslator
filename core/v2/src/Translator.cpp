@@ -16,8 +16,6 @@ std::string	Translator::translate(std::string_view word)
 		return get_random_char_equivalent(create_possible_equivalents(*word_translation)).chars;
 	}
 
-	// TODO phonem composition
-
 	std::string result;
 	PositionCondition actual_pos = PositionCondition::BEGIN;
 
