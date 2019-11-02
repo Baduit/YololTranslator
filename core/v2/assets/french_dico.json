@@ -138,7 +138,8 @@
 				"code": "ll",
 				"equivalents":
 					[
-						{ "chars": "lle", "weight": 10 }
+						{ "chars": "l", "weight": 10 },
+						{ "chars": "lle", "weight": 10, "pos": "end" }
 					]
 			},
 			{
@@ -162,7 +163,7 @@
 				"equivalents":
 					[
 						{ "chars": "e", "weight": 10 },
-						{ "chars": "eu", "weight": 10 }
+						{ "chars": "eu", "weight": 10, "pos": "end" }
 					]
 			},
 			{
@@ -170,7 +171,8 @@
 				"equivalents":
 					[
 						{ "chars": "on", "weight": 10 },
-						{ "chars": "ont", "weight": 10, "pos": "end" }
+						{ "chars": "ont", "weight": 10, "pos": "end" },
+						{ "chars": "ons", "weight": 10, "pos": "end" }
 					]
 			},
 			{
@@ -264,9 +266,7 @@
 				"code": "yy",
 				"equivalents":
 					[
-						{ "chars": "y", "weight": 10, "pos": "begin" },
-						{ "chars": "ll", "weight": 10, "pos": "middle"},
-						{ "chars": "lle", "weight": 10, "pos": "end"}
+						{ "chars": "y", "weight": 10, "pos": "begin" }
 					]
 			},
 			{
@@ -331,6 +331,48 @@
 					[
 						{
 							"chars": "wa",
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"ee",
+						"yy"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "eill",
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"ai",
+						"yy"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "aill",
+							"weight": 15
+						}
+					]
+			},
+			{
+				"phonems":
+					[
+						"ei",
+						"yy"
+					],
+				"equivalents":
+					[
+						{
+							"chars": "eill",
 							"weight": 15
 						}
 					]
