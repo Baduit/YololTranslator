@@ -17,6 +17,9 @@ void	WordsPhonemDictionnary::load(std::string_view filename, const PhonemList& p
 	std::string line;
 	while (std::getline(dict_file, line))
 	{
+		if (line.back() == '\r')
+			line.pop_back();
+			
 		std::vector<std::string> splited_line;
 		boost::split(splited_line, line, boost::is_any_of(" "));
 		if (splited_line.size() > 1)
