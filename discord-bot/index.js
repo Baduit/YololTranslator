@@ -61,7 +61,7 @@ bot.on('message', (message) => {
 		const v1_cmd_name = "!yolol-v1 "
 		const v2_cmd_name = "!yolol-v2 "
 		if (message.content.search(cmd_name) == 0) {
-			let sentence = extract_usefull_content(message.content, v2_cmd_name)
+			let sentence = extract_usefull_content(message.content, cmd_name)
 			var translated_sentence = libYolol.translate(sentence);
 			if (translated_sentence == null)
 			{
