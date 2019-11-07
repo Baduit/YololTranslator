@@ -53,12 +53,15 @@ app.route("/assets/vue").get(function(req, res) {
 
 app.route("/translate").post(function(req, res)
 {
-	var version = "v1";
+	
 	if (!req.body.text)
 		return res.status(400).send('You need to specify the "text" parameter.');
 
-	if (!req.body.version)
-	{
+	var version = "v2";	
+	if (req.body.version)
+		version = req.body.version
+	
+	if (version == "v1") {
 		exec(
 			"../core/v1/YololTranslator.exe",
 			[req.body.text, DICO_V1_PATH],
@@ -66,15 +69,7 @@ app.route("/translate").post(function(req, res)
 				res.status(200).send(stdout);
 			}
 		);
-	} else if (req.body.version == "v1") {
-		exec(
-			"../core/v1/YololTranslator.exe",
-			[req.body.text, DICO_V1_PATH],
-			(error, stdout, stderr) => {
-				res.status(200).send(stdout);
-			}
-		);
-	} else if (req.body.version == "v2") {
+	} else if (version == "v2") {
 		var translated_sentence = libYolol.translate(req.body.text);
 		if (translated_sentence == null)
 		{
@@ -83,8 +78,10 @@ app.route("/translate").post(function(req, res)
 		else
 		{
 			res.status(200).send(ref.readCString(translated_sentence, 0));
-			libYolol.delete_string(translated_sentence); // maybe better in a then of send
+			libYolol.delete_string(translated_sentence);
 		}
+	} else {
+		res.status(400).send('Invalide version. Valid versions are "v1" and "v2" (without the quotes).');
 	}
 });
 
