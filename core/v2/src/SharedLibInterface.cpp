@@ -40,7 +40,7 @@ char* translate_translator(std::string_view input)
 	{
 		auto lower_case_input = to_lower(input);
 		std::string output;
-		auto words = tokenize(lower_case_input, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":"});
+		auto words = tokenize(lower_case_input, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":", "-"});
 		for (const auto w: words)
 		{
 			if (w.type == Token::Type::WORD)

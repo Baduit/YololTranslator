@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	{
 		try
 		{
-			auto words = tokenize(line, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":"});
+			auto words = tokenize(line, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":", "-"});
 			for (const auto w: words)
 			{
 				if (w.type == Token::Type::WORD)
