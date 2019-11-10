@@ -68,6 +68,10 @@ def call_cmake():
 	log('Cmake processing')
 	subprocess.call(['cmake', '..'])
 
+def call_git_pull():
+	log('Checkout the updates.')
+	subprocess.call(['git', 'pull'])
+
 parser = argparse.ArgumentParser(description='Graphical user interface for YololTranslator')
 parser.add_argument('-k', '--kill', action='store_true', help='Kill existing Yolol processes.')
 parser.add_argument('-c', '--cmake', action='store_true', help='Freate build directory and run cmake for the C++ projects, if build dir already exist, it erase it.')
@@ -94,6 +98,9 @@ if args.kill:
 	call_stop()
 	DirExplorer.cd_web()
 	call_stop()
+
+current_step = 'Git'
+call_git_pull()
 
 # Compile core v1 and copy the executable at the right place
 current_step = 'Core v1'
