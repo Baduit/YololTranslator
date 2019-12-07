@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onTextChanged(String updatedText) {
     setState(() {
-      _translatedText = updatedText; // Later make a request to translate
+      _translatedText = updatedText; // TODO: make a request to translate
     });
   }
 
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_translatedText',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.display1, // TODO: change the style
             ),
           ],
         ),
