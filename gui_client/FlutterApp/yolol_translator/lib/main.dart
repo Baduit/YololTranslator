@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,9 +29,25 @@ class _MyHomePageState extends State<MyHomePage> {
   var _translatedText = "";
 
   void _onTextChanged(String updatedText) {
-    setState(() {
-      _translatedText = updatedText; // TODO: make a request to translate
+    setState(() async {
+      _translatedText = await _makePostRequest(
+          updatedText); // TODO: make a request to translate
     });
+  }
+
+  Future<String> _makePostRequest(String textToTranslate) async {
+    String url = 'https://yololtranslate-api.baduit.eu/translate';
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"text": "$textToTranslate"}';
+
+    Response response = await post(url, headers: headers, body: json);
+
+    int statusCode = response.statusCode;
+    if (statusCode != 200) {
+      return "Problème de connexion avec le serveur.";
+    }
+    String body = response.body;
+    return body;
   }
 
   @override
@@ -53,10 +70,22 @@ class _MyHomePageState extends State<MyHomePage> {
               minLines: 3,
               maxLines: null,
             ),
-            Text(
-              '$_translatedText',
-              style: Theme.of(context).textTheme.display1, // TODO: change the style
-            ),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                //margin: const EdgeInsets.all(10.0),
+                //padding: const EdgeInsets.all(10.0),
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.blueAccent)),
+                child: FittedBox(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '$_translatedText',
+                    style: TextStyle(
+                      //fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
           ],
         ),
       ),
