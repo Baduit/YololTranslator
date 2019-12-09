@@ -28,6 +28,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _translatedText = "";
 
+  // If there is performance issue (too many request to the server): https://stackoverflow.com/questions/56823531/how-to-detect-user-has-stopped-typing-in-textfield
   void _onTextChanged(String updatedText) async {
     if (updatedText.isEmpty) {
       setState(() {
@@ -79,17 +80,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
                 width: MediaQuery.of(context).size.width,
                 height: 60,
-                //margin: const EdgeInsets.all(10.0),
-                //padding: const EdgeInsets.all(10.0),
                 decoration:
                     BoxDecoration(border: Border.all(color: Colors.blueAccent)),
                 child: FittedBox(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     '$_translatedText',
-                    style: TextStyle(
-                        //fontWeight: FontWeight.bold,
-                        ),
+                    style: TextStyle(),
                   ),
                 )),
           ],
