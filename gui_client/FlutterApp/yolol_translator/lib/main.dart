@@ -28,11 +28,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var _translatedText = "";
 
-  void _onTextChanged(String updatedText) {
-    setState(() async {
-      _translatedText = await _makePostRequest(
-          updatedText); // TODO: make a request to translate
-    });
+  void _onTextChanged(String updatedText) async {
+    if (updatedText.isEmpty) {
+      setState(() {
+        _translatedText = "";
+      });
+    } else {
+      String newTranslatedText = await _makePostRequest(updatedText);
+      setState(() {
+        _translatedText = newTranslatedText;
+      });
+    }
   }
 
   Future<String> _makePostRequest(String textToTranslate) async {
@@ -82,8 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     '$_translatedText',
                     style: TextStyle(
-                      //fontWeight: FontWeight.bold,
-                    ),
+                        //fontWeight: FontWeight.bold,
+                        ),
                   ),
                 )),
           ],
