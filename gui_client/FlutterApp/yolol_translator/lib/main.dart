@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Yolol Translator Demo Home Page'),
+      home: MyHomePage(title: 'Yolol Translator'),
     );
   }
 }
