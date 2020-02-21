@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.9)
 project(YololV3 VERSION 0.1 DESCRIPTION "YololTranslator 3rd version.")
 
 set(SRCS
-    ./src/main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/Translator.cpp
   )
 
 
