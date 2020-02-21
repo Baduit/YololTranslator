@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(YololTranslatorProjectV2)
 
-add_definitions(-std=c++17 -Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -g)
+add_definitions(-std=c++17 -Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -O3)
 
 include_directories(hello PRIVATE
       ./external
