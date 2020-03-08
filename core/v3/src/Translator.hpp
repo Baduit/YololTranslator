@@ -4,6 +4,7 @@
 #include <string_view>
 
 #include "Phonem.hpp"
+#include "StaticMap.hpp"
 
 namespace YololTranslator
 {
@@ -15,7 +16,7 @@ class Translator
 	std::string	translate(std::string_view sentence_to_translate);
 
 	private:
-		
+
 };
 
 } // namespace YololTranslator
