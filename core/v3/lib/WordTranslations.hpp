@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <iostream>
 
 #include <Random.hpp>
 
@@ -31,7 +32,7 @@ class WordTranslationContainer final
 	private:
 		constexpr std::size_t get_max_random_range() const noexcept
 		{
-			std::size_t result;
+			std::size_t result = 0;
 			for (const auto& t: _translation)
 			{
 				result += t.weight;
@@ -41,7 +42,7 @@ class WordTranslationContainer final
 
 		constexpr std::string_view get_translation(std::size_t weighted_index) const noexcept
 		{
-			std::size_t i;
+			std::size_t i = 0;
 			for (const auto& t: _translation)
 			{
 				i += t.weight;

@@ -14,7 +14,7 @@ namespace generated
 
 constexpr std::size_t WORD_TRANSLATOR_SIZE = 5;
 
-StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_map()
+inline StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_map()
 {
 	StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> map
 		{
