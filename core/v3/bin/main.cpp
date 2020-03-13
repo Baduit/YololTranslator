@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include <StaticMap.hpp>
+#include <Translator.hpp>
 
 int main()
 {
