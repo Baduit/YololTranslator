@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include <Random.hpp>
+#include <TranslatorCallable.hpp>
 
 namespace YololTranslator
 {
@@ -16,7 +17,7 @@ struct WordTranslation final
 
 
 template <std::size_t Size>
-class WordTranslationContainer final
+class WordTranslationContainer
 {
 	public:
 		std::string_view operator()() const
