@@ -20,12 +20,12 @@ template <std::size_t Size>
 class WordTranslationContainer
 {
 	public:
-		std::string_view operator()() const
+		constexpr std::string_view operator()() const
 		{
 			return get_random_translation();
 		}
 
-		std::string_view get_random_translation() const
+		constexpr std::string_view get_random_translation() const
 		{
 			return get_translation(Random::rand(get_max_random_range()));
 		}

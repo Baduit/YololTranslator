@@ -14,7 +14,7 @@ namespace YololTranslator
 class WordTranslator
 {
 	public:
-		WordTranslator():
+		constexpr WordTranslator():
 			_map(generated::load_word_translator_map())
 		{}
 
