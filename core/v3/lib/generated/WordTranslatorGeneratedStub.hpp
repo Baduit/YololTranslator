@@ -12,6 +12,8 @@ namespace YololTranslator
 namespace generated
 {
 
+#ifdef STUB_GENERATED
+
 constexpr std::size_t WORD_TRANSLATOR_SIZE = 5;
 
 inline StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_map()
@@ -52,6 +54,8 @@ inline StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_
 		};
 	return map;
 }
+
+#endif
 
 } // namespace generated
 

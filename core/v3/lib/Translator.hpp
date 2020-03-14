@@ -1,5 +1,7 @@
 #pragma once
 
+#define STUB_GENERATED
+
 #include <string>
 #include <string_view>
 
