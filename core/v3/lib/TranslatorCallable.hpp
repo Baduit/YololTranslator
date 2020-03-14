@@ -13,7 +13,8 @@ struct TranslatorCallable
 {
 	struct IProxy
 	{
-		constexpr virtual std::string_view operator()() const = 0;
+		// Not pure virtual because of fucking gcc false warning saying that it is used but never defined
+		constexpr virtual std::string_view operator()() const { return ""; };
 	};
 
 	template <typename T>
