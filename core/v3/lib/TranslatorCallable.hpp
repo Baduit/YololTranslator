@@ -14,7 +14,7 @@ struct TranslatorCallable
 	struct IProxy
 	{
 		// Not pure virtual because of fucking gcc false warning saying that it is used but never defined
-		constexpr virtual std::string_view operator()() const { return ""; };
+		virtual std::string_view operator()() const { return ""; };
 	};
 
 	template <typename T>
@@ -24,7 +24,7 @@ struct TranslatorCallable
 			value(std::move(t))
 		{}
 
-		constexpr virtual std::string_view operator()() const override
+		virtual std::string_view operator()() const override
 		{
 			return value();
 		}
@@ -43,7 +43,7 @@ struct TranslatorCallable
 	TranslatorCallable(TranslatorCallable&&) = default;
 	TranslatorCallable& operator=(TranslatorCallable&&) = default;
 
-	constexpr virtual std::string_view operator()() const
+	virtual std::string_view operator()() const
 	{
 		return (*impl)();
 	}

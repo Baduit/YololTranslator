@@ -18,7 +18,7 @@ class WordTranslator
 			_map(generated::load_word_translator_map())
 		{}
 
-		constexpr const std::optional<std::string_view>	operator[](std::string_view word)
+		const std::optional<std::string_view>	operator[](std::string_view word)
 		{
 			const TranslatorCallable* c = _map[word];
 			if (c)
