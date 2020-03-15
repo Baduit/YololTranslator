@@ -8,6 +8,7 @@
 #include <Phonem.hpp>
 #include <WordTranslator.hpp>
 #include <WordToPhonems.hpp>
+#include <PhonemList.hpp>
 
 namespace YololTranslator
 {
@@ -20,6 +21,7 @@ class Translator
 
 	private:
 		WordTranslator _word_translator;
+		WordToPhonems _word_to_phonem;
 };
 
 } // namespace YololTranslator
