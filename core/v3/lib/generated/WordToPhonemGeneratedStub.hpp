@@ -27,7 +27,16 @@ constexpr StaticMap<PhonemList, WORD_TO_PHONEM_SIZE> load_word_to_phonems_map()
 			},
 			// Values
 			{
-				
+				PhonemList
+					{
+						{ Phonem::aa, Phonem::ss, Phonem::ai },
+						3
+					},
+				PhonemList
+					{
+						{ Phonem::mm, Phonem::au, Phonem::aa },
+						3
+					},
 			}
 		};
 	return map;
