@@ -1,19 +1,31 @@
 #pragma once
 
-#include <string_view>
-#include <array>
+#include <StaticMap.hpp>
+#include <PhonemList.hpp>
 
-#include <Phonem.hpp>
+#ifdef STUB_GENERATED
+	#include <generated/WordToPhonemGeneratedStub.hpp>
+#else
+	// TODO
+#endif
 
 namespace YololTranslator
 {
 
-// Nothing should have more than 20 phonems,
-// later add more template et type erase if startup time is to slow (but it would add a virtual call during the translation)
-struct PhonemList
+class WordToPhonems
 {
-	std::array<Phonem, 20> phonems; 
-	std::size_t size;
+	public:
+		constexpr WordToPhonems():
+			_map(generated::load_word_to_phonems_map())
+		{}
+
+		const PhonemList*	operator[](std::string_view word)
+		{
+			return _map[word];
+		}
+
+	private:
+		StaticMap<PhonemList, generated::WORD_TO_PHONEM_SIZE> _map;
 };
 
 } // namespace YololTranslator

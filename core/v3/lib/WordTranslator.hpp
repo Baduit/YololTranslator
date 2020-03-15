@@ -6,7 +6,11 @@
 #include <StaticMap.hpp>
 #include <WordTranslations.hpp>
 
-#include <generated/WordTranslatorGeneratedStub.hpp>
+#ifdef STUB_GENERATED
+	#include <generated/WordTranslatorGeneratedStub.hpp>
+#else
+	// TODO
+#endif
 
 namespace YololTranslator
 {

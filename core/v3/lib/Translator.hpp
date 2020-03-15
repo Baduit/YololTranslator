@@ -7,6 +7,7 @@
 
 #include <Phonem.hpp>
 #include <WordTranslator.hpp>
+#include <WordToPhonems.hpp>
 
 namespace YololTranslator
 {
