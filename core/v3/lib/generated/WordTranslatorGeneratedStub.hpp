@@ -16,9 +16,9 @@ namespace generated
 
 constexpr std::size_t WORD_TRANSLATOR_SIZE = 5;
 
-constexpr StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_map()
+constexpr StaticMap<std::string_view, TranslatorCallable, WORD_TRANSLATOR_SIZE> load_word_translator_map()
 {
-	StaticMap<TranslatorCallable, WORD_TRANSLATOR_SIZE> map
+	StaticMap<std::string_view, TranslatorCallable, WORD_TRANSLATOR_SIZE> map
 		{
 			// Keys
 			{

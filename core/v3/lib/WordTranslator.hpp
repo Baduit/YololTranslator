@@ -34,7 +34,7 @@ class WordTranslator
 		}
 
 	private:
-		StaticMap<TranslatorCallable, generated::WORD_TRANSLATOR_SIZE> _map;
+		StaticMap<std::string_view, TranslatorCallable, generated::WORD_TRANSLATOR_SIZE> _map;
 };
 	
 } // namespace YololTranslator

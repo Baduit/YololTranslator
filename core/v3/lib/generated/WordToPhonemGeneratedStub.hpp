@@ -16,9 +16,9 @@ namespace generated
 
 constexpr std::size_t WORD_TO_PHONEM_SIZE = 2;
 
-constexpr StaticMap<PhonemList, WORD_TO_PHONEM_SIZE> load_word_to_phonems_map()
+constexpr StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE> load_word_to_phonems_map()
 {
-	StaticMap<PhonemList, generated::WORD_TO_PHONEM_SIZE> map
+	StaticMap<std::string_view, PhonemList, generated::WORD_TO_PHONEM_SIZE> map
 		{
 			// Keys
 			{

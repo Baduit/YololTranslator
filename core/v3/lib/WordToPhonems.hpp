@@ -25,7 +25,7 @@ class WordToPhonems
 		}
 
 	private:
-		StaticMap<PhonemList, generated::WORD_TO_PHONEM_SIZE> _map;
+		StaticMap<std::string_view, PhonemList, generated::WORD_TO_PHONEM_SIZE> _map;
 };
 
 } // namespace YololTranslator
