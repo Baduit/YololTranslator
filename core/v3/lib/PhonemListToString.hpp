@@ -2,7 +2,6 @@
 
 #include <PhonemList.hpp>
 #include <PhonemTranslation.hpp>
-#include <PhonemTranslation.hpp>
 
 #ifdef STUB_GENERATED
 	//#include <generated/.hpp>
