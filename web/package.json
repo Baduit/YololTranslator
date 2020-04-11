@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The nodejs Restfull api of YololTranslator",
   "main": "index.js",
+  "repository": "https://github.com/Baduit/YololTranslator",
   "watch": {
     "start": "*"
   },
@@ -25,6 +26,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "ffi": "^2.3.0",
+    "npm5": "^5.0.0-beta.69",
     "vue": "^2.6.10"
   },
   "devDependencies": {
