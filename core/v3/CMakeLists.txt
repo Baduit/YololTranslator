@@ -5,7 +5,7 @@ project(YololTranslatorCinematicUniverse VERSION 0.1 DESCRIPTION "YololTranslato
 add_subdirectory(lib)
 
 add_executable(YololTranslatorCmd ./bin/main.cpp)
-target_compile_features(YololTranslatorCmd PRIVATE cxx_std_20)
+target_compile_features(YololTranslatorCmd PRIVATE cxx_std_17)
 target_compile_options(YololTranslatorCmd
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
