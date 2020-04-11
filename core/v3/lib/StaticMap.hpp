@@ -6,7 +6,7 @@
 namespace YololTranslator
 {
 
-template <typename Value, std::size_t Size>
+template <typename Value, std::size_t Size> // Add template for the key, can also be a phonem
 struct StaticMapSoA final
 {
 	// Instanciate it as an aggregate, even if it will be ugly the code instanciating it will be generated

@@ -1,0 +1,1 @@
+If the start-up speed is not good enough because the size of the binary is too hight because of all strings in int, replace the string by hash, the translation should not really be slower because hash are faster to compare
