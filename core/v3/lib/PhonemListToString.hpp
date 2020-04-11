@@ -4,7 +4,7 @@
 #include <PhonemTranslation.hpp>
 
 #ifdef STUB_GENERATED
-	//#include <generated/.hpp>
+	#include <generated/PhonemToStringGeneratedStub.hpp>
 #else
 	// TODO
 #endif
@@ -20,7 +20,7 @@ class PhonemListToString
 		{}
 
 	private:
-		//StaticMap<, > _map;
+		//StaticMap<Phonem, PhonemTranslation, generated::PHONEM_TO_STRING_SIZE> _map {};
 };
 
 } // namespace YololTranslator
