@@ -60,21 +60,7 @@ class PhonemListToString
 			std::sort(phonem_translation_list.begin(), phonem_translation_list.end(),
 				[&](const auto* a, const auto* b)
 				{
-					// The pointers can't be NULL
-					if (a->type == PhonemTranslation::Type::COMPOSITION)
-					{
-						if (b->type == PhonemTranslation::Type::COMPOSITION)
-							return a->translation.composition.nb_phonem > b->translation.composition.nb_phonem;
-						else
-							return false;
-					}
-					else
-					{
-						if (b->type == PhonemTranslation::Type::COMPOSITION)
-							return false;
-						else
-							return true;
-					}
+					return a->get_nb_phonems() > b->get_nb_phonems();
 				});
 
 			(void) state;
@@ -83,16 +69,16 @@ class PhonemListToString
 				if (phonem_translation->type == PhonemTranslation::Type::UNIQUE)
 				{
 					++begin;
-					return phonem_translation->translation.unique._equivalents[0].chars; // Todo: make a function to get a random good one
+					return phonem_translation->get_equivalents()[0].chars; // Todo: make a function to get a random good one
 				}
 				else // PhonemTranslation::Type::COMPOSITION
 				{
-					if (static_cast<decltype(end- begin)>(phonem_translation->translation.composition.nb_phonem) > (end - begin))
+					if (static_cast<decltype(end- begin)>(phonem_translation->get_nb_phonems()) > (end - begin))
 						continue;
 					
 					bool is_ok = true;
 					// We can start at 1 because the first phonem has already been checked
-					for (std::size_t i = 1; i < phonem_translation->translation.composition.nb_phonem; ++i)
+					for (std::size_t i = 1; i < phonem_translation->get_nb_phonems(); ++i)
 					{
 						if (*(begin + i) != phonem_translation->translation.composition.phonem[i])
 							is_ok = false;
@@ -100,8 +86,8 @@ class PhonemListToString
 
 					if (is_ok)
 					{
-						begin += phonem_translation->translation.composition.nb_phonem;
-						return phonem_translation->translation.composition._equivalents[0].chars;
+						begin += phonem_translation->get_nb_phonems();
+						return phonem_translation->get_equivalents()[0].chars;
 					}
 				}
 			}
