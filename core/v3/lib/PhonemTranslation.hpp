@@ -12,12 +12,8 @@ namespace YololTranslator
 
 struct PhonemUniqueTranslation
 {
-	constexpr PhonemUniqueTranslation(Phonem p):
-		phonem(p)
-	{}
-
 	Phonem phonem;
-	//std::array<PhonemEquivalent, 10> _equivalents; // TODO: shrink to fit later with generated constant
+	std::array<PhonemEquivalent, 10> _equivalents; // TODO: shrink to fit later with generated constant
 };
 
 struct PhonemCompositionTranslation
