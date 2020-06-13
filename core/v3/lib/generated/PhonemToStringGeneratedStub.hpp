@@ -35,6 +35,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 					PhonemUniqueTranslation
 					{
 						Phonem::aa,
+						1,
 						{
 							PhonemEquivalent
 							{
@@ -52,6 +53,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 					PhonemUniqueTranslation
 					{
 						Phonem::ss,
+						3,
 						{
 							PhonemEquivalent
 							{
@@ -85,6 +87,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 					PhonemUniqueTranslation
 					{
 						Phonem::mm,
+						2,
 						{
 							PhonemEquivalent
 							{
@@ -110,6 +113,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 					PhonemUniqueTranslation
 					{
 						Phonem::ai,
+						3,
 						{
 							PhonemEquivalent
 							{

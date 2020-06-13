@@ -13,6 +13,7 @@ namespace YololTranslator
 struct PhonemUniqueTranslation
 {
 	Phonem phonem;
+	std::size_t nb_equivalents;
 	std::array<PhonemEquivalent, 10> _equivalents; // TODO: shrink to fit later with generated constant
 };
 
@@ -29,15 +30,11 @@ struct PhonemTranslation
 {
 	constexpr PhonemTranslation(PhonemUniqueTranslation t):
 		type(Type::UNIQUE), translation(t) 
-	{
-		
-	}
+	{}
 
 	constexpr PhonemTranslation(PhonemCompositionTranslation t):
 		type(Type::COMPOSITION), translation(t) 
-	{
-		
-	}
+	{}
 
 	enum class Type
 	{
@@ -49,7 +46,6 @@ struct PhonemTranslation
 
 	union TUnion
 	{
-
 		constexpr TUnion(PhonemUniqueTranslation t):
 			unique(t)
 		{}
