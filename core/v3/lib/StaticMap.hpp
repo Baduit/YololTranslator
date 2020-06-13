@@ -2,6 +2,7 @@
 
 #include <array>
 #include <string_view>
+#include <vector>
 
 namespace YololTranslator
 {
@@ -21,6 +22,22 @@ struct StaticMapSoA final
 			++i;
 		}
 		return nullptr;
+	}
+
+	// Ptr in the vector can't be NULL
+	std::vector<Value*> get_matches(Key k)
+	{
+		std::vector<Value*> results;
+
+		std::size_t i = 0;
+		for (auto key: _keys)
+		{
+			if (key == k)
+				results.push_back(&(_values[i]));
+			++i;
+		}
+
+		return results;
 	}
 
 	std::array<Key, Size>					_keys;
