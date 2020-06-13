@@ -22,6 +22,16 @@ class WordTranslator
 			_map(generated::load_word_translator_map())
 		{}
 
+		virtual ~WordTranslator()
+		{
+			_map.foreach(
+				[](auto&, auto& translator_callable)
+				{
+					translator_callable.delete_memory();
+				}
+			);
+		}
+
 		const std::optional<std::string_view>	operator[](std::string_view word)
 		{
 			const TranslatorCallable* c = _map[word];

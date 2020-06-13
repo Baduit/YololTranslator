@@ -40,6 +40,15 @@ struct StaticMapSoA final
 		return results;
 	}
 
+	template <typename Cb>
+	constexpr void foreach(Cb&& cb)
+	{
+		for (std::size_t i = 0; i < Size; ++i)
+		{
+			cb(_keys[i], _values[i]);
+		}
+	}
+
 	std::array<Key, Size>					_keys;
 	std::array<Value, Size> 				_values;
 };

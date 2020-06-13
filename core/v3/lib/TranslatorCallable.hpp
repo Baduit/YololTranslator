@@ -15,6 +15,7 @@ struct TranslatorCallable
 	{
 		// Not pure virtual because of fucking gcc false warning saying that it is used but never defined
 		virtual std::string_view operator()() const { return ""; };
+		virtual ~IProxy() = default;
 	};
 
 	template <typename T>
@@ -42,6 +43,13 @@ struct TranslatorCallable
 	TranslatorCallable& operator=(const TranslatorCallable&) = delete;
 	TranslatorCallable(TranslatorCallable&&) = default;
 	TranslatorCallable& operator=(TranslatorCallable&&) = default;
+
+	// Can't do it automatically in the dtor or it will be a non trivial dtor and can't put it in the map
+	void delete_memory()
+	{
+		if (impl)
+			delete impl;
+	}
 
 	virtual std::string_view operator()() const
 	{
