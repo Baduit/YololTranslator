@@ -26,7 +26,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 				Phonem::ss,
 				Phonem::mm,
 				Phonem::ai,
-				Phonem::au
+				Phonem::oo
 			},
 			// Values
 			{
@@ -146,7 +146,21 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 				(
 					PhonemCompositionTranslation
 					{
-
+						2,
+						{
+							Phonem::oo, Phonem::aa
+						},
+						1,
+						{
+							PhonemEquivalent
+							{
+								"wa",
+								15,
+								true,
+								true,
+								true
+							}
+						}
 					}
 				)
 			}
