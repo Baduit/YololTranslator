@@ -30,10 +30,10 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 			},
 			// Values
 			{
-				PhonemTranslation(PhonemUniqueTranslation {}),
-				PhonemTranslation(PhonemUniqueTranslation {}),
-				PhonemTranslation(PhonemUniqueTranslation {}),
-				PhonemTranslation(PhonemUniqueTranslation {}),
+				PhonemTranslation(PhonemUniqueTranslation(Phonem::aa)),
+				PhonemTranslation(PhonemUniqueTranslation(Phonem::ss)),
+				PhonemTranslation(PhonemUniqueTranslation(Phonem::mm)),
+				PhonemTranslation(PhonemUniqueTranslation(Phonem::ai)),
 				PhonemTranslation(PhonemCompositionTranslation {})
 			}
 		};
