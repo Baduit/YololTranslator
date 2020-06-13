@@ -15,12 +15,17 @@ namespace YololTranslator
 class PhonemListToString
 {
 	public:
-		constexpr PhonemListToString()//:
-			//_map(generated::())
+		constexpr PhonemListToString():
+			_map(generated::load_phonem_to_string_map())
 		{}
 
+	std::string	operator()(const PhonemList& phonem_list)
+	{
+		return "bbb";
+	}
+
 	private:
-		//StaticMap<Phonem, PhonemTranslation, generated::PHONEM_TO_STRING_SIZE> _map {};
+		StaticMap<Phonem, PhonemTranslation, generated::PHONEM_TO_STRING_SIZE> _map;
 };
 
 } // namespace YololTranslator
