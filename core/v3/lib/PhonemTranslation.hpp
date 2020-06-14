@@ -30,8 +30,6 @@ struct PhonemCompositionTranslation
 	std::array<PhonemEquivalent, MAX_NB_PHONEM_EQUIVALENT> _equivalents;
 };
 
-// Due to a bug in std::variant I can't use a std::variant in constexpr expression (according to the standard I should normally be able to do it)
-//using PhonemTranslation = std::variant<PhonemUniqueTranslation, PhonemCompositionTranslation>;
 struct PhonemTranslation
 {
 	constexpr PhonemTranslation(PhonemUniqueTranslation t):
@@ -57,6 +55,27 @@ struct PhonemTranslation
 		return (type == Type::UNIQUE) ? 1 : translation.composition.nb_phonem;
 	}
 
+	template <typename It>
+	constexpr bool match_phonems(It begin, It end)
+	{
+		if (type == Type::UNIQUE)
+		{
+			return *begin == translation.unique.phonem;
+		}
+		else // Type::COMPOSITION
+		{
+			if (static_cast<decltype(end- begin)>(get_nb_phonems()) > (end - begin))
+				return false;
+			
+			for (std::size_t i = 0; i < get_nb_phonems(); ++i)
+			{
+				if (*(begin + i) != translation.composition.phonem[i])
+					return false;
+			}
+			return true;
+		}
+	}
+
 	enum class Type
 	{
 		UNIQUE,
@@ -65,6 +84,7 @@ struct PhonemTranslation
 
 	Type type;
 
+	// Due to a bug in std::variant I can't use a std::variant in constexpr expression (according to the standard I should normally be able to do it)
 	union TUnion
 	{
 		constexpr TUnion(PhonemUniqueTranslation t):

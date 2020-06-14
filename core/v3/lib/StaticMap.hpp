@@ -11,6 +11,7 @@ template <typename Key, typename Value, std::size_t Size> // Add template for th
 struct StaticMapSoA final
 {
 	// Instanciate it as an aggregate, even if it will be ugly the code instanciating it will be generated
+	// To do make a constructor with variadic templates, it will be cleaner to use and won't be force to use aggregate
 
 	constexpr const Value*	operator[](Key k) noexcept
 	{

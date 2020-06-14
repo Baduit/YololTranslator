@@ -69,25 +69,14 @@ class PhonemListToString
 				if (phonem_translation->type == PhonemTranslation::Type::UNIQUE)
 				{
 					++begin;
-					return phonem_translation->get_equivalents()[0].chars; // Todo: make a function to get a random good one
+					return get_quivalent(phonem_translation->get_equivalents().begin(), phonem_translation->get_equivalents().end(), state);
 				}
 				else // PhonemTranslation::Type::COMPOSITION
 				{
-					if (static_cast<decltype(end- begin)>(phonem_translation->get_nb_phonems()) > (end - begin))
-						continue;
-					
-					bool is_ok = true;
-					// We can start at 1 because the first phonem has already been checked
-					for (std::size_t i = 1; i < phonem_translation->get_nb_phonems(); ++i)
-					{
-						if (*(begin + i) != phonem_translation->translation.composition.phonem[i])
-							is_ok = false;
-					}
-
-					if (is_ok)
+					if (phonem_translation->match_phonems(begin, end))
 					{
 						begin += phonem_translation->get_nb_phonems();
-						return phonem_translation->get_equivalents()[0].chars;
+						return get_quivalent(phonem_translation->get_equivalents().begin(), phonem_translation->get_equivalents().end(), state);
 					}
 				}
 			}
@@ -118,6 +107,14 @@ class PhonemListToString
 				}
 			}
 			throw std::runtime_error("Who changed the enum without updating updating this.");
+		}
+
+		template <typename It>
+		std::string_view get_quivalent(It begin, It end, TranslationState state)
+		{
+			(void) end;
+			(void) state;
+			return begin->chars;
 		}
 
 	private:
