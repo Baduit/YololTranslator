@@ -4,6 +4,8 @@
 
 #include <PhonemList.hpp>
 #include <PhonemTranslation.hpp>
+#include <TranslationState.hpp>
+#include <EquivalentChooser.hpp>
 
 #ifdef STUB_GENERATED
 	#include <generated/PhonemToStringGeneratedStub.hpp>
@@ -16,14 +18,6 @@ namespace YololTranslator
 
 class PhonemListToString
 {
-	enum class TranslationState
-	{
-		BEGIN,
-		MIDDLE,
-		END
-	};
-
-
 	public:
 		constexpr PhonemListToString():
 			_map(generated::load_phonem_to_string_map())
@@ -69,14 +63,14 @@ class PhonemListToString
 				if (phonem_translation->type == PhonemTranslation::Type::UNIQUE)
 				{
 					++begin;
-					return get_quivalent(phonem_translation->get_equivalents().begin(), phonem_translation->get_equivalents().end(), state);
+					return EquivalentChooser(phonem_translation->get_equivalents())(state);
 				}
 				else // PhonemTranslation::Type::COMPOSITION
 				{
 					if (phonem_translation->match_phonems(begin, end))
 					{
 						begin += phonem_translation->get_nb_phonems();
-						return get_quivalent(phonem_translation->get_equivalents().begin(), phonem_translation->get_equivalents().end(), state);
+						return EquivalentChooser(phonem_translation->get_equivalents())(state);
 					}
 				}
 			}
@@ -107,14 +101,6 @@ class PhonemListToString
 				}
 			}
 			throw std::runtime_error("Who changed the enum without updating updating this.");
-		}
-
-		template <typename It>
-		std::string_view get_quivalent(It begin, It end, TranslationState state)
-		{
-			(void) end;
-			(void) state;
-			return begin->chars;
 		}
 
 	private:
