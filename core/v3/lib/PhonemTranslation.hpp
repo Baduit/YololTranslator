@@ -15,6 +15,12 @@ constexpr std::size_t MAX_NB_PHONEM_IN_COMPOSITION = 5; // TODO: shrink to fit l
 
 struct PhonemUniqueTranslation
 {
+	template <typename ...Args>
+	constexpr PhonemUniqueTranslation(Phonem p, Args&&... args):
+		phonem(p),
+		nb_equivalents(sizeof...(args)),
+		_equivalents({ args... })
+	{}
 	Phonem phonem;
 	
 	std::size_t nb_equivalents;
