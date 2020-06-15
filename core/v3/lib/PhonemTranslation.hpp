@@ -6,6 +6,7 @@
 
 #include <Phonem.hpp>
 #include <PhonemEquivalent.hpp>
+#include <PhonemList.hpp>
 
 namespace YololTranslator
 {
@@ -29,8 +30,9 @@ struct PhonemUniqueTranslation
 
 struct PhonemCompositionTranslation
 {
-	std::size_t nb_phonem;
-	std::array<Phonem, MAX_NB_PHONEM_IN_COMPOSITION> phonem;
+	const auto& get_phonems() const { return phonem.phonems; }
+
+	PhonemList phonem;
 
 	std::size_t nb_equivalents;
 	std::array<PhonemEquivalent, MAX_NB_PHONEM_EQUIVALENT> _equivalents;
@@ -58,7 +60,7 @@ struct PhonemTranslation
 
 	constexpr std::size_t get_nb_phonems() const
 	{
-		return (type == Type::UNIQUE) ? 1 : translation.composition.nb_phonem;
+		return (type == Type::UNIQUE) ? 1 : translation.composition.phonem.size;
 	}
 
 	template <typename It>
@@ -75,7 +77,7 @@ struct PhonemTranslation
 			
 			for (std::size_t i = 0; i < get_nb_phonems(); ++i)
 			{
-				if (*(begin + i) != translation.composition.phonem[i])
+				if (*(begin + i) != translation.composition.get_phonems()[i])
 					return false;
 			}
 			return true;

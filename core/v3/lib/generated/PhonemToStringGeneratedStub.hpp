@@ -57,10 +57,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 			),
 			PhonemCompositionTranslation
 			{
-				2,
-				{
-					Phonem::au, Phonem::aa
-				},
+				PhonemList(Phonem::au, Phonem::aa),
 				1,
 				{
 					PhonemEquivalent{ "wa", 15, true, true, true }
