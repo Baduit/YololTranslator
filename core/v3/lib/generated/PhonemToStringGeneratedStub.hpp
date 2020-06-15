@@ -19,70 +19,70 @@ constexpr std::size_t PHONEM_TO_STRING_SIZE = 5;
 constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phonem_to_string_map()
 {
 	StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> map
+	{
+		// Keys
 		{
-			// Keys
-			{
-				Phonem::aa,
-				Phonem::ss,
-				Phonem::mm,
-				Phonem::ai,
-				Phonem::au
-			},
-			// Values
-			{
-				PhonemTranslation
+			Phonem::aa,
+			Phonem::ss,
+			Phonem::mm,
+			Phonem::ai,
+			Phonem::au
+		},
+		// Values
+		{
+			PhonemTranslation
+			(
+				PhonemUniqueTranslation
 				(
-					PhonemUniqueTranslation
-					(
-						Phonem::aa,
-						PhonemEquivalent{ "a", 1, true, true, true }
-					)
-				),
-				PhonemTranslation
-				(
-					PhonemUniqueTranslation
-					(
-						Phonem::ss,
-						PhonemEquivalent{ "s", 15, true, false, false },
-						PhonemEquivalent{ "ç", 2, true, true, true },
-						PhonemEquivalent{ "ss", 10, false, true, true }
-					)
-				),
-				PhonemTranslation
-				(
-					PhonemUniqueTranslation
-					(
-						Phonem::mm,
-						PhonemEquivalent{ "m", 10, true, true, true },
-						PhonemEquivalent{ "mm", 10, false, true, false }
-					)
-				),
-				PhonemTranslation
-				(
-					PhonemUniqueTranslation
-					(
-						Phonem::ai,
-						PhonemEquivalent{ "ai", 10, true, true, true },
-						PhonemEquivalent{ "è", 10, true, true, true },
-						PhonemEquivalent{ "ê", 10, true, true, true }
-					)
-				),
-				PhonemTranslation
-				(
-					PhonemCompositionTranslation
-					{
-						2,
-						{
-							Phonem::au, Phonem::aa
-						},
-						1,
-						{
-							PhonemEquivalent{ "wa", 15, true, true, true }
-						}
-					}
+					Phonem::aa,
+					PhonemEquivalent{ "a", 1, true, true, true }
 				)
-			}
-		};
+			),
+			PhonemTranslation
+			(
+				PhonemUniqueTranslation
+				(
+					Phonem::ss,
+					PhonemEquivalent{ "s", 15, true, false, false },
+					PhonemEquivalent{ "ç", 2, true, true, true },
+					PhonemEquivalent{ "ss", 10, false, true, true }
+				)
+			),
+			PhonemTranslation
+			(
+				PhonemUniqueTranslation
+				(
+					Phonem::mm,
+					PhonemEquivalent{ "m", 10, true, true, true },
+					PhonemEquivalent{ "mm", 10, false, true, false }
+				)
+			),
+			PhonemTranslation
+			(
+				PhonemUniqueTranslation
+				(
+					Phonem::ai,
+					PhonemEquivalent{ "ai", 10, true, true, true },
+					PhonemEquivalent{ "è", 10, true, true, true },
+					PhonemEquivalent{ "ê", 10, true, true, true }
+				)
+			),
+			PhonemTranslation
+			(
+				PhonemCompositionTranslation
+				{
+					2,
+					{
+						Phonem::au, Phonem::aa
+					},
+					1,
+					{
+						PhonemEquivalent{ "wa", 15, true, true, true }
+					}
+				}
+			)
+		}
+	};
 	return map;
 }
 
