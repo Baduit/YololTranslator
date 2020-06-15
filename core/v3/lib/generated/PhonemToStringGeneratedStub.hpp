@@ -37,14 +37,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 						Phonem::aa,
 						1,
 						{
-							PhonemEquivalent
-							{
-								"a",
-								1,
-								true,
-								true,
-								true
-							}
+							PhonemEquivalent{ "a", 1, true, true, true }
 						} 
 					}
 				),
@@ -55,30 +48,9 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 						Phonem::ss,
 						3,
 						{
-							PhonemEquivalent
-							{
-								"s",
-								15,
-								true,
-								false,
-								false
-							},
-							PhonemEquivalent
-							{
-								"ç",
-								2,
-								true,
-								true,
-								true
-							},
-							PhonemEquivalent
-							{
-								"ss",
-								10,
-								false,
-								true,
-								true
-							}
+							PhonemEquivalent{ "s", 15, true, false, false },
+							PhonemEquivalent{ "ç", 2, true, true, true },
+							PhonemEquivalent{ "ss", 10, false, true, true }
 						}
 					}
 				),
@@ -89,22 +61,8 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 						Phonem::mm,
 						2,
 						{
-							PhonemEquivalent
-							{
-								"m",
-								10,
-								true,
-								true,
-								true
-							},
-							PhonemEquivalent
-							{
-								"mm",
-								10,
-								false,
-								true,
-								false
-							}
+							PhonemEquivalent{ "m", 10, true, true, true },
+							PhonemEquivalent{ "mm", 10, false, true, false }
 						}
 					}
 				),
@@ -115,30 +73,9 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 						Phonem::ai,
 						3,
 						{
-							PhonemEquivalent
-							{
-								"ai",
-								10,
-								true,
-								true,
-								true
-							},
-							PhonemEquivalent
-							{
-								"è",
-								10,
-								true,
-								true,
-								true
-							},
-							PhonemEquivalent
-							{
-								"ê",
-								10,
-								true,
-								true,
-								true
-							}
+							PhonemEquivalent{ "ai", 10, true, true, true },
+							PhonemEquivalent{ "è", 10, true, true, true },
+							PhonemEquivalent{ "ê", 10, true, true, true }
 						}
 					}
 				),
@@ -152,14 +89,7 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 						},
 						1,
 						{
-							PhonemEquivalent
-							{
-								"wa",
-								15,
-								true,
-								true,
-								true
-							}
+							PhonemEquivalent{ "wa", 15, true, true, true }
 						}
 					}
 				)
