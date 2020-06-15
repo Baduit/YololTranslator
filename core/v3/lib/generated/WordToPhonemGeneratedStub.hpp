@@ -27,16 +27,8 @@ constexpr StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE> load_word
 			},
 			// Values
 			{
-				PhonemList
-					{
-						{ Phonem::aa, Phonem::ss, Phonem::ai },
-						3
-					},
-				PhonemList
-					{
-						{ Phonem::mm, Phonem::au, Phonem::aa },
-						3
-					},
+				PhonemList(Phonem::aa, Phonem::ss, Phonem::ai),
+				PhonemList(Phonem::mm, Phonem::au, Phonem::aa)
 			}
 		};
 	return map;

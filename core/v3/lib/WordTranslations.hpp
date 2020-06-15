@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include <Random.hpp>
-#include <TranslatorCallable.hpp>
 
 namespace YololTranslator
 {

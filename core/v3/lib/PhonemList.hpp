@@ -14,6 +14,12 @@ constexpr std::size_t PHONEM_LIST_MAX_SIZE = 50;
 // later add more template et type erase if startup time is to slow (but it would add a virtual call during the translation)
 struct PhonemList
 {
+	template <typename ...Args>
+	constexpr PhonemList(Args&&... args):
+		phonems({args...}),
+		size(sizeof...(args))
+	{}
+
 	std::array<Phonem, PHONEM_LIST_MAX_SIZE> phonems; 
 	std::size_t size;
 };

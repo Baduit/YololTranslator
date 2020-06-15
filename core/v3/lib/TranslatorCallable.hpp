@@ -7,7 +7,7 @@
 namespace YololTranslator
 {
 
-//using TranslatorCallable = std::function<std::string_view()>;
+// TODO : limit the number of allocation by allocating only a few times
 
 struct TranslatorCallable
 {
