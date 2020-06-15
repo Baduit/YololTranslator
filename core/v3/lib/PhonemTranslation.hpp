@@ -30,6 +30,19 @@ struct PhonemUniqueTranslation
 
 struct PhonemCompositionTranslation
 {
+	PhonemCompositionTranslation(const PhonemCompositionTranslation&) = default;
+	PhonemCompositionTranslation& operator=(const PhonemCompositionTranslation&) = default;
+	
+	PhonemCompositionTranslation(PhonemCompositionTranslation&&) = default;
+	PhonemCompositionTranslation& operator=(PhonemCompositionTranslation&&) = default;
+
+	template <typename ...Args>
+	constexpr PhonemCompositionTranslation(const PhonemList& p, Args&&... args):
+		phonem(p),
+		nb_equivalents(sizeof...(args)),
+		_equivalents({ args... })
+	{}
+
 	const auto& get_phonems() const { return phonem.phonems; }
 
 	PhonemList phonem;

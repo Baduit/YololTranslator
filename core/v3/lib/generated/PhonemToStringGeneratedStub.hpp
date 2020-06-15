@@ -56,13 +56,10 @@ constexpr StaticMap<Phonem, PhonemTranslation, PHONEM_TO_STRING_SIZE> load_phone
 				PhonemEquivalent{ "ê", 10, true, true, true }
 			),
 			PhonemCompositionTranslation
-			{
+			(
 				PhonemList(Phonem::au, Phonem::aa),
-				1,
-				{
-					PhonemEquivalent{ "wa", 15, true, true, true }
-				}
-			}	
+				PhonemEquivalent{ "wa", 15, true, true, true }
+			)	
 		}
 	};
 	return map;
