@@ -56,6 +56,11 @@ class WordTranslationContainer
 	public: // Public for ugly massive aggregate initialisation
 		std::array<WordTranslation, Size> _translation;
 };
-	
+
+template <typename ...Args>
+constexpr auto createWordTranslationContainer(Args&&... args)
+{
+	return WordTranslationContainer<sizeof...(args)>{args...};
+}
 
 } // namespace YololTranslator
