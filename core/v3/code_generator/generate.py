@@ -45,20 +45,38 @@ class CompileTimeConstant:
 	def to_string(self):
 		return f"constexpr {self.its_type} {self.name} = {self.value};"
 
-class ConstexprFunction: # withNoArgs
+class InitMapFunction:
 	def __init__(self, name, return_type):
 		self.name = name
 		self.return_type = return_type
-		self.lines = []
+		self.keys = []
+		self.values = []
 
-	def add_line(self, new_line):
-		self.lines.append(new_line)
+	def add_key(self, new_key):
+		self.keys.append(new_key)
+
+	def add_value(self, new_value):
+		self.keys.append(new_value)
 
 	def to_string(self):
 		result_string = f"constexpr {self.return_type} {self.name}()\n"
 		result_string += "{\n"
-		for l in self.lines:
-			result_string += l
+		result_string += f"\t{self.return_type} map\n"
+		result_string += "\t{\n"
+		# add keys
+		result_string += "\t\t// Keys\n"
+		result_string += "\t\t{\n"
+		is_first_elem = True
+		for k in self.keys:
+			if not is_first_elem:
+				result_string += ",\n"
+			is_first_elem = False
+			result_string += f"\t\t\t\"{k}\""
+		result_string += "\n\t\t}\n"
+		# add values
+		
+		result_string += "\t}\n"
+		result_string += "\treturn map;\n"
 		result_string += "}\n"
 		return result_string
 
@@ -77,8 +95,11 @@ def write_to_file(filename: str, content: str):
 def generate_word_to_word(output_file: str, json_content):
 	log(INFO, "Word to word", "Generation starting")
 
-	size = CompileTimeConstant("WORD_TO_PHONEM_SIZE", "std::size_t", len(json_content["words"])) # temporaty value
-	fun = ConstexprFunction("load_word_to_phonems_map", "StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE>")
+	size = CompileTimeConstant("WORD_TO_PHONEM_SIZE", "std::size_t", len(json_content["words"]))
+
+	fun = InitMapFunction("load_word_to_phonems_map", "StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE>")
+	for word in json_content["words"]:
+		fun.add_key(word["word"])
 
 	generated_namespace = Namespace("generated")
 	generated_namespace.add(size)
