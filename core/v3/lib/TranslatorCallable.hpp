@@ -7,7 +7,7 @@
 namespace YololTranslator
 {
 
-// TODO : limit the number of allocation by allocating only a few times
+// TODO : rework that, i don't want to see any dynamic allocation, use variant/union
 
 struct TranslatorCallable
 {

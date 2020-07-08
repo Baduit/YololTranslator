@@ -56,13 +56,14 @@ class InitMapFunction:
 		self.keys.append(new_key)
 
 	def add_value(self, new_value):
-		self.keys.append(new_value)
+		self.values.append(new_value)
 
 	def to_string(self):
 		result_string = f"constexpr {self.return_type} {self.name}()\n"
 		result_string += "{\n"
 		result_string += f"\t{self.return_type} map\n"
 		result_string += "\t{\n"
+
 		# add keys
 		result_string += "\t\t// Keys\n"
 		result_string += "\t\t{\n"
@@ -72,10 +73,20 @@ class InitMapFunction:
 				result_string += ",\n"
 			is_first_elem = False
 			result_string += f"\t\t\t\"{k}\""
-		result_string += "\n\t\t}\n"
+		result_string += "\n\t\t},\n"
+
 		# add values
+		result_string += "\t\t// Values\n"
+		result_string += "\t\t{\n"
+		is_first_elem = True
+		for v in self.values:
+			if not is_first_elem:
+				result_string += ",\n"
+			is_first_elem = False
+			result_string += f"\t\t\t{v}"
+		result_string += "\n\t\t}\n"
 		
-		result_string += "\t}\n"
+		result_string += "\t};\n"
 		result_string += "\treturn map;\n"
 		result_string += "}\n"
 		return result_string
@@ -95,11 +106,27 @@ def write_to_file(filename: str, content: str):
 def generate_word_to_word(output_file: str, json_content):
 	log(INFO, "Word to word", "Generation starting")
 
-	size = CompileTimeConstant("WORD_TO_PHONEM_SIZE", "std::size_t", len(json_content["words"]))
+	generated_code = "#pragma once\n\n"
+	generated_code += "#include <string_view>\n\n"
+	generated_code += "#include <TranslatorCallable.hpp>\n"
+	generated_code += "#include <StaticMap.hpp>\n"
+	generated_code += "#include <WordTranslations.hpp>\n\n"
 
-	fun = InitMapFunction("load_word_to_phonems_map", "StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE>")
+	size = CompileTimeConstant("WORD_TRANSLATOR_SIZE", "std::size_t", len(json_content["words"]))
+
+	fun = InitMapFunction("load_word_translator_map", "StaticMap<std::string_view, TranslatorCallable, WORD_TRANSLATOR_SIZE>")
 	for word in json_content["words"]:
 		fun.add_key(word["word"])
+
+		value_line = "createWordTranslationContainer("
+		is_first_equivalent = True
+		for equivalents in word["equivalents"]:
+			if not is_first_equivalent:
+				value_line += ", "	
+			is_first_equivalent = False
+			value_line += "WordTranslation{ " + str(equivalents["weight"]) + ", \"" + equivalents["chars"] + "\" }"
+		value_line += ")"
+		fun.add_value(value_line)
 
 	generated_namespace = Namespace("generated")
 	generated_namespace.add(size)
@@ -107,8 +134,9 @@ def generate_word_to_word(output_file: str, json_content):
 
 	yolol_namespace = Namespace("YololTranslator")
 	yolol_namespace.add(generated_namespace)
+	generated_code += yolol_namespace.to_string()
 
-	write_to_file(output_file, yolol_namespace.to_string())
+	write_to_file(output_file, generated_code)
 	log(INFO, "Word to word", "Generation done")
 
 def generate_word_to_phonem(output_file: str, lines_file):

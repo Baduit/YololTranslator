@@ -9,7 +9,7 @@
 #ifdef STUB_GENERATED
 	#include <generated/WordTranslatorGeneratedStub.hpp>
 #else
-	// TODO
+	#include <generated/WordTranslatorGenerated.hpp>
 #endif
 
 namespace YololTranslator
