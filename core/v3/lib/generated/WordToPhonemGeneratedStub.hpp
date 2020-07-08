@@ -2,9 +2,8 @@
 
 #include <string_view>
 
-#include <TranslatorCallable.hpp>
 #include <StaticMap.hpp>
-#include <WordTranslations.hpp>
+#include <PhonemList.hpp>
 
 namespace YololTranslator
 {
