@@ -6,7 +6,7 @@
 #ifdef STUB_GENERATED
 	#include <generated/WordToPhonemGeneratedStub.hpp>
 #else
-	// TODO
+	#include <generated/WordToPhonemGenerated.hpp>
 #endif
 
 namespace YololTranslator

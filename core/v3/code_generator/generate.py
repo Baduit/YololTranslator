@@ -97,7 +97,7 @@ def read_json_file(filename: str):
 
 def read_lines_file(filename: str):
 	with open(filename, "r") as file:
-		return file.readlines(106000)
+		return file.readlines()
 
 def write_to_file(filename: str, content: str):
 	with open(filename, "w") as file:
@@ -113,6 +113,7 @@ def generate_word_to_word(output_file: str, json_content):
 	generated_code += "#include <WordTranslations.hpp>\n\n"
 
 	size = CompileTimeConstant("WORD_TRANSLATOR_SIZE", "std::size_t", len(json_content["words"]))
+	log(INFO, "Word to word", f"Map size == {len(json_content['words'])}")
 
 	fun = InitMapFunction("load_word_translator_map", "StaticMap<std::string_view, TranslatorCallable, WORD_TRANSLATOR_SIZE>")
 	for word in json_content["words"]:
@@ -141,7 +142,49 @@ def generate_word_to_word(output_file: str, json_content):
 
 def generate_word_to_phonem(output_file: str, lines_file):
 	log(INFO, "Word to phonem", "Generation starting")
-	write_to_file(output_file, "yolol")
+	generated_code = "#pragma once\n\n"
+	generated_code += "#include <string_view>\n\n"
+	generated_code += "#include <StaticMap.hpp>\n"
+	generated_code += "#include <PhonemList.hpp>\n\n"
+
+	size = CompileTimeConstant("WORD_TO_PHONEM_SIZE", "std::size_t", len(lines_file))
+	log(INFO, "Word to phonem", f"Map size == {len(lines_file)}")
+
+	fun = InitMapFunction("load_word_to_phonems_map", "StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE>")
+	longuest_phonem_list = 0
+	for line in lines_file:
+		line = line.replace("\n", "")
+		tokens = line.split(' ')
+		if (len(tokens) - 1) > longuest_phonem_list:
+			longuest_phonem_list = len(tokens) - 1
+		if len(tokens) < 1:
+			log(ERROR, "Word to phonem", "Invalid line too short == " + line)
+			return
+		fun.add_key(tokens[0])
+		value_line = "PhonemList("
+		i = 1
+		while i < len(tokens):
+			if tokens[i] == "":
+				log(ERROR, "Word to phonem", "Empty phonem in a line, line is skipped. Line == " + line)
+				return
+			value_line += f"Phonem::{tokens[i]}"
+			i += 1
+			if i < len(tokens):
+				value_line += ", "
+		value_line += ")"
+		fun.add_value(value_line)
+
+	log(INFO, "Word to phonem", f"Longuest phonem list == {longuest_phonem_list}")
+
+	generated_namespace = Namespace("generated")
+	generated_namespace.add(size)
+	generated_namespace.add(fun)
+
+	yolol_namespace = Namespace("YololTranslator")
+	yolol_namespace.add(generated_namespace)
+	generated_code += yolol_namespace.to_string()
+
+	write_to_file(output_file, generated_code)
 	log(INFO, "Word to phonem", "Generation done")
 
 def generate_phonem_to_chars(output_file: str, json_content):
@@ -154,7 +197,7 @@ def main():
 
 	parser = argparse.ArgumentParser(description='Generate dictionnaries for YololTranslator Core V3')
 	parser.add_argument('-wwf', '--word-to-word-file', default="./assets/word_to_word_dict_fr.json", help='Path to the input file for word to word translation.')
-	parser.add_argument('-wpf', '--word-to-phonem-file', default="./assets/fr.dict", help='Path to the input file for word to phonem translation.')
+	parser.add_argument('-wpf', '--word-to-phonem-file', default="./assets/fr_epured.dict", help='Path to the input file for word to phonem translation.')
 	parser.add_argument('-pcf', '--phonem-to-char-file', default="./assets/french_dico.json", help='Path to the input file for phonem to characters translation.')
 	parser.add_argument('-o', '--output-dir', default="./lib/generated", help='Path to the output directory.')
 	args = parser.parse_args()

@@ -8,7 +8,7 @@
 namespace YololTranslator
 {
 
-constexpr std::size_t PHONEM_LIST_MAX_SIZE = 50;
+constexpr std::size_t PHONEM_LIST_MAX_SIZE = 21;
 
 // Nothing should have more than 50 phonems, later I can put it in a constant that will be set in the generated file to fit perfectly
 // later add more template et type erase if startup time is to slow (but it would add a virtual call during the translation)
