@@ -19,6 +19,48 @@ def log(log_type, step, message):
 	colored_step = colored(step, 'blue')
 	print(colored_log_type + ': ' + colored_step + ' => ' + message)
 
+class Namespace:
+	def __init__(self, name):
+		self.name = name
+		self.elememts = []
+
+	def add(self, new_element):
+		self.elememts.append(new_element)
+
+	def to_string(self):
+		string_result = f"namespace {self.name}\n"
+		string_result += "{\n\n"
+		for e in self.elememts:
+			string_result += e.to_string()
+			string_result += "\n"
+		string_result += "}\n"
+		return string_result
+
+class CompileTimeConstant:
+	def __init__(self, name, its_type, value):
+		self.name = name
+		self.its_type = its_type
+		self.value = value
+
+	def to_string(self):
+		return f"constexpr {self.its_type} {self.name} = {self.value};"
+
+class ConstexprFunction: # withNoArgs
+	def __init__(self, name, return_type):
+		self.name = name
+		self.return_type = return_type
+		self.lines = []
+
+	def add_line(self, new_line):
+		self.lines.append(new_line)
+
+	def to_string(self):
+		result_string = f"constexpr {self.return_type} {self.name}()\n"
+		result_string += "{\n"
+		for l in self.lines:
+			result_string += l
+		result_string += "}\n"
+		return result_string
 
 def read_json_file(filename: str):
 	with open(filename, "r") as file:
@@ -28,16 +70,34 @@ def read_lines_file(filename: str):
 	with open(filename, "r") as file:
 		return file.readlines(106000)
 
-def generate_word_to_word(json_content):
+def write_to_file(filename: str, content: str):
+	with open(filename, "w") as file:
+		return file.write(content)		
+
+def generate_word_to_word(output_file: str, json_content):
 	log(INFO, "Word to word", "Generation starting")
+
+	size = CompileTimeConstant("WORD_TO_PHONEM_SIZE", "std::size_t", len(json_content["words"])) # temporaty value
+	fun = ConstexprFunction("load_word_to_phonems_map", "StaticMap<std::string_view, PhonemList, WORD_TO_PHONEM_SIZE>")
+
+	generated_namespace = Namespace("generated")
+	generated_namespace.add(size)
+	generated_namespace.add(fun)
+
+	yolol_namespace = Namespace("YololTranslator")
+	yolol_namespace.add(generated_namespace)
+
+	write_to_file(output_file, yolol_namespace.to_string())
 	log(INFO, "Word to word", "Generation done")
 
-def generate_word_to_phonem(lines_file):
+def generate_word_to_phonem(output_file: str, lines_file):
 	log(INFO, "Word to phonem", "Generation starting")
+	write_to_file(output_file, "yolol")
 	log(INFO, "Word to phonem", "Generation done")
 
-def generate_phonem_to_chars(json_content):
+def generate_phonem_to_chars(output_file: str, json_content):
 	log(INFO, "Phonem to chars", "Generation starting")
+	write_to_file(output_file, "yolol")
 	log(INFO, "Phonem to chars", "Generation done")
 
 def main():
@@ -52,9 +112,9 @@ def main():
 
 	log(INFO, "Main", "Arguments parsing done.")
 
-	generate_phonem_to_chars(read_json_file(args.word_to_word_file))
-	generate_word_to_phonem(read_lines_file(args.word_to_phonem_file))
-	generate_word_to_word(read_json_file(args.phonem_to_char_file))
+	generate_word_to_word(args.output_dir + "/WordTranslatorGenerated.hpp", read_json_file(args.word_to_word_file))
+	generate_word_to_phonem(args.output_dir + "/WordToPhonemGenerated.hpp", read_lines_file(args.word_to_phonem_file))
+	generate_phonem_to_chars(args.output_dir + "/PhonemToStringGenerated.hpp", read_json_file(args.phonem_to_char_file))
 
 	log(INFO, "Main", "Program is over.")
 
