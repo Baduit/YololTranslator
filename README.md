@@ -43,6 +43,11 @@ Le but va être double:
 	- avec le gain de vitesse on pourra espérer de pouvoir le compiler wasm et que le site web puisse l'utiliser sans passer par l'API
 	- plus facile de partager le binaire ou les bibliothèques partagées car il n'y a plus le besoin de partager avec les dicos.
 
+EDIT: Even with everything in the source code it is not really suitable for the uses cases:
+* On the web => well the word to phonem dictionnaries is still really big, it would still be possible to encode it in a binary format (words as integer hash, phonems would be a bitfield etc) but it would be a lot of work for really tiny gain
+* As a shared library => the stack overflow really easily, still would be possible to use dynamic allocation instead of course but the challenge lost its taste
+Also make it without allocation is a non-sense because it would be running on a browser... 
+
 ## Web
 Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utilisez envoyer une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
 
