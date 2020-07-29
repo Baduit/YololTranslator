@@ -35,14 +35,6 @@ Pour build, utilisez cmake, nécessite un compilateur supportant C++17.
 
 Il y a un exécutable qui est une simple application console ainsi qu'une bibliothèque partagées (.so/.dll).
 
-### V3
-WIP
-Nécessite cmake pour build.
-Les techniques de traductions sont les mêmes que pour la V2 mais au lieu de passer par des fichiers assets au runtime, les dictionnaires seront inclus au binaire, de plus le code sera pensé pour être optimisé pendant la traduction et avoir un lancement rapide (c'est pour ça que les dicos sont dans le binaire, pour éviter de devoir parser au lancement ou pendant la traduction). 
-Le but va être double:
-	- avec le gain de vitesse on pourra espérer de pouvoir le compiler wasm et que le site web puisse l'utiliser sans passer par l'API
-	- plus facile de partager le binaire ou les bibliothèques partagées car il n'y a plus le besoin de partager avec les dicos.
-
 ## Web
 Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utilisez envoyer une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
 
