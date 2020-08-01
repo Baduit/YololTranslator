@@ -2,7 +2,7 @@
 #include <cctype>
 
 #include <SharedLibInterface.hpp>
-#include <external/Split.hpp>
+#include <Split.hpp>
 
 namespace
 {

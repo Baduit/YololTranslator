@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include <Translator.hpp>
-#include <external/Isaarg.hpp>
-#include <external/Split.hpp>
+#include <Isaarg.hpp>
+#include <Split.hpp>
 
 template <typename ...Args>
 bool	check(Args... args)
