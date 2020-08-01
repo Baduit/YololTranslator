@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 
-#include "CharsEquivalent.hpp"
+#include <CharsEquivalent.hpp>
 
 class WordToWordDict
 {

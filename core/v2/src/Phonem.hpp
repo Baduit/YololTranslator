@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CharsEquivalent.hpp"
+#include <CharsEquivalent.hpp>
 
 class Phonem
 {

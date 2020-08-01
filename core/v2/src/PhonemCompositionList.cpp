@@ -3,7 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <nlohmann/json.hpp>
+#include <external/nlohmann/json.hpp>
 
 PhonemCompositionList::PhonemCompositionList(std::string_view filename)
 {

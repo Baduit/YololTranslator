@@ -3,7 +3,7 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "WordsPhonemDictionnary.hpp"
+#include <WordsPhonemDictionnary.hpp>
 
 WordsPhonemDictionnary::WordsPhonemDictionnary(std::string_view filename, const PhonemList& phonems)
 {

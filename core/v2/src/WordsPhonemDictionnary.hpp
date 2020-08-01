@@ -6,8 +6,8 @@
 #include <map>
 #include <fstream>
 
-#include "Phonem.hpp"
-#include "PhonemList.hpp"
+#include <Phonem.hpp>
+#include <PhonemList.hpp>
 
 class WordsPhonemDictionnary
 {

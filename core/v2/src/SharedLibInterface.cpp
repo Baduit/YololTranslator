@@ -1,8 +1,8 @@
 #include <cstring>
 #include <cctype>
 
-#include "SharedLibInterface.hpp"
-#include "Split.hpp"
+#include <SharedLibInterface.hpp>
+#include <external/Split.hpp>
 
 namespace
 {

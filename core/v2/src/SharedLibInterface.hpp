@@ -3,7 +3,7 @@
 #include <optional>
 #include <string>
 
-#include "Translator.hpp"
+#include <Translator.hpp>
 
 extern "C"
 {

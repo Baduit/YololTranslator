@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 
-#include "CharsEquivalent.hpp"
+#include <CharsEquivalent.hpp>
 
 using PhonemCode = std::string;
 

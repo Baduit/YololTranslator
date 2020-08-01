@@ -1,6 +1,6 @@
 #include <algorithm>
 
-#include "Translator.hpp"
+#include <Translator.hpp>
 
 Translator::Translator(std::string_view phonems_list_filename, std::string_view words_phonem_filename, std::string_view word_dict_filename):
 	_mt(_rd()),

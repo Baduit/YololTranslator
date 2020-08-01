@@ -1,9 +1,9 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <nlohmann/json.hpp>
+#include <external/nlohmann/json.hpp>
 
-#include "PhonemList.hpp"
+#include <PhonemList.hpp>
 
 PhonemList::PhonemList(std::string_view filename)
 {

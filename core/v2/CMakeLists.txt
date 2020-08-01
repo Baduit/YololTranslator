@@ -2,27 +2,16 @@ cmake_minimum_required(VERSION 3.0)
 
 project(YololTranslatorProjectV2)
 
-add_definitions(-std=c++17 -Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -O3)
+add_subdirectory(src)
 
-include_directories(hello PRIVATE
-      ./external
-      ./src
-      ./src/Phonem
-      ./src/WordToWordDict
-      ./src/PhonemComposition
-    )
+add_executable(YololTranslatorCmd bin/main.cpp)
+target_compile_features(YololTranslatorCmd PRIVATE cxx_std_17)
+target_compile_options(YololTranslatorCmd
+                       PRIVATE
+                       $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
+					   $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -O3>)
+target_link_libraries(YololTranslatorCmd PRIVATE YololTranslator)
 
-set(SRCS
-	src/Translator.cpp
-    src/Phonem/PhonemList.cpp
-    src/Phonem/WordsPhonemDictionnary.cpp
-    src/WordToWordDict/WordToWordDict.cpp
-    src/PhonemComposition/PhonemCompositionList.cpp
-    )
-
-add_library(YololTranslator SHARED src/SharedLibInterface.cpp ${SRCS})
-
-add_executable(YololTranslator.exe
-        src/main.cpp
-        ${SRCS}
-    )
+include(CTest)
+enable_testing(MAKE_DIRECTORY test)
+add_subdirectory(test)

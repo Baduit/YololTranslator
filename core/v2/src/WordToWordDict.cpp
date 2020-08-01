@@ -1,9 +1,9 @@
 #include <fstream>
 #include <algorithm>
 
-#include <nlohmann/json.hpp>
+#include <external/nlohmann/json.hpp>
 
-#include "WordToWordDict.hpp"
+#include <WordToWordDict.hpp>
 
 WordToWordDict::WordToWordDict(std::string_view filename)
 {

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "PhonemComposition.hpp"
+#include <PhonemComposition.hpp>
 
 namespace details
 {

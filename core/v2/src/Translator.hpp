@@ -5,10 +5,10 @@
 #include <optional>
 #include <random>
 
-#include "WordsPhonemDictionnary.hpp"
-#include "WordToWordDict.hpp"
-#include "PhonemList.hpp"
-#include "PhonemCompositionList.hpp"
+#include <WordsPhonemDictionnary.hpp>
+#include <WordToWordDict.hpp>
+#include <PhonemList.hpp>
+#include <PhonemCompositionList.hpp>
 
 class Translator
 {
