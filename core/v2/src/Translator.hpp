@@ -21,7 +21,11 @@ class Translator
 		Translator(Translator&&) = default;
 		Translator& operator=(Translator&&) = default;
 
-		std::string	translate(std::string_view word);
+		std::string operator()(std::string_view sentence);
+
+		std::string operator[](std::string_view word);
+		std::string	translate_word(std::string_view word);
+
 
 	private:
 		template<typename ConstIt>

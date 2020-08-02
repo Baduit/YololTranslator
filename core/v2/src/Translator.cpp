@@ -1,6 +1,23 @@
 #include <algorithm>
 
 #include <Translator.hpp>
+#include <Split.hpp>
+
+namespace
+{
+
+std::string to_lower(std::string_view str)
+{
+	std::string result;
+	result.reserve(str.size());
+
+	for (auto c: str)
+		result += static_cast<char>(tolower(c));
+
+	return result;
+}
+
+}
 
 Translator::Translator(std::string_view phonems_list_filename, std::string_view words_phonem_filename, std::string_view word_dict_filename):
 	_mt(_rd()),
@@ -9,7 +26,52 @@ Translator::Translator(std::string_view phonems_list_filename, std::string_view 
 	_word_dict(word_dict_filename)
 {}
 
-std::string	Translator::translate(std::string_view word)
+std::string Translator::operator()(std::string_view sentence)
+{
+	auto lower_case_sentence = to_lower(sentence);
+	std::string output;
+	auto words = tokenize(lower_case_sentence, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":", "-"});
+	for (const auto w: words)
+	{
+		if (w.type == Token::Type::WORD)
+		{
+			try
+			{
+				output += translate_word(w.value);
+			}
+			catch (std::runtime_error& e) // to handle unknown words, i should make designated exception or handle it in the translator or better use optional
+			{
+				output += w.value;
+			}
+		}
+		else // if is token
+		{
+			if (w.value == "?" || w.value == "!")
+			{
+				output += w.value;
+				output += w.value;
+			}
+			else if (w.value == "\n")
+			{
+				output += w.value;
+			}
+			else
+			{
+				output += " ";
+			}
+		}
+	}
+	output += "\n";
+
+	return output;
+}
+
+std::string Translator::operator[](std::string_view word)
+{
+	return translate_word(word);
+}
+
+std::string	Translator::translate_word(std::string_view word)
 {
 	if (auto* word_translation = _word_dict[word]; word_translation)
 	{
@@ -49,7 +111,6 @@ std::string	Translator::translate(std::string_view word)
 		}
 		update_word_position(actual_pos, phonem_it, phonems.cend());
 
-		//std::cout << char_eq_composition_size << std::endl;
 		phonem_it += static_cast<int>(char_eq_composition_size);
 	}
 
