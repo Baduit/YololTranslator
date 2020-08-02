@@ -35,14 +35,7 @@ std::string Translator::operator()(std::string_view sentence)
 	{
 		if (w.type == Token::Type::WORD)
 		{
-			try
-			{
-				output += translate_word(w.value);
-			}
-			catch (std::runtime_error& e) // to handle unknown words, i should make designated exception or handle it in the translator or better use optional
-			{
-				output += w.value;
-			}
+			output += translate_word(w.value);
 		}
 		else // if is token
 		{
@@ -81,13 +74,16 @@ std::string	Translator::translate_word(std::string_view word)
 	std::string result;
 	PositionCondition actual_pos = PositionCondition::BEGIN;
 
-	const auto& phonems = _phonem_dict[word];
-	auto phonem_it = phonems.cbegin();
-	while (phonem_it != phonems.cend())
+	const auto* phonems = _phonem_dict[word];
+	if (!phonems)
+		return std::string(word);
+
+	auto phonem_it = phonems->cbegin();
+	while (phonem_it != phonems->cend())
 	{
 		std::vector<CharsEquivalent> chars_equivalents;
 
-		if (auto* pc = _phonem_composition_list(phonem_it, phonems.cend()); pc)
+		if (auto* pc = _phonem_composition_list(phonem_it, phonems->cend()); pc)
 		{
 			chars_equivalents = pc->get_chars_equivalents();		
 		}
@@ -109,7 +105,7 @@ std::string	Translator::translate_word(std::string_view word)
 			result += eq.chars;
 			char_eq_composition_size = eq.composition_size;;
 		}
-		update_word_position(actual_pos, phonem_it, phonems.cend());
+		update_word_position(actual_pos, phonem_it, phonems->cend());
 
 		phonem_it += static_cast<int>(char_eq_composition_size);
 	}
