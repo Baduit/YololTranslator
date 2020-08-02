@@ -39,9 +39,9 @@ class PhonemCompositionList
 		{
 			for (const auto& pc: _phonem_compositions)
 			{
-				auto it_pc = pc.get_phonems().cbegin();
+				auto it_pc = pc.phonems.cbegin();
 				auto it_word = actual;
-				while (it_pc != pc.get_phonems().cend() && it_word != end)
+				while (it_pc != pc.phonems.cend() && it_word != end)
 				{
 					if (it_word->get_code() != *it_pc)
 						break;
@@ -50,7 +50,7 @@ class PhonemCompositionList
 					++it_word;
 				}
 		
-				if (it_pc == pc.get_phonems().cend())
+				if (it_pc == pc.phonems.cend())
 					return &pc;
 			}
 			return nullptr;

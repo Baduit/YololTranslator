@@ -85,7 +85,7 @@ std::string	Translator::translate_word(std::string_view word)
 
 		if (auto* pc = _phonem_composition_list(phonem_it, phonems->cend()); pc)
 		{
-			chars_equivalents = pc->get_chars_equivalents();		
+			chars_equivalents = pc->chars_equivalents;		
 		}
 
 		const auto& tmp_vec = phonem_it->get_chars_equivalents();

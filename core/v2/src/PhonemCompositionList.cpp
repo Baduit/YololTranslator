@@ -1,9 +1,10 @@
-#include "PhonemCompositionList.hpp"
+#include <PhonemCompositionList.hpp>
 
 #include <fstream>
 #include <stdexcept>
 
 #include <external/nlohmann/json.hpp>
+#include <JsonUnserializer.hpp>
 
 PhonemCompositionList::PhonemCompositionList(std::string_view filename)
 {

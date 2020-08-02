@@ -7,37 +7,32 @@
 
 using PhonemCode = std::string;
 
-class PhonemComposition
+struct PhonemComposition
 {
-	public:
-		PhonemComposition() = default;
+	PhonemComposition() = default;
 
-		PhonemComposition(const std::vector<PhonemCode>& phonems, const std::vector<CharsEquivalent>& eq):
-			_phonems(phonems), _chars_equivalents(eq)
-		{}
+	PhonemComposition(const std::vector<PhonemCode>& p, const std::vector<CharsEquivalent>& eq):
+		phonems(p), chars_equivalents(eq)
+	{}
 
-		PhonemComposition(std::vector<PhonemCode>&& phonems, std::vector<CharsEquivalent>&& eq):
-			_phonems(std::move(phonems)), _chars_equivalents(std::move(eq))
-		{}
+	PhonemComposition(std::vector<PhonemCode>&& p, std::vector<CharsEquivalent>&& eq):
+		phonems(std::move(p)), chars_equivalents(std::move(eq))
+	{}
 
-		PhonemComposition(const PhonemComposition&) = default;
-		PhonemComposition& operator=(const PhonemComposition&) = default;
+	PhonemComposition(const PhonemComposition&) = default;
+	PhonemComposition& operator=(const PhonemComposition&) = default;
 
-		PhonemComposition(PhonemComposition&&) = default;
-		PhonemComposition& operator=(PhonemComposition&&) = default;
+	PhonemComposition(PhonemComposition&&) = default;
+	PhonemComposition& operator=(PhonemComposition&&) = default;
 
-		bool operator<(const PhonemComposition& other) const
-		{
-			if (_phonems.size() < other._phonems.size())
-				return true;
-			else
-				return _chars_equivalents < other._chars_equivalents;
-		}
-	
-		const std::vector<PhonemCode>&		get_phonems() const { return _phonems; }
-		const std::vector<CharsEquivalent>&	get_chars_equivalents() const { return _chars_equivalents; }
+	bool operator<(const PhonemComposition& other) const
+	{
+		if (phonems.size() < other.phonems.size())
+			return true;
+		else
+			return chars_equivalents < other.chars_equivalents;
+	}
 
-	private:
-		std::vector<PhonemCode>			_phonems;
-		std::vector<CharsEquivalent>	_chars_equivalents;
+	std::vector<PhonemCode>			phonems;
+	std::vector<CharsEquivalent>	chars_equivalents;
 };
