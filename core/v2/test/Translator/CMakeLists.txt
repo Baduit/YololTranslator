@@ -1,5 +1,5 @@
 add_executable(Translator.test main.cpp)
-target_compile_features(Translator.test PRIVATE cxx_std_17)
+target_compile_features(Translator.test PRIVATE cxx_std_20)
 target_compile_options(Translator.test
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>

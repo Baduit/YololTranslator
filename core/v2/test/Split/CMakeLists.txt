@@ -1,5 +1,5 @@
 add_executable(Split.test main.cpp)
-target_compile_features(Split.test PRIVATE cxx_std_17)
+target_compile_features(Split.test PRIVATE cxx_std_20)
 target_compile_options(Split.test
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>

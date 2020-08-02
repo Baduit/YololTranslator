@@ -8,7 +8,7 @@ set(SRCS
     )
 
 add_library(YololTranslator SHARED ${SRCS})
-target_compile_features(YololTranslator PRIVATE cxx_std_17)
+target_compile_features(YololTranslator PRIVATE cxx_std_20)
 target_compile_options(YololTranslator
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
