@@ -12,3 +12,4 @@ There is also a little command line program named YololTranslatorCmd.
 * Possibility to load several dictionnaries, and a better API to load them
 * Put everything in a namespace
 * Use custom exceptions
+* Units tests on the part that are easily testable
