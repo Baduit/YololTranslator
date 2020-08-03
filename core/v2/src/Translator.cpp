@@ -1,7 +1,8 @@
 #include <algorithm>
 
 #include <Translator.hpp>
-#include <Split.hpp>
+#include <utilities/Split.hpp>
+#include <utilities/Random.hpp>
 
 namespace
 {
@@ -54,7 +55,6 @@ std::string Translator::operator()(std::string_view sentence)
 			}
 		}
 	}
-	output += "\n";
 
 	return output;
 }
@@ -74,7 +74,7 @@ std::string	Translator::translate_word(std::string_view word)
 	std::string result;
 	PositionCondition actual_pos = PositionCondition::BEGIN;
 
-	const auto* phonems = _phonem_dict[word];
+	const std::vector<Phonem>* phonems = _phonem_dict[word];
 	if (!phonems)
 		return std::string(word);
 
@@ -82,16 +82,20 @@ std::string	Translator::translate_word(std::string_view word)
 	while (phonem_it != phonems->cend())
 	{
 		std::vector<CharsEquivalent> chars_equivalents;
+		std::size_t char_eq_composition_size = 1;
 
-		if (auto* pc = _phonem_composition_list(phonem_it, phonems->cend()); pc)
+		if (const PhonemComposition* pc = _phonem_composition_list(phonem_it, phonems->cend()); pc)
 		{
 			chars_equivalents = pc->chars_equivalents;		
+		}
+		else
+		{
+			throw std::runtime_error("Phonem without a translation : " + std::string(phonem_it->get_code()));
 		}
 
 		const auto& tmp_vec = phonem_it->get_chars_equivalents();
 		chars_equivalents.insert(chars_equivalents.end(), tmp_vec.cbegin(), tmp_vec.cend());
 
-		std::size_t char_eq_composition_size;
 
 		if (chars_equivalents.size() == 1)
 		{

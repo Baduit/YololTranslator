@@ -2,7 +2,6 @@
 #include <cctype>
 
 #include <SharedLibInterface.hpp>
-#include <Split.hpp>
 
 YololResult init_translator(std::string_view phonems_list_filename, std::string_view words_phonem_filename, std::string_view word_dict_filename)
 {

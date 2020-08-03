@@ -10,6 +10,8 @@
 #include <PhonemList.hpp>
 #include <PhonemCompositionList.hpp>
 
+#include <WordToWord/WordToWordTranslator.hpp>
+
 class Translator
 {
 	public:
