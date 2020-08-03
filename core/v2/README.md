@@ -13,3 +13,4 @@ There is also a little command line program named YololTranslatorCmd.
 * Put everything in a namespace
 * Use custom exceptions
 * Units tests on the part that are easily testable
+* Instead of splitting, iterate over the string on delimiters => avoid allocation => faster, also after it will be easier to refactorate the split and tokenize code and remove the duplicate code
