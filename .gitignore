@@ -3,7 +3,6 @@
 .vscode
 .vs
 
-build
 Makefile
 *.exe
 *.so
@@ -15,3 +14,7 @@ CMakeCache.txt
 node_modules
 
 pid.txt
+
+build
+win_build
+linux_build
