@@ -27,12 +27,12 @@ struct Token
 	Type				type;
 };
 
-namespace
+namespace Details
 {
 
 using namespace std::string_view_literals;
 
-bool	start_with(std::string_view str, std::string_view substr)
+inline bool	start_with(std::string_view str, std::string_view substr)
 {
 	if (str.size() < substr.size())
 		return false;
@@ -75,7 +75,7 @@ OutputContainer<std::string_view>	split(std::string_view str, InputContainer<Str
 	std::size_t word_begin = 0;
 	while (i < str.size())
 	{
-		auto d = get_delim(str.substr(i), delims);
+		auto d = Details::get_delim<InputContainer, StrView>(str.substr(i), delims);
 		if (d)
 		{
 			auto word = str.substr(word_begin, i - word_begin);
@@ -112,7 +112,7 @@ OutputContainer<Token>	tokenize(std::string_view str, InputContainer<StrView> de
 	std::size_t word_begin = 0;
 	while (i < str.size())
 	{
-		auto d = get_delim(str.substr(i), delims);
+		auto d = Details::get_delim<InputContainer, StrView>(str.substr(i), delims);
 		if (d)
 		{
 			auto word = str.substr(word_begin, i - word_begin);

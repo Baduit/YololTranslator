@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <stdexcept>
 
 #include <WordToWord/WordTranslator.hpp>
 #include <JsonUnserializer.hpp>

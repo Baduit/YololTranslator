@@ -6,8 +6,10 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wshadow"
+#ifdef __GNUC__
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wshadow"
+#endif
 
 #if defined(__cpp_modules)
 export module boost.ut;
@@ -2563,4 +2565,6 @@ template <bool Constant>
 }  // namespace boost
 #endif
 
-#pragma GCC diagnostic pop
+#ifdef __GNUC__
+  #pragma GCC diagnostic pop
+#endif

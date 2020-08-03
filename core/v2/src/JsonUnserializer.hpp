@@ -4,10 +4,10 @@
 
 #include <Phonem/Phonem.hpp>
 
-class WordTranslation;
-class PhonemEquivalent;
-class PhonemUniqueTranslation;
-class PhonemCompositionTranslation;
+struct WordTranslation;
+struct PhonemEquivalent;
+struct PhonemUniqueTranslation;
+struct PhonemCompositionTranslation;
 
 void from_json(const nlohmann::json& j, WordTranslation& word_translation);
 void from_json(const nlohmann::json& j, Phonem& phonem);

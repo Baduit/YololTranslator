@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <string_view>
+#include <stdexcept>
 
 #include <Phonem/Phonem.hpp>
 #include <Phonem/PhonemTranslation.hpp>

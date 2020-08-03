@@ -10,7 +10,7 @@ target_compile_options(YololTranslatorCmd
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
 					   $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -O3>)
-target_link_libraries(YololTranslatorCmd PRIVATE YololTranslator)
+target_link_libraries(YololTranslatorCmd PRIVATE StaticYololTranslator)
 target_include_directories(YololTranslatorCmd PRIVATE bin)
 
 include(CTest)

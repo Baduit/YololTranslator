@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <compare>
 
 struct PhonemEquivalent
 {

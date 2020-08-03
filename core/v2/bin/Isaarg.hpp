@@ -104,7 +104,7 @@ class Args
             addOptions();
         }
 
-        int                 argc() const { return _argv.size(); }
+        int                 argc() const { return static_cast<int>(_argv.size()); }
         const ArgsVector&   argv() const { return _argv; }
         const Flags&        getFlags() const { return _flags; }
         const Options&      getOPtions() const { return _options; }
