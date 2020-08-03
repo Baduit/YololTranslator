@@ -2,25 +2,15 @@
 
 #include <external/nlohmann/json.hpp>
 
-#include <PhonemCompositionList.hpp>
-#include <CharsEquivalent.hpp>
+#include <Phonem/Phonem.hpp>
 
-#include <WordToWord/WordTranslation.hpp>
+class WordTranslation;
+class PhonemEquivalent;
+class PhonemUniqueTranslation;
+class PhonemCompositionTranslation;
 
-inline void from_json(const nlohmann::json& j, CharsEquivalent& chars_eq)
-{
-	//j.at("speed").get_to(s.speed);
-	j.at("chars").get_to(chars_eq.chars);
-	j.at("weight").get_to(chars_eq.weight);
-}
-
-inline void from_json(const nlohmann::json& j, PhonemComposition& phonem_composition)
-{
-	j.at("phonems").get_to(phonem_composition.phonems);
-}
-
-inline void from_json(const nlohmann::json& j, WordTranslation& word_translation)
-{
-	j.at("weight").get_to(word_translation.weight);
-	j.at("chars").get_to(word_translation.chars);
-}
+void from_json(const nlohmann::json& j, WordTranslation& word_translation);
+void from_json(const nlohmann::json& j, Phonem& phonem);
+void from_json(const nlohmann::json& j, PhonemEquivalent& equivalent);
+void from_json(const nlohmann::json& j, PhonemUniqueTranslation& translation);
+void from_json(const nlohmann::json& j, PhonemCompositionTranslation& translation);

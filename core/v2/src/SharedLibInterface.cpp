@@ -1,5 +1,6 @@
 #include <cstring>
 #include <cctype>
+#include <iostream>
 
 #include <SharedLibInterface.hpp>
 

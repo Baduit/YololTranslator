@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <string>
 #include <string_view>
@@ -56,8 +58,10 @@ std::optional<std::string_view>	get_delim(std::string_view str, const InputConta
 	return {};
 }
 
-template < template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<std::string_view>	split_impl(std::string_view str, InputContainer<StrView>&& delims)
+}
+
+template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
+OutputContainer<std::string_view>	split(std::string_view str, InputContainer<StrView> delims)
 {
 	if (str.empty())
 		return {};
@@ -92,8 +96,9 @@ OutputContainer<std::string_view>	split_impl(std::string_view str, InputContaine
 	return result;
 }
 
-template < template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<Token>	tokenize_impl(std::string_view str, InputContainer<StrView>&& delims)
+
+template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
+OutputContainer<Token>	tokenize(std::string_view str, InputContainer<StrView> delims)
 {
 	if (str.empty())
 		return {};
@@ -127,42 +132,4 @@ OutputContainer<Token>	tokenize_impl(std::string_view str, InputContainer<StrVie
 		inserter = Token(str.substr(word_begin, i - word_begin), Token::Type::WORD);
 	
 	return result;
-}
-
-}
-
-/*
-** Split
-*/
-
-// copy
-template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<std::string_view>	split(std::string_view str, const InputContainer<StrView>& delims)
-{
-	return split_impl(str, std::vector<StrView>(delims.begin(), delims.end()));
-}
-
-// move/copy ellision
-template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<std::string_view>	split(std::string_view str, InputContainer<StrView>&& delims)
-{
-	return split_impl(str, std::move(delims));
-}
-
-/*
-** Tokenize
-*/
-
-// copy
-template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<Token>	tokenize(std::string_view str, const InputContainer<StrView>& delims)
-{
-	return tokenize_impl(str, std::vector<StrView>(delims.begin(), delims.end()));
-}
-
-// move/copy ellision
-template <template <typename> typename InputContainer = std::vector, typename StrView = std::string_view, template <typename> typename OutputContainer = std::vector>
-OutputContainer<Token>	tokenize(std::string_view str, InputContainer<StrView>&& delims)
-{
-	return tokenize_impl(str, std::move(delims));
 }
