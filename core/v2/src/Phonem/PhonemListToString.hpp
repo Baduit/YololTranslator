@@ -4,6 +4,7 @@
 #include <vector>
 #include <string_view>
 #include <stdexcept>
+#include <algorithm>
 
 #include <Phonem/Phonem.hpp>
 #include <Phonem/PhonemTranslation.hpp>

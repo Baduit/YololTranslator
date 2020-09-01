@@ -7,11 +7,24 @@
 
 struct WordTranslation final
 {
-	bool operator==(const WordTranslation&) const = default;
-	auto operator<=>(const WordTranslation&) const = default;
+	bool operator==(const WordTranslation& other) const
+	{
+		return
+			weight == other.weight &&
+			chars == other.chars;
+	}
 
-	std::size_t weight;
+	bool operator!=(const WordTranslation& other) const { return !(*this == other); }
+
+	bool operator<(const WordTranslation& other) const
+	{
+		if (chars != other.chars)
+			return chars < other.chars;
+		return weight < other.weight;
+	}
+
 	std::string chars;
+	std::size_t weight;
 };
 
 
@@ -26,8 +39,9 @@ class WordTranslationContainer
 		WordTranslationContainer(WordTranslationContainer&&) = default;
 		WordTranslationContainer& operator=(WordTranslationContainer&&) = default;
 
-		bool operator==(const WordTranslationContainer&) const = default;
-		auto operator<=>(const WordTranslationContainer&) const = default;
+		bool operator==(const WordTranslationContainer& other) const { return _translation == other._translation; }
+		bool operator!=(const WordTranslationContainer& other) const { return !(*this == other); }
+		bool operator<(const WordTranslationContainer& other) const { return _translation < other._translation; }
 
 		void load(std::vector<WordTranslation> new_translations);
 		void clear();

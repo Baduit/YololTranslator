@@ -8,7 +8,7 @@ set(SRCS
     )
 
 add_library(YololTranslator SHARED ${SRCS} SharedLibInterface.cpp)
-target_compile_features(YololTranslator PRIVATE cxx_std_20)
+target_compile_features(YololTranslator PRIVATE cxx_std_17)
 target_compile_options(YololTranslator
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
@@ -16,7 +16,7 @@ target_compile_options(YololTranslator
 target_include_directories(YololTranslator PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 add_library(StaticYololTranslator STATIC ${SRCS})
-target_compile_features(StaticYololTranslator PRIVATE cxx_std_20)
+target_compile_features(StaticYololTranslator PRIVATE cxx_std_17)
 target_compile_options(StaticYololTranslator
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
