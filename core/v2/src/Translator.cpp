@@ -30,27 +30,42 @@ std::string Translator::operator()(std::string_view sentence)
 {
 	auto lower_case_sentence = to_lower(sentence);
 	std::string output;
-	auto words = tokenize(lower_case_sentence, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":", "-"});
+	bool in_tag = false; 
+	auto words = tokenize(lower_case_sentence, {" ", ";", ",", ".", "\t", "\n", "!", "?", ":", "-", "<@", ">"});
 	for (const auto w: words)
 	{
-		if (w.type == Token::Type::WORD)
+		if (in_tag)
 		{
-			output += translate_word(w.value);
+			if (w.type == Token::Type::DELIMiTER && w.value == ">")
+				in_tag = false;
+			output += w.value;
 		}
-		else // if is token
+		else
 		{
-			if (w.value == "?" || w.value == "!")
+			if (w.type == Token::Type::DELIMiTER && w.value == "<@")
 			{
-				output += w.value;
-				output += w.value;
-			}
-			else if (w.value == "\n")
-			{
+				in_tag = true;
 				output += w.value;
 			}
-			else
+			else if (w.type == Token::Type::WORD)
 			{
-				output += " ";
+				output += translate_word(w.value);
+			}
+			else // if is token
+			{
+				if (w.value == "?" || w.value == "!")
+				{
+					output += w.value;
+					output += w.value;
+				}
+				else if (w.value == "\n")
+				{
+					output += w.value;
+				}
+				else
+				{
+					output += " ";
+				}
 			}
 		}
 	}

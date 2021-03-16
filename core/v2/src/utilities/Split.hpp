@@ -5,6 +5,7 @@
 #include <string_view>
 #include <algorithm>
 #include <optional>
+#include <iterator>
 #include <initializer_list>
 
 struct Token
@@ -69,7 +70,7 @@ OutputContainer<std::string_view>	split(std::string_view str, InputContainer<Str
 	std::sort(delims.begin(), delims.end(), [](std::string_view a, std::string_view b) { return a > b; });
 
 	OutputContainer<std::string_view> result;
-	std::back_insert_iterator inserter = std::back_inserter(result);
+	auto inserter = std::back_inserter(result);
 
 	std::size_t i = 0;
 	std::size_t word_begin = 0;
@@ -106,7 +107,7 @@ OutputContainer<Token>	tokenize(std::string_view str, InputContainer<StrView> de
 	std::sort(delims.begin(), delims.end(), [](std::string_view a, std::string_view b) { return a > b; });
 
 	OutputContainer<Token> result;
-	std::back_insert_iterator inserter = std::back_inserter(result);
+	auto inserter = std::back_inserter(result);
 
 	std::size_t i = 0;
 	std::size_t word_begin = 0;
