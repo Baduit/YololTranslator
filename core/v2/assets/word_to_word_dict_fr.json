@@ -35,6 +35,19 @@
 					"weight": 5
 				}
 			]
+		},
+		{
+			"word": "rousselle",
+			"equivalents": [
+				{
+					"chars": "rousse",
+					"weight": 5
+				},
+				{
+					"chars": "rouçe",
+					"weight": 5
+				}
+			]
 		}
 	]
 }
