@@ -1,43 +1,40 @@
 {
 	"author": "Baduit",
 	"version": "1.0",
-	"words":
-		[
-			{
-				"word": "bonjour",
-				"equivalents":
-					[
-						{
-							"chars": "bjr",
-							"weight": 10
-						},
-						{
-							"chars": "bonjoure",
-							"weight": 2
-						},
-						{
-							"chars": "bonjourre",
-							"weight": 2
-						},
-						{
-							"chars": "bongeour",
-							"weight": 1
-						}
-					]
-			},
-			{
-				"word": "salut",
-				"equivalents":
-					[
-						{
-							"chars": "salu",
-							"weight": 10
-						},
-						{
-							"chars": "slt",
-							"weight": 5
-						}
-					]
-			}
-		]
+	"words": [
+		{
+			"word": "bonjour",
+			"equivalents": [
+				{
+					"chars": "bjr",
+					"weight": 10
+				},
+				{
+					"chars": "bonjoure",
+					"weight": 2
+				},
+				{
+					"chars": "bonjourre",
+					"weight": 2
+				},
+				{
+					"chars": "bongeour",
+					"weight": 1
+				}
+			]
+		},
+		{
+			"word": "salut",
+			"equivalents": [
+				{
+					"chars": "salu",
+					"weight": 10
+				},
+				{
+					"chars": "slt",
+					"weight": 5
+				}
+			]
+		}
+	]
 }
