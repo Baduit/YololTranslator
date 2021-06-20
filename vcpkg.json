@@ -9,6 +9,7 @@
 		"nlohmann-json",
 		"cpr",
 		"ixwebsocket",
-		"doctest"
+		"doctest",
+		"magic-enum"
 	]
 }

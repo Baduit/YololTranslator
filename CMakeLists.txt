@@ -11,8 +11,10 @@ enable_testing(MAKE_DIRECTORY test)
 # Dependencies
 find_package(Threads REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(magic_enum CONFIG REQUIRED)
 find_package(doctest CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
+
 #find_package(mbedTLS REQUIRED)
 find_library(MBEDTLS_TLS_LIBRARY mbedtls)
 find_library(MBEDTLS_X509_LIBRARY mbedx509)

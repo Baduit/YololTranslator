@@ -1,5 +1,5 @@
-#include <external/nlohmann/json.hpp>
-#include <external/magic_enum/magic_enum.hpp>
+#include <nlohmann/json.hpp>
+#include <magic_enum.hpp>
 
 #include <JsonUnserializer.hpp>
 

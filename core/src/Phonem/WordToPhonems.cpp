@@ -5,7 +5,7 @@
 
 #include <Phonem/WordToPhonems.hpp>
 
-#include <external/magic_enum/magic_enum.hpp>
+#include <magic_enum.hpp>
 #include <utilities/Split.hpp>
 
 void WordToPhonems::load(std::string_view filename)
