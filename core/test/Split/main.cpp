@@ -1,24 +1,18 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <doctest/doctest.h>
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <string_view>
 
-#include <boost_ut/ut.hpp>
-
 #include <utilities/Split.hpp>
 
-using namespace boost::ut;
-
-void split_simple()
+TEST_CASE("basic")
 {
 	std::vector<std::string_view> expected_result { "Salut", "les", "gens" };
 
 	auto strings = split("Salut les gens", {" "});
-	expect(strings.size() == expected_result.size()) << "Check the size";
-	expect(strings == expected_result) << "Check the elements";
-}
-
-int main()
-{
-	"case"_test = split_simple;
+	REQUIRE_MESSAGE(strings.size() == expected_result.size(), "Check the size");
+	CHECK_MESSAGE(strings == expected_result, "Check the elements");
 }

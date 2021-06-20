@@ -8,6 +8,7 @@ enable_testing(MAKE_DIRECTORY test)
 # Dependencies
 find_package(Threads REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(doctest CONFIG REQUIRED)
 
 # Projects
 add_subdirectory(core)

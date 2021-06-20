@@ -1,8 +1,9 @@
-#include <iostream>
-#include <cassert>
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <doctest/doctest.h>
 
-int main()
+#include <iostream>
+
+TEST_CASE("Example")
 {
-	std::cout << "Hello, World !" << std::endl;
-	assert(true);
+	// TODO
 }

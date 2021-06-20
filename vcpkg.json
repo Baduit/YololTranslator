@@ -8,6 +8,7 @@
 	"dependencies": [
 		"nlohmann-json",
 		"cpr",
-		"ixwebsocket"
+		"ixwebsocket",
+		"doctest"
 	]
 }
