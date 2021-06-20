@@ -9,7 +9,6 @@ Makefile
 
 CMakeFiles
 CMakeCache.txt
-*.cmake
 
 node_modules
 
