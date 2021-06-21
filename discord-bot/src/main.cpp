@@ -1,7 +1,10 @@
-#include <iostream>
 #include <dpp.h>
 
-int main()
+#include <iostream>
+
+#include <Command.hpp>
+
+int main(int argc, char** argv)
 {
 	const std::string token = "BOT_TOKEN_HERE";
 	dpp::Client client;
@@ -16,9 +19,13 @@ int main()
 	client.onMessage =
 		[&](const dpp::Message &message)
 		{
-			if (message.content == "jaaj?")
+			if (message.content == "jaaj")
 			{
-				message.channel().send("jooj"); // or message.reply("jooj"), which mentions the message author
+				message.channel().send("jooj");
+			}
+			else if (message.content == "!vdd")
+			{
+				message.reply("translation of vdd message");
 			}
 		};
 
