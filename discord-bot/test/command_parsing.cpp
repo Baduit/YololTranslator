@@ -58,3 +58,11 @@ TEST_CASE("Command with a long content")
 	CHECK(cmd->name == "toto");
 	CHECK(cmd->message == "lol c'est vraiment trop marrant");
 }
+
+TEST_CASE("Command with content and several spaces")
+{
+	auto cmd = Command::parse("!toto   lol");
+	REQUIRE(cmd.has_value());
+	CHECK(cmd->name == "toto");
+	CHECK(cmd->message == "lol");
+}
