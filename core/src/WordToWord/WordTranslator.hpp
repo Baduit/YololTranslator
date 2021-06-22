@@ -16,7 +16,7 @@ class WordTranslator
 		void load(std::string_view filename);
 		void clear();
 
-		const std::optional<std::string_view>	operator[](std::string_view word);
+		const std::optional<std::string_view>	operator[](std::string_view word) const;
 
 	private:
 		std::map<std::string, WordTranslationContainer> _map;

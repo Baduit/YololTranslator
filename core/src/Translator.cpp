@@ -26,7 +26,7 @@ Translator::Translator(std::string_view phonems_list_filename, std::string_view 
 	_word_translator.load(word_dict_filename);
 }
 
-std::string Translator::operator()(std::string_view sentence)
+std::string Translator::operator()(std::string_view sentence) const
 {
 	auto lower_case_sentence = to_lower(sentence);
 	std::string output;
@@ -73,7 +73,7 @@ std::string Translator::operator()(std::string_view sentence)
 	return output;
 }
 
-std::string Translator::translate_word(std::string_view word_to_translate)
+std::string Translator::translate_word(std::string_view word_to_translate) const
 {
 
 	if (auto opt_translation = _word_translator[word_to_translate]; opt_translation)

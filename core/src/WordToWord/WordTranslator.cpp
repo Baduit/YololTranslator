@@ -24,7 +24,7 @@ void WordTranslator::clear()
 	_map.clear();
 }
 
-const std::optional<std::string_view>	WordTranslator::operator[](std::string_view word)
+const std::optional<std::string_view>	WordTranslator::operator[](std::string_view word) const
 {
 	auto it = std::find_if(_map.begin(), _map.end(),
 		[word](const auto& pair)

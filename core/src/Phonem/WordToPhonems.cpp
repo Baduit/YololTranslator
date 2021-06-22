@@ -37,7 +37,7 @@ void WordToPhonems::clear()
 	_map.clear();
 }
 
-const std::vector<Phonem>*	WordToPhonems::operator[](std::string_view word)
+const std::vector<Phonem>*	WordToPhonems::operator[](std::string_view word) const
 {
 	auto it = std::find_if(_map.begin(), _map.end(),
 		[word](const auto& pair)

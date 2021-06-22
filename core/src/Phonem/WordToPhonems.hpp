@@ -14,7 +14,7 @@ class WordToPhonems
 		void load(std::string_view filename);
 		void clear();
 
-		const std::vector<Phonem>*	operator[](std::string_view word);
+		const std::vector<Phonem>*	operator[](std::string_view word) const;
 
 	private:
 		std::map<std::string, std::vector<Phonem>> _map;

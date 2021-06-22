@@ -5,7 +5,7 @@
 #include <JsonUnserializer.hpp>
 #include <utilities/File.hpp>
 
-std::string	PhonemListToString::operator()(const std::vector<Phonem>& phonem_list)
+std::string	PhonemListToString::operator()(const std::vector<Phonem>& phonem_list) const
 {
 	std::string result;
 

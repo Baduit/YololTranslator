@@ -17,7 +17,7 @@ class PhonemListToString
 	public:
 		PhonemListToString() = default;
 
-		std::string	operator()(const std::vector<Phonem>& phonem_list);
+		std::string	operator()(const std::vector<Phonem>& phonem_list) const;
 
 		void load(std::string_view filename);
 		void clear();
@@ -26,7 +26,7 @@ class PhonemListToString
 		std::vector<const PhonemTranslation*> get_matches(Phonem p) const;
 
 		template <typename It>
-		std::string_view get_possible_equivalent(It& begin, It end, TranslationState state)
+		std::string_view get_possible_equivalent(It& begin, It end, TranslationState state) const
 		{
 			Phonem first_phonem = *begin;
 			auto phonem_translation_list = get_matches(first_phonem);
@@ -54,7 +54,7 @@ class PhonemListToString
 		}
 
 		template <typename It>
-		TranslationState get_next_translation_state(TranslationState state, It actual, It end)
+		TranslationState get_next_translation_state(TranslationState state, It actual, It end) const
 		{
 			switch (state)
 			{
