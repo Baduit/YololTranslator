@@ -1,0 +1,5 @@
+{
+	"word_to_phonems": "fr.dict",
+	"phonems_to_chars": "french_dico.json",
+	"word_to_word": "word_to_word_dict_fr.json"
+}

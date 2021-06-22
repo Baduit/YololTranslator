@@ -28,7 +28,7 @@ CPMAddPackage(
   NAME thuto
   GITHUB_REPOSITORY  Baduit/Thuto
   #VERSION 0.2.4
-  GIT_TAG ba682280cbfc4d222c3a885c0fb5fbf0d7c316f9
+  GIT_TAG ef32356db9ca09299ef12b3895b547b9d1ca078d
   OPTIONS "TESTS OFF" "EXAMPLE OFF"
 )
 
@@ -54,7 +54,7 @@ if (discord_cpp_ADDED)
     "${discord_cpp_SOURCE_DIR}/src/Webhook.cpp"
     )
 
-  target_link_libraries(discord_cpp PUBLIC cpr nlohmann_json::nlohmann_json ${IXWEBSOCKET_LIBRARY} ${MBEDTLS_TLS_LIBRARY} ${MBEDTLS_X509_LIBRARY} ${MBEDTLS_CRYPTO_LIBRARY})
+  target_link_libraries(discord_cpp PRIVATE cpr nlohmann_json::nlohmann_json ${IXWEBSOCKET_LIBRARY} ${MBEDTLS_TLS_LIBRARY} ${MBEDTLS_X509_LIBRARY} ${MBEDTLS_CRYPTO_LIBRARY})
   target_include_directories(discord_cpp PUBLIC "${discord_cpp_SOURCE_DIR}/src" ${IXWEBSOCKET_INCLUDE_DIR})
 endif()
 
