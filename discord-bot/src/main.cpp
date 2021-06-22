@@ -56,15 +56,20 @@ void run_client(const Translator& translator)
 	client.run(*token);
 }
 
+std::pair<std::string_view, std::filesystem::path> get_arguments(int argc, char** argv)
+{
+	if (argc < 2)
+		throw std::runtime_error("Give me the secret please");
+
+	std::string_view config_filename = (argc > 2) ? argv[2] : "./assets/french_config.json";
+	return { argv[1], config_filename };
+}
+
 int main(int argc, char** argv)
 {
 	try
 	{
-		if (argc < 2)
-			throw std::runtime_error("Give me the secret please");
-
-		std::string_view secret_path = argv[1];
-		std::filesystem::path config_filename = (argc > 2) ? argv[2] : "./assets/french_config.json";
+		auto [secret_path, config_filename] = get_arguments(argc, argv);
 
 		const auto token = thuto::read_file(secret_path.data());
 		if (!token)
