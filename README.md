@@ -1,4 +1,6 @@
 # YololTranslator
+Travail en cours sur le readme suite à un gros rework
+
 ## Présentation du projet
 Le but YololTranslator est de faire des fautes d'orthographes ridicules. Créé à partir d'une blague entre ami, au début ce projet était juste composé d'une petit programme en C++, maintenant c'est un projet bien plus étendu avec plusieurs technologies qui s'interfacent.
 
@@ -8,32 +10,10 @@ Voici donc les différentes parties:
 - __Discord__: Un bot discord a été créé, il permet d'utiliser simplement et rapidiment YololTranslator sur un serveur discord.
 - __GUI__: Ce sont des interfaces utilisateurs permettant d'utiliser YololTranslator de manière plus agréable qu'une simple application console sans pour autant devoir passer par le site internet. (Même si l'API REST peut être utilisée.)
 
-## List des technologies utilisées
-- __C++__: Core
-- __Cmake__: pour build les parties en C++
-- __Nodejs__: API REST et bot discord
-- __Vue.js__: site web
-- __html__: site web
-- __Css__: site web
-- __Python3__: GUI
-- __Shell__: quelques petits scripts utilitaires pour déployer sur mon raspberry pi la partie web et le bot discord.
-- __dart__: l'application mobile
-- __flutter__: l'application mobile
-
 ## Core
-### V1
-Pour compiler utilisez cmake ou bien un simple "g++ src/main.cpp -std=c++14" suffit.
+Pour build, utilisez cmake, ce la nécessite un compilateur supportant C++20.
 
-Pour utiliser le programme : lancez l'executable suivit de la phrase que vous voulez traduire entre guillements.
-
-La V1 
-
-### V2
-C'est la version utilisée par défaut  par tout les clients (python, web, discord, app mobile).
-
-Pour build, utilisez cmake, ce la nécessite un compilateur supportant C++17.
-
-Il y a un exécutable qui est une simple application console ainsi qu'une bibliothèque partagées (.so/.dll). (les dllexport ne sont pas faits pour windows)
+Il y a un exécutable qui est une simple application console ainsi qu'une bibliothèque.
 
 ## Web
 Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utiliser envoyez une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
@@ -47,10 +27,6 @@ Pour l'utiliser:
 `!yolol ici mon texte que je veux traduire`
 
 Le bot répondra avec le texte traduit.
-
-Il est possible de choisir la version du core utilisée:
-- V1: `!yolol-v1 ici mon texte que je veux traduire`
-- V2: `!yolol-v2 ici mon texte que je veux traduire`
 
 ## GUI
 ### Python

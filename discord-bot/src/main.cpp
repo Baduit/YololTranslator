@@ -31,29 +31,33 @@ Translator create_translator(const std::filesystem::path& config_filename)
 	return Translator(phonems_to_chars.string(), word_to_phonems.string(), word_to_word.string());
 }
 
-void run_client(const Translator& translator)
+void run_client(const std::string& token, const Translator& translator)
 {
 	dpp::Client client;
 	client.onReady =
 		[&]()
 		{
-			std::cout << "hello, c++!\n";
+			std::cout << "Running !\n";
 			std::cout << client.user.id << "\n\n";
 		};
 
 	client.onMessage =
 		[&](const dpp::Message &message)
 		{
-			if (message.content == "jaaj")
+			auto cmd = Command::parse(message.content);
+			if (!cmd)
+				return;
+
+			if (cmd->name == "yolol")
 			{
-				message.channel().send("jooj");
+				message.channel().send(translator(cmd->message));
 			}
-			else if (message.content == "!vdd")
+			else if (cmd->name == "vdd")
 			{
-				message.reply("translation of vdd message");
+				message.reply("todo: translation of vdd message");
 			}
 		};
-	client.run(*token);
+	client.run(token);
 }
 
 std::pair<std::string_view, std::filesystem::path> get_arguments(int argc, char** argv)
@@ -76,7 +80,7 @@ int main(int argc, char** argv)
 			throw std::runtime_error("Invalid token file.");
 
 		Translator translator = create_translator(config_filename);
-		run_client(translator);
+		run_client(*token, translator);
 	}
 	catch (std::exception& e)
 	{
