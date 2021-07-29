@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <Translator.hpp>
-#include <Isaarg.hpp>
+#include <utilities/Isaarg.hpp>
 
 int main(int argc, char** argv)
 {
