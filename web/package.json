@@ -23,11 +23,9 @@
   "author": "Baduit",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "ffi": "^2.3.0",
-    "npm5": "^5.0.0-beta.69",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "ws": "^8.0.0"
   },
   "devDependencies": {
     "npm-watch": "^0.9.0"
