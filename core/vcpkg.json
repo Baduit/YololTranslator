@@ -7,9 +7,9 @@
 	"description": "A dummy projet to show that making a REST API in C++ is not difficult.",
 	"dependencies": [
 		"nlohmann-json",
-		"cpr",
-		"ixwebsocket",
 		"doctest",
-		"magic-enum"
+		"magic-enum",
+		"uwebsockets",
+		"nameof"
 	]
 }

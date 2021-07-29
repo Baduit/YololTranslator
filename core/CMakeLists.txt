@@ -1,12 +1,15 @@
-add_subdirectory(src)
+cmake_minimum_required(VERSION 3.0)
 
-add_executable(YololTranslatorCmd bin/main.cpp)
-target_compile_features(YololTranslatorCmd PRIVATE cxx_std_20)
-target_compile_options(YololTranslatorCmd
-                       PRIVATE
-                       $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
-					   $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>:-Wextra -Wall -Wsign-conversion -Wfloat-equal -pedantic -Wredundant-decls -Wshadow -Wpointer-arith -O3>)
-target_link_libraries(YololTranslatorCmd PRIVATE YololTranslator)
-target_include_directories(YololTranslatorCmd PRIVATE bin)
+project(YololTranslatorProject)
+
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH};${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+include(CPM)
+include(CTest)
+include(Dependencies)
+enable_testing(MAKE_DIRECTORY test)
+
+add_subdirectory(src)
+add_subdirectory(bin)
 
 add_subdirectory(test)
