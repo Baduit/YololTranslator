@@ -15,14 +15,16 @@ namespace messages
 struct ConfigAck
 {
 	bool success;
+	int request_id;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ConfigAck, success)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(ConfigAck, success, request_id)
 
 struct Translation
 {
 	std::string text;
+	int request_id;
 };
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Translation, text)
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Translation, text, request_id)
 
 using Message = std::variant<ConfigAck, Translation>;
 /* void to_json(nlohmann::json& j, const Message& message)

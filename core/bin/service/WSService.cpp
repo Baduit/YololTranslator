@@ -75,12 +75,12 @@ void WSService::handle_close(WSAdapter ws)
 
 void WSService::handle_config(WSAdapter ws, SocketData& socket_data, nlohmann::json&& message)
 {
-
+	// not implemented, only french for now
 }
 
 void WSService::handle_translate(WSAdapter ws, SocketData& socket_data, nlohmann::json&& message)
 {
-
+	ws.send_message(messages::Translation{ .text = _translator(message.at("text")), .request_id = messages.at("request_id") });
 }
 
 void WSService::publish(std::string_view topic, std::string_view message)
