@@ -1,63 +1,14 @@
 import WebSocket from 'ws';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import * as YololSDK from '../nodejs_sdk/YololSDK.mjs'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const port = 4910;
 
-class Client {
-	constructor (ws_host) {
-		this.next_request_id = 0;
-		this.request_promises = new Map();
-		this.ws = new WebSocket(ws_host);
-		this.ws.on('open', () => {
-			console.log("Connected.")
-		});
-
-		this.ws.on('message', (message) => {
-			try {
-				let parsed_message = JSON.parse(message);
-				let resolver = this.request_promises.get(parsed_message.data.request_id);
-				if (resolver) {
-					resolver(parsed_message.data.text);
-				} else {
-					console.log("Unknown request id");
-				}
-			} catch (error) {
-				console.log(error);
-			}
-		})
-
-		// Todo handle automatic reconnection
-	}
-
-	translate(text) {
-		let current_request_id = this.next_request_id;
-		let message = {
-			type: "translate",
-			text: text,
-			request_id: current_request_id
-		};
-		this.ws.send(JSON.stringify(message));
-
-		let resolver = null;
-		let p = new Promise((resolve, reject) => {
-			resolver = resolve;
-			setTimeout(() => {
-				this.request_promises.delete(current_request_id);
-				reject("Timeout after 10s");
-			}, 10 * 1000);
-		});
-		this.request_promises.set(current_request_id, resolver);
-
-		this.next_request_id++;
-		return p;
-	}
-}
-
-let client = new Client("ws://localhost:4577");
+let client = new YololSDK.Client(WebSocket, "ws://localhost:4577");
 
 import express from "express";
 var app = express();
