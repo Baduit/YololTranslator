@@ -1,4 +1,9 @@
 import WebSocket from 'ws';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const port = 4910;
 
@@ -6,17 +11,12 @@ class Client {
 	constructor (ws_host) {
 		this.next_request_id = 0;
 		this.request_promises = new Map();
-		this.ws = new WebSocket('ws://localhost:4577'); // replace by ws_host
+		this.ws = new WebSocket(ws_host);
 		this.ws.on('open', () => {
-			client.translate("salut").then((translation) => {
-				console.log(translation);
-			}).catch((error) => {
-				console.log(error);
-			});
+			console.log("Connected.")
 		});
 
 		this.ws.on('message', (message) => {
-			console.log('received: %s', message);
 			try {
 				let parsed_message = JSON.parse(message);
 				let resolver = this.request_promises.get(parsed_message.data.request_id);
@@ -29,6 +29,8 @@ class Client {
 				console.log(error);
 			}
 		})
+
+		// Todo handle automatic reconnection
 	}
 
 	translate(text) {
@@ -44,6 +46,7 @@ class Client {
 		let p = new Promise((resolve, reject) => {
 			resolver = resolve;
 			setTimeout(() => {
+				this.request_promises.delete(current_request_id);
 				reject("Timeout after 10s");
 			}, 10 * 1000);
 		});
@@ -56,7 +59,7 @@ class Client {
 
 let client = new Client("ws://localhost:4577");
 
-/* import express from "express";
+import express from "express";
 var app = express();
 
 // App init
@@ -79,7 +82,11 @@ app.route("/translate").post(function(req, res)
 	if (!req.body.text)
 		return res.status(400).send('You need to specify the "text" parameter.');
 
-	// todo call YololSDK
+	client.translate(req.body.text).then((translation) => {
+		return res.send(translation);
+	}).catch((error) => {
+		return res.status(400).send(error);
+	});
 });
 
 // todo add WS route
@@ -87,4 +94,4 @@ app.route("/translate").post(function(req, res)
 // Start
 app.listen(port);
 
-console.log("Server is running on port: " + port); */
+console.log("Server is running on port: " + port);
