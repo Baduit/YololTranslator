@@ -1,4 +1,5 @@
 #include <WSService.hpp>
+#include <Messages.hpp>
 
 WSService::WSService(Translator& translator, int port):
 	_translator(translator)
@@ -80,7 +81,7 @@ void WSService::handle_config(WSAdapter ws, SocketData& socket_data, nlohmann::j
 
 void WSService::handle_translate(WSAdapter ws, SocketData& socket_data, nlohmann::json&& message)
 {
-	ws.send_message(messages::Translation{ .text = _translator(message.at("text")), .request_id = messages.at("request_id") });
+	ws.send_message(messages::Translation{ .text = _translator(message.at("text").get<std::string>()), .request_id = message.at("request_id").get<int>() });
 }
 
 void WSService::publish(std::string_view topic, std::string_view message)

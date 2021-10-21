@@ -1,11 +1,62 @@
+import WebSocket from 'ws';
+
 const port = 4910;
 
-class YololClient
-{
-	// todo
-};
+class Client {
+	constructor (ws_host) {
+		this.next_request_id = 0;
+		this.request_promises = new Map();
+		this.ws = new WebSocket('ws://localhost:4577'); // replace by ws_host
+		this.ws.on('open', () => {
+			client.translate("salut").then((translation) => {
+				console.log(translation);
+			}).catch((error) => {
+				console.log(error);
+			});
+		});
 
-var express = require("express");
+		this.ws.on('message', (message) => {
+			console.log('received: %s', message);
+			try {
+				let parsed_message = JSON.parse(message);
+				let resolver = this.request_promises.get(parsed_message.data.request_id);
+				if (resolver) {
+					resolver(parsed_message.data.text);
+				} else {
+					console.log("Unknown request id");
+				}
+			} catch (error) {
+				console.log(error);
+			}
+		})
+	}
+
+	translate(text) {
+		let current_request_id = this.next_request_id;
+		let message = {
+			type: "translate",
+			text: text,
+			request_id: current_request_id
+		};
+		this.ws.send(JSON.stringify(message));
+
+		let resolver = null;
+		let p = new Promise((resolve, reject) => {
+			resolver = resolve;
+			setTimeout(() => {
+				reject("Timeout after 10s");
+			}, 10 * 1000);
+		});
+		this.request_promises.set(current_request_id, resolver);
+
+		this.next_request_id++;
+		return p;
+	}
+}
+
+let client = new Client("ws://localhost:4577");
+
+/* import express from "express";
 var app = express();
 
 // App init
@@ -31,11 +82,9 @@ app.route("/translate").post(function(req, res)
 	// todo call YololSDK
 });
 
-app.route("/test").post(function(req, res) {
-	res.status(200).send(req.body.text);
-});
+// todo add WS route
 
 // Start
 app.listen(port);
 
-console.log("Server is running on port: " + port);
+console.log("Server is running on port: " + port); */
