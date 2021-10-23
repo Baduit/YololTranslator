@@ -22,6 +22,7 @@
 	],
 	"author": "Baduit",
 	"license": "MIT",
+	"type": "module",
 	"dependencies": {
 		"discord.js": "^13.2.0",
 		"ws": "^8.0.0"
