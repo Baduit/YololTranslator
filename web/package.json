@@ -1,0 +1,34 @@
+{
+  "name": "yololtranslate-api",
+  "version": "1.0.0",
+  "description": "The nodejs Restfull api of YololTranslator",
+  "main": "index.js",
+  "repository": "https://github.com/Baduit/YololTranslator",
+  "watch": {
+    "start": "*"
+  },
+  "scripts": {
+    "watch": "npm-watch start",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "yolol",
+    "translator",
+    "fun",
+    "api",
+    "nodejs",
+    "node-js",
+    "javascript"
+  ],
+  "author": "Baduit",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.16.4",
+    "vue": "^2.6.10",
+    "ws": "^8.0.0"
+  },
+  "devDependencies": {
+    "npm-watch": "^0.9.0"
+  }
+}

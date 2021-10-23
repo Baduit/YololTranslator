@@ -1,0 +1,134 @@
+body {
+  background-color: #505964;
+  color: white;
+  display: flex;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding-right: 100px;
+  padding-left: 100px;
+  overflow: auto;
+}
+
+#title {
+  font-family: Big Noodle Too, impact, sans-serif;
+  font-size: 50px;
+  display: flex;
+  flex: 1;
+  max-height: 50px;
+}
+
+#yololText {
+  display: flex;
+  flex: 1;
+  padding-bottom: 20px;
+  overflow: hidden;
+  min-height: 100px;
+}
+
+#yololInput {
+  flex: 3;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  font-size: 20px;
+  border-style: none;
+  resize: none;
+  overflow: auto;
+  min-height: 100px;
+}
+
+#yololOutput {
+  flex: 3;
+  padding: 10px;
+  font-family: Comic Sans Ms;
+  font-size: 20px;
+  overflow: auto;
+  transition: background-color 1s;
+  min-height: 100px;
+}
+
+#copyButton {
+  width: 40px;
+  height: 40px;
+  border-style: none;
+  background-color: #222222;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#copyButton:hover {
+  background-color: #333333;
+}
+#copyButton:active {
+  color: #aaaaaa;
+}
+
+@media only screen and (max-width: 600px) {
+  #app {
+    padding: 5px;
+  }
+  #copyButton {
+    height: 0px;
+    width: 0px;
+    padding: 0;
+  }
+  #title {
+    max-height: 20px;
+    justify-content: center;
+  }
+  #yololInput {
+    font-size: 14px;
+  }
+  #yololOutput {
+    font-size: 14px;
+  }
+}
+
+#footer {
+  max-height: 50px;
+  background-color: #222222;
+  height: 50px;
+  flex: 1;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  color: white;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+}
+
+@font-face {
+  font-family: "Big Noodle Too";
+  src: url("assets/fonts/big_noodle_titling_oblique.ttf");
+}
+@font-face {
+  font-family: "Comic Sans Ms";
+  src: url("assets/fonts/COMIC.TTF");
+}
