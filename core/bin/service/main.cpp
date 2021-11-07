@@ -1,4 +1,7 @@
+#include <chrono>
+
 #include <utilities/Isaarg.hpp>
+#include <thuto/utils/Sleeper.hpp>
 
 #include <WSService.hpp>
 
@@ -16,6 +19,22 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	Translator translator(*phonems_to_chars, *word_to_phonem, *word_to_word);
-	WSService service(translator, 4577);
+	for (;;)
+	{
+		try
+		{
+			Translator translator(*phonems_to_chars, *word_to_phonem, *word_to_word);
+			WSService service(translator, 4577);
+		}
+		catch (...)
+		{
+			// I'm ugly, I'll ignore, I don't have a real logging stuff so, it will just restart the service after anyway
+		}
+
+		{
+			using namespace std::chrono_literals;
+			thuto::Sleeper sleeper;
+			sleeper.sleep(30s);
+		}
+	}
 }
