@@ -1,16 +1,27 @@
 import WebSocket from 'ws';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
 
 class YololClient {
-	constructor (WebSocket, ws_host) {
+	constructor (ws_host) {
+		this.ws = null
 		this.next_request_id = 0;
 		this.request_promises = new Map();
+
+		this.connect(ws_host)
+	}
+
+	connect(ws_host) {
+		if (this.ws) {
+			console.log("Connection rejected")
+			return
+		}
+
+		console.log("Trying to connect")
+
 		this.ws = new WebSocket(ws_host);
 		this.ws.on('open', () => {
 			console.log("Connected.")
 		});
+		
 
 		this.ws.on('message', (message) => {
 			try {
@@ -26,7 +37,10 @@ class YololClient {
 			}
 		})
 
-		// Todo handle automatic reconnection
+		this.ws.on('error', (code, reason) => {
+			this.ws = null
+			setTimeout(() => { this.connect(ws_host) }, 1000 * 5)
+		})
 	}
 
 	translate(text) {
@@ -36,10 +50,17 @@ class YololClient {
 			text: text,
 			request_id: current_request_id
 		};
-		this.ws.send(JSON.stringify(message));
+		let sended = false
+		if (this.ws) {
+			this.ws.send(JSON.stringify(message));
+			sended = true
+		}
 
 		let resolver = null;
 		let p = new Promise((resolve, reject) => {
+			if (!sended) {
+				reject("No connexion")
+			}
 			resolver = resolve;
 			setTimeout(() => {
 				this.request_promises.delete(current_request_id);
@@ -49,6 +70,9 @@ class YololClient {
 		this.request_promises.set(current_request_id, resolver);
 
 		this.next_request_id++;
+		if (this.next_request_id == Number.MAX_SAFE_INTEGER) {
+			this.next_request_id = 0
+		}
 		return p;
 	}
 }
@@ -56,7 +80,7 @@ class YololClient {
 
 const port = 4910;
 
-let client = new YololClient(WebSocket, "ws://localhost:4577");
+let client = new YololClient("ws://localhost:4577");
 
 import express from "express";
 var app = express();
@@ -68,12 +92,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.route("/").get(function(req, res) {
-	console.log(__dirname)
 	res.sendFile(__dirname + "/public/index.html");
 });
 
 app.route("/assets/vue").get(function(req, res) {
-	console.log(__dirname)
 	res.sendFile(__dirname + "/node_modules/vue/dist/vue.min.js");
 });
 
