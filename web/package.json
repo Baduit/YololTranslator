@@ -8,8 +8,12 @@
     "start": "*"
   },
   "scripts": {
-    "watch": "npm-watch start",
-    "start": "node index.js"
+    "build_windows": "babel index.js -d dist && copy .\\dist\\index.js babelled_index.js",
+    "build_unix": "babel index.js -d dist && cp ./dist/index.js babelled_index.js",
+    "watch_unix": "npm-watch start_unix",
+    "watch_windows": "npm-watch start_windows",
+    "start_windows": "npm run build_windows && node babelled_index.js",
+    "start_unix": "npm run build_unix && node babelled_index.js"
   },
   "keywords": [
     "yolol",
@@ -22,13 +26,15 @@
   ],
   "author": "Baduit",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "express": "^4.16.4",
     "vue": "^2.6.10",
     "ws": "^8.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
     "npm-watch": "^0.9.0"
   }
 }

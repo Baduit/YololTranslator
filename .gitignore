@@ -19,3 +19,6 @@ win_build
 linux_build
 
 not_versionned
+
+dist
+babelled_index.js
