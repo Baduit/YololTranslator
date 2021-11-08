@@ -71,5 +71,9 @@ async def main():
 	async with serve(translate, "0.0.0.0", 4577):
 		await asyncio.Future()
 
-yolol = YololTranslator(sys.argv[1])
-asyncio.run(main())
+if __name__ == '__main__':
+	yolol = YololTranslator(sys.argv[1])
+	loop = asyncio.get_event_loop()
+	loop.run_until_complete(main())
+	loop.close()
+	yolol.destroy()
