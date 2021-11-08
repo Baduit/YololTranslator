@@ -57,7 +57,8 @@ class YololTranslator:
 		return res
 
 async def translate(websocket, path):
-	async for message in websocket:
+	while True:
+		message = await websocket.recv()
 		request = json.loads(message)
 		translation = yolol.translate(request['text'])
 		answer = {
