@@ -9,9 +9,9 @@ typedef struct YololTranslationS
 	char* translation;
 } YololTranslation;
 
-void yolol_init(const char* phonems_list_filename, const char* words_phonem_filename, const char* word_dict_filename);
+void yolol_init(const char* phonems_to_chars, const char* word_to_phonem, const char* word_to_word);
 
-YololTranslation translate(const char* str, int size);
+YololTranslation yolol_translate(const char* str, int size);
 void yolol_free(YololTranslation translation);
 
 void yolol_destroy();

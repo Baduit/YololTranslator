@@ -26,9 +26,9 @@ class YololClient {
 		this.ws.on('message', (message) => {
 			try {
 				let parsed_message = JSON.parse(message);
-				let resolver = this.request_promises.get(parsed_message.data.request_id);
+				let resolver = this.request_promises.get(parsed_message.request_id);
 				if (resolver) {
-					resolver(parsed_message.data.text);
+					resolver(parsed_message.text);
 				} else {
 					console.log("Unknown request id");
 				}

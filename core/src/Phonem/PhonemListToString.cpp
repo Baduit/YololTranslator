@@ -19,7 +19,7 @@ std::string	PhonemListToString::operator()(const std::vector<Phonem>& phonem_lis
 		state = get_next_translation_state(state, it, end);
 	}
 
-	return result;;
+	return result;
 }
 
 void PhonemListToString::load(std::string_view filename)

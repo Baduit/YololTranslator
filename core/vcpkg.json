@@ -8,8 +8,6 @@
 	"dependencies": [
 		"nlohmann-json",
 		"doctest",
-		"magic-enum",
-		"uwebsockets",
-		"nameof"
+		"magic-enum"
 	]
 }

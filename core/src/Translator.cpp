@@ -3,6 +3,7 @@
 #include <Translator.hpp>
 #include <utilities/Split.hpp>
 
+#include <iostream>
 namespace
 {
 

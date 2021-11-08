@@ -1,6 +1,7 @@
 #include <optional>
 #include <string_view>
 #include <cstring>
+#include <iostream>
 
 #include <SharedInterface.hpp>
 #include <Translator.hpp>
@@ -9,12 +10,12 @@
 
 static std::optional<Translator> translator;
 
-void yolol_init(const char* phonems_list_filename, const char* words_phonem_filename, const char* word_dict_filename)
+void yolol_init(const char* phonems_to_chars, const char* word_to_phonem, const char* word_to_word)
 {
-	translator.emplace(phonems_list_filename, words_phonem_filename, word_dict_filename);
+	translator.emplace(phonems_to_chars, word_to_phonem, word_to_word);
 }
 
-YololTranslation translate(const char* str, int size)
+YololTranslation yolol_translate(const char* str, int size)
 {
 	auto translation = (*translator)(std::string_view(str, static_cast<std::size_t>(size)));
 	YololTranslation result;
