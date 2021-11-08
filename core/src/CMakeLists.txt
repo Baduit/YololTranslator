@@ -1,4 +1,5 @@
 set(SRCS
+	SharedInterace.cpp
 	Translator.cpp
 	JsonUnserialiser.cpp
 	WordToWord/WordTranslator.cpp
@@ -7,7 +8,9 @@ set(SRCS
 	Phonem/PhonemListToString.cpp
     )
 
-add_library(YololTranslator ${SRCS})
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+add_library(YololTranslator SHARED ${SRCS})
 target_compile_features(YololTranslator PRIVATE cxx_std_20)
 target_compile_options(YololTranslator
                        PRIVATE

@@ -70,16 +70,16 @@ void WSService::handle_message(WSAdapter ws, std::string_view message)
 					
 }
 
-void WSService::handle_close(WSAdapter ws)
+void WSService::handle_close(WSAdapter)
 {
 }
 
-void WSService::handle_config(WSAdapter ws, SocketData& socket_data, nlohmann::json&& message)
+void WSService::handle_config(WSAdapter, SocketData&, nlohmann::json&&)
 {
 	// not implemented, only french for now
 }
 
-void WSService::handle_translate(WSAdapter ws, SocketData& socket_data, nlohmann::json&& message)
+void WSService::handle_translate(WSAdapter ws, SocketData&, nlohmann::json&& message)
 {
 	ws.send_message(messages::Translation{ .text = _translator(message.at("text").get<std::string>()), .request_id = message.at("request_id").get<int>() });
 }

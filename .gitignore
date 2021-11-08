@@ -17,6 +17,7 @@ pid.txt
 build
 win_build
 linux_build
+gcc_build
 
 not_versionned
 
