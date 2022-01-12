@@ -1,6 +1,8 @@
 # YololTranslator
 Travail en cours sur le readme suite à un gros rework
 
+Update : nouveau rework pour le fun, je vais essayer de le faire entièrement en nim, le core, le bot, l'api et le site.
+
 ## Présentation du projet
 Le but YololTranslator est de faire des fautes d'orthographes ridicules. Créé à partir d'une blague entre ami, au début ce projet était juste composé d'une petit programme en C++, maintenant c'est un projet bien plus étendu avec plusieurs technologies qui s'interfacent.
 
