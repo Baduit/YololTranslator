@@ -1,11 +1,8 @@
-#!/usr/bin/env python3
-
 import ctypes
-import sys
-import json
 
-import asyncio
-from websockets import serve
+word_to_phonem = b'core/assets/fr.dict'
+word_to_word = b'core/assets/word_to_word_dict_fr.json'
+phonems_to_chars = b'core/assets/french_dico.json'
 
 class YololTranslation(ctypes.Structure):
 	_fields_ = [
@@ -13,16 +10,8 @@ class YololTranslation(ctypes.Structure):
 		('translation', ctypes.c_char_p)
 	]
 
-
-word_to_phonem = b'./assets/fr.dict'
-word_to_word = b'./assets/word_to_word_dict_fr.json'
-phonems_to_chars = b'./assets/french_dico.json'
-
-
 class YololTranslator:
 	def __init__(self, lib_path) -> None:
-		# './build/src/Debug/YololTranslator.dll'
-		# './gcc_build/src/libYololTranslator.so'
 		self.lib = ctypes.CDLL(lib_path)
 
 		self.lib.yolol_init.argtypes = [
@@ -55,26 +44,3 @@ class YololTranslator:
 		res = translation.translation.decode()
 		self.lib.yolol_free(translation)
 		return res
-
-async def translate(websocket, path):
-	while True:
-		message = await websocket.recv()
-		request = json.loads(message)
-		translation = yolol.translate(request['text'])
-		answer = {
-			"text": translation,
-			"request_id": request['request_id']
-		}
-		await websocket.send(json.dumps(answer))
-
-async def main():
-	#print(yolol.translate("Salut, comment ça va ?"))
-	async with serve(translate, "0.0.0.0", 4577):
-		await asyncio.Future()
-
-if __name__ == '__main__':
-	yolol = YololTranslator(sys.argv[1])
-	loop = asyncio.get_event_loop()
-	loop.run_until_complete(main())
-	loop.close()
-	yolol.destroy()
