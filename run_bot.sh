@@ -1,0 +1,1 @@
+python3.10 /opt/pifig/YololTranslatorAPI/discord_bot.py

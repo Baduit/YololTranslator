@@ -1,0 +1,1 @@
+uvicorn web_server:app --port 4910
