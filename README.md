@@ -28,9 +28,3 @@ Pour l'utiliser:
 
 Le bot répondra avec le texte traduit.
 
-## GUI
-### Python
-Une simple GUI en python3 composée d'un seul fichier utilisant l'API web pour faire les traductions.
-
-### FlutterApp
-Une app mobile très simple en dart avec le framework flutter, ça utilise l'API web pour faire les traductions.
