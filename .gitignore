@@ -25,3 +25,5 @@ dist
 babelled_index.js
 
 secret
+
+__pycache__
