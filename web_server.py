@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import uvicorn
+
 import platform
 
 from fastapi import FastAPI
@@ -26,3 +28,6 @@ async def guess_pokemon(text: TextToTranslate):
 	return yolol.translate(text.text)
 
 app.mount("/", StaticFiles(directory="public", html=True), name="Yolol")
+
+if __name__ == '__main__':
+	uvicorn.run('web_server:app', port=4910)
