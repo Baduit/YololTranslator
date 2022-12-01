@@ -1,0 +1,1 @@
+FROM baduit/yololtranslator-core
