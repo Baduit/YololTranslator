@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       -
-        name: Build and push
+        name: Build and push the core
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -32,3 +32,12 @@ jobs:
           push: true
           tags: baduit/yololtranslator-core:latest
           file: core.dockerfile
+      -
+        name: Build and push the website
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: baduit/yololtranslator-web:latest
+          file: web.dockerfile
