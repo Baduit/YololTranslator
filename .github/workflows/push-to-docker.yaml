@@ -41,3 +41,12 @@ jobs:
           push: true
           tags: baduit/yololtranslator-web:latest
           file: web.dockerfile
+      -
+        name: Build and push the discord bot
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: baduit/yololtranslator-discord-bot:latest
+          file: bot.dockerfile
