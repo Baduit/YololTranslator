@@ -8,7 +8,6 @@ Voici donc les différentes parties:
 - __Core__: C'est la partie qui va transformées un texte correcte en un texte digne des pires kikoulols.
 - __Web__: C'est ce qui va permettre d'utiliser YololTranslator via internet, pour cela il y a une API REST ainsi qu'un site internet (https://yololtranslate-api.baduit.eu/).
 - __Discord__: Un bot discord a été créé, il permet d'utiliser simplement et rapidiment YololTranslator sur un serveur discord.
-- __GUI__: Ce sont des interfaces utilisateurs permettant d'utiliser YololTranslator de manière plus agréable qu'une simple application console sans pour autant devoir passer par le site internet. (Même si l'API REST peut être utilisée.)
 
 ## Core
 Pour build, utilisez cmake, ce la nécessite un compilateur supportant C++20.
@@ -16,7 +15,7 @@ Pour build, utilisez cmake, ce la nécessite un compilateur supportant C++20.
 Il y a un exécutable qui est une simple application console ainsi qu'une bibliothèque.
 
 ## Web
-Une API Rest existe, le code est dans le dossier __api__ et une instance tourne sur mon Raspberry pi. Pour l'utiliser envoyez une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
+Une API Rest existe. Pour l'utiliser envoyez une requête POST sur: https://yololtranslate-api.baduit.eu/translate avec le texte que vous voulez traduire dans une variable nommée __text__.
 
 Il y a aussi un site internet: https://yololtranslate-api.baduit.eu/
 
