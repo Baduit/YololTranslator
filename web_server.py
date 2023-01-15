@@ -6,15 +6,10 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from core.Yolol import YololTranslator
+from core.build.Debug.yolol import Translator
 
 
-# Ugly but it works for now
-if platform.system() == "Windows":
-	lib_path = 'core/build/src/Debug/YololTranslator'
-else:
-	lib_path = 'core/build/src/libYololTranslator.so'
-yolol = YololTranslator(lib_path)
+yolol = Translator(word_to_phonem_file='core/assets/french_dico.json', phonem_to_chars_file='core/assets/fr.dict', word_to_word_file='core/assets/word_to_word_dict_fr.json')
 
 class TextToTranslate(BaseModel):
     text: str

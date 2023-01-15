@@ -1,5 +1,4 @@
 add_executable(YololTranslatorCli main.cpp)
-target_compile_features(YololTranslatorCli PRIVATE cxx_std_20)
 target_compile_options(YololTranslatorCli
                        PRIVATE
                        $<$<CXX_COMPILER_ID:MSVC>:/W3 /permissive- /TP>
