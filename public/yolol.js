@@ -1,5 +1,30 @@
 let translated_text = "";
 
+function get_ws_endpoint() {
+  endpoint = window.location.href + "ws/translate"
+  endpoint = endpoint.replace("https", "wss")
+  endpoint = endpoint.replace("http", "ws")
+  return endpoint
+}
+let ws = new WebSocket(get_ws_endpoint())
+ws.onmessage = (message) => {
+  set_success_translator();
+  set_translation(message.data);
+}
+
+function ws_translate() {
+  if (ws != null) {
+    const text_to_translate = document.getElementById("yololInput").value;
+    if (text_to_translate !== translated_text) {
+      translated_text = text_to_translate;
+      ws.send(text_to_translate)
+    }
+  } else {
+    // Fallback in case websocket stuff does not work
+    translate()
+  }
+}
+
 function set_failure_translator() {
   document.getElementById("title").innerText = "💀 Failing translator";
 }
@@ -40,7 +65,7 @@ function translate() {
 }
 
 // Not ideal, but it will be changed when I will implement and use the websocket api
-setInterval(translate, 500);
+setInterval(ws_translate, 500);
 
 function copyToClipboard() {
   // Get the text field
