@@ -17,7 +17,7 @@ class TextToTranslate(BaseModel):
 app = FastAPI()
 
 @app.post("/translate")
-async def guess_pokemon(text: TextToTranslate):
+async def translate(text: TextToTranslate):
 	return yolol.translate(text.text)
 
 app.mount("/", StaticFiles(directory="public", html=True), name="Yolol")
