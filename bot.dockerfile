@@ -1,7 +1,6 @@
 FROM baduit/yololtranslator-core
 
-RUN apt install python3 -y
-RUN apt install python3-pip -y
+RUN apt install python3 python3-pip -y
 RUN pip install discord
 
 WORKDIR /yololtranslator/
