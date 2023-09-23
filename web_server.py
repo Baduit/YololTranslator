@@ -2,7 +2,7 @@
 
 import platform
 
-from fastapi import FastAPI
+from fastapi import FastAPI, WebSocket
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
@@ -19,5 +19,12 @@ app = FastAPI()
 @app.post("/translate")
 async def translate(text: TextToTranslate):
 	return yolol.translate(text.text)
+
+@app.websocket("/ws/translate")
+async def websocker_translate(websocket: WebSocket):
+      await websocket.accept()
+      while True:
+            data = await websocket.receive_text()
+            await websocket.send_text(yolol.translate(data))
 
 app.mount("/", StaticFiles(directory="public", html=True), name="Yolol")
